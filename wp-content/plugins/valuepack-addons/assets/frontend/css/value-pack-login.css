@@ -1,0 +1,446 @@
+/* Login and Register Form Styling */
+/* =======> registeration <======= */
+
+/* heading */
+
+.cwp-frontend-form-container .cwp-user-register .cwp-frontend-section-container>h2,
+.cwp-frontend-form-container>h2 {
+    letter-spacing: 0.3px;
+    word-spacing: 5px;
+    font-size: 30px;
+    margin: 30px 0;
+    font-weight: 600;
+}
+
+.cwp-frontend-form-container .cwp-user-register .cwp-field-password label,
+.cwp-frontend-form-container .cwp-user-login .cwp-fields-container .cwp-field-password label,
+.cwp-frontend-form-container .cwp-user-login .cwp-fields-container .cwp-field-text label,
+.cwp-frontend-form-container .cwp-user-register .cwp-field-email label,
+.cwp-frontend-form-container .cwp-user-register .cwp-field-text label {
+    font-size: 14px;
+    cursor: pointer;
+    font-family: sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    word-spacing: 2px;
+    margin-bottom: 10px;
+}
+
+.cwp-frontend-form-container .cwp-user-login .cwp-fields-container .cwp-field-text input[type=text],
+.cwp-frontend-form-container .cwp-user-register .cwp-field-email input[type=email],
+.cwp-frontend-form-container .cwp-user-register .cwp-field-text input[type=text],
+.cwp-frontend-form-container .cwp-user-login .cwp-fields-container .cwp-field-password input[type=password],
+.cwp-frontend-form-container .cwp-user-register .cwp-field-password input[type=password] {
+    margin-left: -2px;
+    font-size: 14px;
+    line-height: 20px;
+    padding: 10px 15px;
+    color: #000;
+    background: #fff;
+    border-radius: 5px;
+    border: 0.1rem solid #dcd7ca;
+    box-shadow: none;
+    display: block;
+    letter-spacing: 0;
+    width: 100%;
+}
+
+.cwp-frontend-form-container .cwp-user-register .cwp-fields-container button,
+.cwp-frontend-form-container .cwp-user-login .cwp-fields-container button {
+    border-radius: 5px;
+    margin-top: 15px;
+    font-size: 16px;
+    padding: 10px 20px;
+}
+
+.cwp-frontend-form-container .cwp-user-login .cwp-fields-container .cwp-field-container label span.cwp-required,
+.cwp-frontend-form-container .cwp-user-register .cwp-frontend-section-container .cwp-frontend-section-content-container .cwp-field-container label span.cwp-required {
+    color: red;
+}
+
+/* General modal styles */
+.logged-in .vp-login-modal-content,
+.logged-in .vp-register-modal-content {
+    margin-top: 30px;
+}
+
+.vp-login-modal {
+    position: fixed;
+    z-index: 999999999999999999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: #000000c4;
+    justify-content: flex-end;
+    display: block !important;
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.3s;
+    overflow-x: hidden;
+}
+
+#vp-login-modal.active {
+    opacity: 1;
+    visibility: visible;
+
+}
+
+#vp-login-modal.active .vp-login-modal-content,
+#vp-login-modal.active .vp-register-modal-content {
+    transform: none;
+}
+
+.vp-login-modal-content,
+.vp-register-modal-content {
+    width: 500px;
+    background-color: #ffffff;
+    padding: 40px;
+    position: absolute;
+    right: 0px;
+    top: 0;
+    transition: 0.3s;
+    transform: translateX(100%);
+}
+
+.vp-login-modal-content .modal-form-content .cwp-frontend-section-heading-container,
+.vp-register-modal-content .modal-form-content .cwp-frontend-section-heading-container {
+    margin-bottom: 0;
+    display: none !important;
+}
+
+.vp-login-modal-content .modal-form-content .cwp-frontend-section-heading-container,
+.vp-register-modal-content .modal-form-content .cwp-frontend-section-heading-container,
+.vp-login-modal-content .cwp-frontend-form-container .cwp-frontend-section-container .cwp-frontend-section-content-container,
+.vp-register-modal-content .cwp-frontend-form-container .cwp-frontend-section-container .cwp-frontend-section-content-container {
+    background: unset;
+    border: none;
+    border-radius: unset;
+    padding: 0px;
+}
+
+.vp-login-modal-content .cwp-frontend-section-container,
+.vp-register-modal-content .cwp-frontend-section-container {
+    margin-bottom: 0px;
+}
+
+.vp-login-modal-content .modal-bottom-text,
+.vp-register-modal-content .modal-bottom-text {
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 24px;
+    letter-spacing: 0px;
+    text-align: center;
+    margin: 23px 0 0 0;
+    color: #767676;
+}
+
+.vp-login-modal-content .cwp-frontend-section-container p.cwp-field-container,
+.vp-register-modal-content .cwp-frontend-section-container p.cwp-field-container {
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 24px;
+    letter-spacing: 0px;
+    color: #767676;
+    margin: -4px 0 26px 0 !important;
+}
+
+.vp-login-modal-content .cwp-frontend-section-container p.cwp-field-container a,
+.vp-register-modal-content .cwp-frontend-section-container p.cwp-field-container a {
+    color: #1d1d1d;
+    text-transform: uppercase;
+    font-size: 12px;
+    transition: .3s;
+}
+
+.vp-login-modal-content .cwp-frontend-section-container p.cwp-field-container a:hover,
+.vp-register-modal-content .cwp-frontend-section-container p.cwp-field-container a:hover {
+    color: #fd1f1f;
+}
+
+.vp-login-modal-content .modal-bottom-text span,
+.vp-register-modal-content .modal-bottom-text span {
+    color: #000000;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.vp-login-modal-content .modal-bottom-text span:hover,
+.vp-register-modal-content .modal-bottom-text span:hover {
+    color: #1f79fd;
+}
+
+.vp-login-modal-content .cwp-frontend-section-container .cwp-field-container,
+.vp-register-modal-content .cwp-frontend-section-container .cwp-field-container {
+    margin: 0 0 30px 0;
+    padding: 0px;
+}
+
+.vp-login-modal-content .cwp-frontend-form-container input[type=submit],
+.vp-register-modal-content .cwp-frontend-form-container input[type=submit] {
+    background: #1D1D1D !important;
+    border: 1px solid #1D1D1D;
+    border-radius: unset;
+    padding: 18px;
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 16px;
+    letter-spacing: 0px;
+    color: #fff;
+    text-transform: uppercase;
+    margin-bottom: 0;
+}
+
+.vp-login-modal-content .cwp-frontend-form-container input[type=submit]:hover,
+.vp-register-modal-content .cwp-frontend-form-container input[type=submit]:hover {
+    background-color: #ffffff !important;
+    color: #000000;
+    transition: 0.3s;
+}
+
+html body .vp-login-modal-content .cwp-frontend-form-container .cwp-field-container input[type=text],
+html body .vp-login-modal-content .cwp-frontend-form-container .cwp-field-container input[type=password],
+html body .vp-login-modal-content .cwp-frontend-form-container .cwp-field-container input[type=email],
+html body .vp-register-modal-content .cwp-frontend-form-container .cwp-field-container input[type=text],
+html body .vp-register-modal-content .cwp-frontend-form-container .cwp-field-container input[type=password],
+html body .vp-register-modal-content .cwp-frontend-form-container .cwp-field-container input[type=email] {
+    border-radius: unset !important;
+    border: none !important;
+    border-bottom: 1px solid #1d1d1d14 !important;
+    height: unset;
+    margin: 0;
+    padding: 0px 0 7px 0 !important;
+    color: #1d1d1d !IMPORTANT;
+    font-size: 13px !IMPORTANT;
+    font-weight: 500;
+    line-height: 24px !important;
+    letter-spacing: 0px !important;
+    position: relative;
+    z-index: 9999999999;
+    background-color: #fff0;
+}
+
+.vp-login-modal-content .cwp-field-container label .cwp-required,
+.vp-register-modal-content .cwp-field-container label .cwp-required {
+    color: #767676 !important;
+}
+
+.vp-login-modal-content .form-control:focus,
+.vp-register-modal-content .form-control:focus {
+    box-shadow: unset;
+    border-bottom: 2px solid #1d1d1d !important;
+}
+
+.vp-login-modal-content .cwp-field-container label,
+.vp-register-modal-content .cwp-field-container label {
+    font-weight: 500 !important;
+    font-size: 12px !important;
+    color: #767676;
+    cursor: default !important;
+    letter-spacing: 0.2px !important;
+    word-spacing: 0 !important;
+    margin-bottom: 4px !important;
+}
+
+.vp-login-modal-content a:hover,
+.vp-register-modal-content a:hover {
+    color: initial;
+}
+
+.vp-login-modal-content .form-heading,
+.vp-register-modal-content .form-heading {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    gap: 36px;
+}
+
+.vp-login-modal-content .form-heading h2,
+.vp-register-modal-content .form-heading h2 {
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 32px;
+    text-transform: uppercase;
+    margin: 0px;
+    letter-spacing: 0.5px;
+}
+
+.vp-login-modal-content .form-heading p,
+.vp-register-modal-content .form-heading p {
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 24px;
+    letter-spacing: 0px;
+    color: #1d1d1d;
+    margin: 0;
+}
+
+.vp-login-modal-content .vp-login-close,
+.vp-register-modal-content .vp-register-close {
+    position: absolute;
+    cursor: pointer;
+    color: #1d1d1d;
+    top: 38px;
+    right: 41px;
+    font-size: 25px;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: .3s;
+}
+
+.vp-login-modal-content .vp-login-close:hover,
+.vp-register-modal-content .vp-register-close:hover {
+    background: #fff0;
+}
+
+.vp-login-close:hover,
+.vp-login-close:focus,
+.vp-register-close:hover,
+.vp-register-close:focus {
+    color: black;
+    text-decoration: none;
+}
+
+/* Style 1: Off-canvas from the right */
+.vp-login-modal.style_1 .vp-login-modal-content,
+.vp-login-modal.style_1 .vp-register-modal-content {
+    min-height: 100vh;
+}
+
+/* Style 2: Center of the screen */
+.vp-login-modal.style_2,
+.vp-register-modal.style_2 {
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+}
+
+.style_2 .vp-login-modal-content .modal-bottom-text span,
+.style_2 .vp-register-modal-content .modal-bottom-text span,
+.style_3 .vp-login-modal-content .modal-bottom-text span,
+.style_3 .vp-register-modal-content .modal-bottom-text span {
+    border-bottom: 1px solid #1D1D1D;
+}
+
+.vp-login-modal.style_2 .vp-login-modal-content,
+.vp-login-modal.style_2 .vp-register-modal-content {
+    position: relative;
+    padding-bottom: 32px;
+}
+
+/* Style 3: Slide down */
+.vp-login-modal.style_3 .vp-login-modal-content,
+.vp-login-modal.style_3 .vp-register-modal-content {
+    position: absolute;
+    right: 4.12%;
+    top: 84px;
+    width: 440px;
+    padding-bottom: 32px;
+}
+
+.vp-login-modal.style_3 .vp-login-modal-content .form-heading,
+.vp-login-modal.style_3 .vp-register-modal-content .form-heading {
+    margin-bottom: 21px;
+    gap: 33px;
+}
+
+.vp-login-modal.style_3 .vp-login-modal-content .vp-login-close,
+.vp-login-modal.style_3 .vp-register-modal-content .vp-register-close {
+    top: 39px;
+    right: 39px;
+    font-size: 21px;
+}
+
+.vp-login-widget,
+.vp-register-modal .vp-login-widget {
+    /* Adjust selector if needed */
+    display: flex;
+    cursor: pointer;
+    align-items: center;
+}
+
+.vp-login-widget .vp-login-icon,
+.vp-register-modal .vp-login-widget .vp-login-icon {
+    /* Adjust selector if needed */
+    display: flex;
+    align-items: center;
+}
+
+.men-clothing-login-spacing .vp-login-main-title {
+    letter-spacing: 0.2px;
+    padding-top: 2px;
+}
+
+@media (max-width: 992px) {
+
+    .vp-login-modal-content,
+    .vp-register-modal-content {
+        padding: 20px !important;
+    }
+
+    .vp-login-modal-content .cwp-frontend-section-heading-container h2,
+    .vp-register-modal-content .cwp-frontend-section-heading-container h2 {
+        font-size: 16px;
+        font-weight: 600;
+        line-height: 28px;
+        text-transform: uppercase;
+        text-align: left;
+    }
+
+    .vp-login-modal-content .cwp-frontend-section-heading-container,
+    .vp-register-modal-content .cwp-frontend-section-heading-container {
+        border-bottom: 1px solid #ddd !important;
+    }
+
+    .vp-login-modal-content .cwp-frontend-form-container .cwp-frontend-section-container .cwp-frontend-section-content-container p.cwp-field-container,
+    .vp-register-modal-content .cwp-frontend-form-container .cwp-frontend-section-container .cwp-frontend-section-content-container p.cwp-field-container {
+        padding: 0 8px;
+        margin-bottom: 8px;
+    }
+
+    .vp-login-modal-content .form-heading,
+    .vp-register-modal-content .form-heading {
+        gap: 15px;
+    }
+
+    .vp-login-modal-content .cwp-frontend-form-container input[type=submit],
+    .vp-register-modal-content .cwp-frontend-form-container input[type=submit] {
+        padding: 15px !important;
+    }
+
+    .vp-login-modal-content .vp-login-close,
+    .vp-register-modal-content .vp-register-close {
+        top: 8px !important;
+        right: 15px !important;
+    }
+}
+
+@media (max-width: 767px) {
+
+    .vp-login-modal-content,
+    .vp-register-modal-content {
+        width: 100%;
+        min-height: 100vh;
+    }
+
+    .vp-login-modal.style_3 .vp-login-modal-content,
+    .vp-login-modal.style_3 .vp-register-modal-content {
+        width: 100%;
+        min-height: 100vh;
+        top: 0;
+        right: 0;
+        left: 0;
+    }
+}
+
+/* Woomen Login and Register Modal Widget CSS end */
+.vp-login-modal .cwp-frontend-form-container .cubewp-processing-ajax {
+    background-image: linear-gradient(45deg, #333 33%, #1D1D1D 0, #1D1D1D 70%, #333 0) !important;
+    border-color: #1D1D1D !important;
+}

@@ -1,0 +1,675 @@
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+a {
+    padding: 0;
+    margin: 0;
+}
+
+/* woomen-blogs-banner */
+
+.woomen-blogs-banner {
+    margin: 83px 0 81px 0;
+}
+
+#woomen-blogs .container {
+    max-width: 1425px;
+}
+
+#woomen-blogs .woomen-blogs-title {
+    text-align: center;
+}
+
+#woomen-blogs .woomen-blogs-title .heading {
+    font-size: 30px;
+    font-weight: 600;
+    line-height: 37px;
+    letter-spacing: 0.03em;
+    color: #1D1D1D;
+    margin-bottom: 16px;
+}
+
+#woomen-blogs .woomen-blogs-title .category {
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 24px;
+    color: #1D1D1D;
+    letter-spacing: 0.26px;
+}
+
+#woomen-blogs .woomen-blogs-categories {
+    margin-top: 22px;
+}
+
+#woomen-blogs .woomen-blogs-categories ul {
+    gap: 10px;
+    display: flex;
+    align-items: center;
+    margin: 0px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+#woomen-blogs .woomen-blogs-categories ul li {
+    list-style: none;
+}
+
+#woomen-blogs .woomen-blogs-categories ul li a {
+    border: 1px solid #E6E6E6;
+    min-width: 191.43px;
+    display: block;
+    padding: 10px;
+    text-align: center;
+    font-size: 13px;
+    line-height: 24px;
+    font-weight: 500;
+    letter-spacing: 0.2px;
+    color: #1D1D1D;
+    transition: .3s;
+}
+
+#woomen-blogs .woomen-blogs-categories ul li a:hover {
+    border-color: #1D1D1D;
+}
+
+#woomen-blogs .woomen-blogs-categories ul li .active {
+    background: #1D1D1D;
+    color: #ffffff;
+}
+
+@media(max-width : 1200px) {
+    .woomen-blogs-banner {
+        margin: 60px 0;
+    }
+
+    #woomen-blogs .woomen-blogs-title .heading {
+        margin-bottom: 25px;
+    }
+}
+
+@media(max-width : 991px) {
+    .woomen-blogs-banner {
+        margin: 40px 0;
+    }
+
+    #woomen-blogs .woomen-blogs-title .heading {
+        margin-bottom: 20px;
+    }
+}
+
+@media (max-width: 767px) {
+
+    #woomen-blogs .woomen-blogs-categories .blog-prev-icon {
+        z-index: 9999999;
+        left: 1px;
+    }
+
+    #woomen-blogs .woomen-blogs-categories .blog-next-icon {
+        z-index: 9999999;
+        right: 1px !important;
+    }
+
+}
+
+@media(max-width : 500px) {
+    .woomen-blogs-banner {
+        margin: 30px 0;
+    }
+
+    #woomen-blogs .woomen-blogs-title .heading {
+        margin-bottom: 10px;
+        font-size: 25px;
+    }
+}
+
+/* woomen-blogs-banner-end */
+
+
+/* woomen-blogs-sidebar */
+
+.woomen-blogs-sidebar .woomen-widget {
+    margin-bottom: 30px;
+    border-bottom: 1px solid #E6E6E6;
+    padding-bottom: 30px;
+}
+
+.woomen-blogs-sidebar .woomen-widget:last-child {
+    border: none;
+}
+
+.woomen-blogs-sidebar .woomen-widget h5 {
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 28px;
+    color: #1D1D1D;
+    margin-bottom: 30px;
+}
+
+.woomen-blogs-sidebar .woomen-widget ul {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin: 0px;
+}
+
+.woomen-blogs-sidebar .woomen-widget ul,
+.woomen-blogs-sidebar .woomen-widget ol {
+    margin: 8px 0 0 0;
+}
+
+.woomen-blogs-sidebar .woomen-widget li {
+    list-style: none;
+}
+
+.woomen-blogs-sidebar .woomen-widget ul a,
+.woomen-blogs-sidebar .woomen-widget ol a {
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 24px;
+    color: #1D1D1D;
+    padding-bottom: 5px;
+    transition: .3s;
+    letter-spacing: 0.26px;
+}
+
+.woomen-blogs-sidebar .woomen-widget ul a:hover {
+    color: #1D1D1D;
+}
+
+.woomen-blogs-sidebar .woomen-widget ul .current-cat a {
+    border-bottom: 1px solid #1D1D1D;
+    color: #1D1D1D !important;
+}
+
+.woomen-blogs-sidebar .woomen-widget .tagcloud,
+.woomen-blogs-sidebar .woomen-widget .wp-block-tag-cloud {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.woomen-blogs-sidebar .woomen-widget .tagcloud a,
+.woomen-blogs-sidebar .woomen-widget .wp-block-tag-cloud a {
+    padding: 10px 14px;
+    border-radius: 20px;
+    background: #ffffff;
+    border: 1px solid #E6E6E6;
+    font-size: 12px !important;
+    font-weight: 600;
+    color: #1D1D1D;
+    transition: .3s;
+}
+
+.woomen-blogs-sidebar .woomen-widget .tagcloud a:hover,
+.woomen-blogs-sidebar .woomen-widget .wp-block-tag-cloud a:hover {
+    background: #F7F7F7;
+    border-color: #1D1D1D;
+}
+
+.woomen-blogs-sidebar .women-recent-posts {
+    margin-bottom: 15px;
+}
+
+.woomen-blogs-sidebar .women-recent-posts:last-child {
+    margin-bottom: 0px;
+}
+
+.woomen-blogs-sidebar .women-recent-posts {
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.woomen-blogs-sidebar .women-recent-posts-thumbnail {
+    width: 80px;
+    height: 80px;
+    position: relative;
+}
+
+.woomen-blogs-sidebar .women-recent-posts-thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.woomen-blogs-sidebar .women-recent-posts-content {
+    width: calc(100% - 95px);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.woomen-blogs-sidebar .women-recent-posts-content .woomen-post-date {
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 15px;
+    letter-spacing: 0px;
+    color: #1D1D1D;
+}
+
+.woomen-blogs-sidebar .women-recent-posts-content .heading {
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 20px;
+    letter-spacing: 0px;
+    color: #1D1D1D;
+    transition: .3s;
+}
+
+.woomen-blogs-sidebar .women-recent-posts-content .heading:hover {
+    color: #1D1D1D;
+}
+
+@media(max-width : 991px) {
+    .woomen-blogs-sidebar {
+        padding-top: 20px;
+        border-top: 1px solid #e6e6e6;
+    }
+
+    .woomen-blogs-sidebar .woomen-widget:last-child {
+        margin: 0px;
+    }
+}
+
+/* woomen-blogs-sidebar-end */
+
+
+/* woomen-blogs-style-1 */
+
+.woomen-blogs-banner-post .woomen-post-title {
+    width: 270px;
+}
+
+.woomen-blogs-banner-post .woomen-blogs-grid-thumb:after {
+    display: none;
+}
+
+.woomen-blogs-banner-post .woomen-blogs-grid:hover .woomen-blogs-grid-thumb img {
+    transform: scale(1.0) rotate(0deg);
+}
+
+.woomen-blogs-banner-post .woomen-post-title .heading {
+    font-weight: 500;
+    font-size: 30px;
+    line-height: 37px;
+    z-index: 9;
+    position: relative;
+}
+
+.woomen-blogs-banner-post .col-md-4 {
+    width: 100%;
+}
+
+.woomen-blogs-banner-post .woomen-blogs-tags {
+    display: none;
+}
+
+.woomen-blogs-banner-post .woomen-blogs-grid-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 56px 60px 60px 62px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 19px;
+}
+
+.woomen-blogs-banner-post .woomen-blogs-grid {
+    margin-bottom: 60px;
+}
+
+.woomen-blogs-banner-post .woomen-blogs-grid .woomen-blogs-grid-thumb img {
+    height: auto;
+    max-height: 550px;
+    object-fit: cover;
+    object-position: top center;
+}
+
+.woomen-blogs-banner-post .woomen-blogs-grid-content * {
+    color: #ffffff;
+    margin-top: 1px;
+    letter-spacing: 0.8px;
+    line-height: 18px;
+}
+
+.woomen-blogs-banner-post .woomen-blogs-grid .woomen-post-read-more {
+    color: #fff !important;
+}
+
+.woomen-blogs-style-1 .woomen-blogs-grid-thumb img {
+    height: auto;
+}
+
+.woomen-blogs-style-1 .woomen-pagination {
+    margin: 68px 0px 90px 0px;
+}
+
+@media(max-width : 1200px) {
+
+    .woomen-blogs-style-1 .woomen-pagination {
+        margin: 50px 0px 75px 0px;
+    }
+
+
+}
+
+@media(max-width : 991px) {
+
+
+    .woomen-blogs-style-1 .woomen-pagination {
+        margin: 40px 0px 65px 0px;
+    }
+}
+
+@media(max-width : 767px) {
+
+
+    .woomen-blogs-style-1 .woomen-blogs-banner-post .woomen-blogs-grid-content {
+        padding: 30px;
+    }
+
+    .woomen-blogs-style-1 .woomen-pagination {
+        margin: 20px 0px 48px 0px;
+    }
+
+    .woomen-blogs-style-1 .woomen-blogs-banner-post .woomen-post-title .heading {
+        font-size: 20px;
+        line-height: 25px;
+    }
+
+    .woomen-blogs-style-1 .woomen-blogs-banner-post .woomen-blogs-grid-content {
+        gap: 15px !important;
+    }
+
+    .woomen-blogs-style-1 .woomen-blogs-grid {
+        margin-bottom: 30px;
+    }
+}
+
+@media(max-width : 500px) {
+
+    .woomen-blogs-style-1 .woomen-blogs-grid-content {
+        gap: 13px !important;
+    }
+
+    .woomen-blogs-style-1 .woomen-pagination {
+        margin: 10px 0px 45px 0px;
+    }
+
+    .woomen-blogs-banner-post .woomen-post-title {
+        width: fit-content;
+    }
+}
+
+@media (max-width: 400px) {
+    .woomen-blogs-style-1 .woomen-blogs-banner-post .woomen-post-title .heading {
+        font-size: 16px;
+        line-height: 22px;
+    }
+
+    .woomen-blogs-style-1 .woomen-blogs-banner-post .woomen-blogs-grid-content {
+        padding: 15px;
+    }
+
+    .woomen-blogs-style-1 .woomen-blogs-banner-post .woomen-blogs-grid-content * {
+        margin-top: 0px;
+    }
+
+    .woomen-blogs-style-1 .woomen-blogs-banner-post .woomen-blogs-grid .woomen-post-read-more {
+        font-size: 11px;
+        line-height: 15px;
+    }
+}
+
+
+
+/* woomen-blogs-style-1-end */
+
+
+/* woomen-blogs-style-2 */
+
+
+
+.woomen-blogs-style-2 .woomen-blogs-grid {
+    margin-bottom: 60px;
+}
+
+.woomen-blogs-style-2 .woomen-pagination {
+    margin: 30px 0 90px 0;
+}
+
+.woomen-blogs-style-2 .woomen-blogs-sidebar {
+    padding-left: 44px !important;
+}
+
+.woomen-blogs-style-2 .wp-block-heading {
+    color: #1D1D1D;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 28px;
+    margin: -9px 0 -6px 0;
+}
+
+.woomen-blogs-style-2 .woomen-blogs-sidebar .woomen-widget ul {
+    gap: 11px !important;
+}
+
+.woomen-blogs-style-2 .woomen-blogs-grid-content {
+    padding-top: 18px;
+}
+
+.woomen-blogs-style-2 .woomen-post-read-more {
+    margin: 3px 0 0 0;
+    letter-spacing: 0.26px;
+    gap: 11px;
+}
+
+#woomen-blogs .woomen-blogs-style-2 .woomen-blogs-grid-thumb {
+    height: 320px;
+    background: #f7f7f7;
+}
+
+#woomen-blogs .woomen-blogs-style-2 .woomen-blogs-grid-thumb img {
+    height: 100%;
+    width: unset;
+    max-width: 100%;
+    object-fit: unset;
+    margin: auto;
+}
+
+@media(max-width : 1200px) {
+
+
+    .woomen-blogs-style-2 .woomen-pagination {
+        margin: 15px 0 60px 0;
+    }
+
+    .woomen-blogs-style-2 .woomen-blogs-grid {
+        margin-bottom: 40px;
+    }
+}
+
+
+@media(max-width : 767px) {
+    .woomen-blogs-style-2 .woomen-pagination {
+        margin: 10px 0 50px 0;
+    }
+
+    .woomen-blogs-style-2 .woomen-blogs-grid {
+        margin-bottom: 30px;
+    }
+
+    .woomen-blogs-style-2 .woomen-blogs-sidebar {
+        padding: 15px !important;
+    }
+}
+
+@media(max-width : 500px) {
+
+
+    .woomen-blogs-style-2 .woomen-pagination {
+        margin: 5px 0 40px 0;
+    }
+}
+
+@media(max-width : 390px) {
+
+
+    .woomen-blogs-style-2 .woomen-pagination {
+        margin: 0px 0 40px 0;
+    }
+}
+
+
+/* woomen-blogs-style-2-end */
+
+
+/* woomen-blogs-style-3 */
+
+.woomen-blogs-style-3 .woomen-blogs-grid {
+    margin-bottom: 60px;
+    display: flex;
+}
+
+.woomen-blogs-style-3 .woomen-blogs-grid {
+    margin-bottom: 60px;
+    display: flex;
+    gap: 40px;
+    align-items: center;
+}
+
+.woomen-blogs-style-3 .woomen-blogs-grid-thumb img {
+    width: 448px;
+    height: auto;
+}
+
+.woomen-blogs-style-3 .woomen-blogs-grid-content {
+    width: calc(100% - 488px);
+    padding: 0;
+}
+
+.woomen-blogs-style-3 .woomen-pagination {
+    margin: 30px 0 90px 0;
+}
+
+@media(max-width : 1200px) {
+
+
+    .woomen-blogs-style-3 .woomen-blogs-grid-content {
+        width: calc(100% - 418px);
+    }
+
+    .woomen-blogs-style-3 .woomen-blogs-grid {
+        margin-bottom: 50px;
+    }
+}
+
+@media(max-width : 991px) {
+    .woomen-blogs-style-3>.row {
+        flex-direction: column-reverse;
+    }
+
+    .woomen-blogs-style-3 .woomen-pagination {
+        margin: 10px 0 60px 0;
+    }
+}
+
+@media(max-width : 767px) {
+    .woomen-blogs-style-3 .woomen-pagination {
+        margin: 5px 0 50px 0;
+    }
+
+    .woomen-blogs-style-3 .woomen-blogs-grid {
+        flex-direction: column;
+        margin-bottom: 40px;
+        gap: 20px;
+    }
+
+
+
+    .woomen-blogs-style-3 .woomen-blogs-grid-content {
+        width: 100%;
+    }
+
+    .woomen-blogs-style-3 .woomen-blogs-grid-thumb {
+        width: 100%;
+    }
+}
+
+@media(max-width : 500px) {}
+
+@media(max-width : 390px) {
+    .woomen-blogs-style-3 .woomen-pagination {
+        margin: 0px 0 40px 0;
+    }
+
+
+}
+
+
+/* woomen-blogs-style-3-end */
+
+
+/* woomen-blogs-style-4 */
+
+.woomen-blogs-style-4 .woomen-pagination {
+    margin: 30px 0 90px 0;
+}
+
+.woomen-blogs-style-4 .woomen-blogs-grid {
+    margin-bottom: 60px;
+}
+
+.woomen-blogs-style-4 .woomen-blogs-grid-thumb img {
+    height: auto;
+}
+
+@media(max-width : 1200px) {
+
+
+    .woomen-blogs-style-4 .woomen-pagination {
+        margin: 20px 0 70px 0;
+    }
+}
+
+@media(max-width : 991px) {
+
+
+    .woomen-blogs-style-4 .woomen-pagination {
+        margin: 10px 0 60px 0;
+    }
+}
+
+@media(max-width : 767px) {
+
+
+    .woomen-blogs-style-4 .woomen-blogs-grid {
+        margin-bottom: 30px;
+    }
+}
+
+@media(max-width : 500px) {
+
+
+    .woomen-blogs-style-4 .woomen-pagination {
+        margin: 0px 0 35px 0;
+    }
+}
+
+@media(max-width : 390px) {
+
+
+    .woomen-blogs-style-4 .woomen-blogs-grid {
+        margin-bottom: 30px;
+    }
+
+    .woomen-blogs-style-4 .woomen-pagination {
+        margin: 0px 0 40px 0;
+    }
+}

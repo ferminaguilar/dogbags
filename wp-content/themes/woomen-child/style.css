@@ -1,0 +1,14 @@
+/*
+ Theme Name:   Woomen Child
+ Description:  Woomen is a ReCommerce WordPress theme that allows you to create your own online marketplace effortlessly. Whether users are selling pre-owned items or shopping for new ones, Woomen offers an intuitive experience with its powerful advanced search and filtering features. These tools help users find relevant products quickly and refine their search results for the perfect match.
+ Author:       ZemoWP
+ Author URI:   https://zemowp.com
+ Template:     woomen
+ Version:      1.0.0
+ Tags:         one-column, two-columns, left-sidebar, right-sidebar, custom-background, custom-colors, custom-menu, featured-image-header, featured-images, post-formats, sticky-post, theme-options, translation-ready
+ Text Domain:  woomen
+*/
+
+* {
+    box-sizing: border-box;
+}

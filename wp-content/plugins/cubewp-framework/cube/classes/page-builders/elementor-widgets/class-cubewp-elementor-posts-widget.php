@@ -1,0 +1,3161 @@
+<?php
+defined('ABSPATH') || exit;
+
+use Elementor\Controls_Manager;
+use Elementor\Repeater;
+use Elementor\Widget_Base;
+use Elementor\Group_Control_Box_Shadow;
+
+/**
+ * CubeWP Posts Widgets.
+ *
+ * Elementor Widget For Posts By CubeWP.
+ *
+ * @since 1.0.0
+ */
+class CubeWp_Elementor_Posts_Widget extends Widget_Base
+{
+
+	private static $post_types = array();
+	private static $settings = array();
+
+	public function get_name()
+	{
+		return 'cubewp_posts';
+	}
+
+	public function get_title()
+	{
+		return esc_html__('CubeWP Posts', 'cubewp-framework');
+	}
+
+	public function get_icon()
+	{
+		return 'eicon-post-list';
+	}
+
+	public function get_categories()
+	{
+		return array('cubewp');
+	}
+
+	public function get_keywords()
+	{
+		return array(
+			'cubewp',
+			'featured',
+			'elements',
+			'widgets',
+			'terms',
+			'taxonomy',
+			'category',
+			'categories',
+			'term',
+			'taxonomies',
+			'posts',
+			'post',
+			'archive',
+			'locations'
+		);
+	}
+
+	protected function register_controls()
+	{
+		self::get_post_types();
+
+		$this->start_controls_section('cubewp_widgets_section', array(
+			'label' => esc_html__('Query Options', 'cubewp-framework'),
+			'tab'   => Controls_Manager::TAB_CONTENT,
+		));
+
+		$this->add_post_type_controls();
+		$this->add_additional_controls();
+
+		// Step 1: Switcher to enable/disable author filter
+		$this->add_control(
+			'author_filter',
+			[
+				'label'        => esc_html__('Enable Author Filter', 'cubewp-framework'),
+				'type'         => Controls_Manager::SWITCHER,
+				'label_on'     => esc_html__('Yes', 'cubewp-framework'),
+				'label_off'    => esc_html__('No', 'cubewp-framework'),
+				'return_value' => 'yes',
+				'default'      => 'no',
+			]
+		);
+		$this->add_control(
+			'author_filter_type',
+			[
+				'label'       => esc_html__('Select Author', 'cubewp-framework'),
+				'type'        => Controls_Manager::SELECT,
+				'default'     => 'current_user',
+				'options'     => [
+					'current_user' => esc_html__('Currently Logged In', 'cubewp-framework'),
+					'dynamic'      => esc_html__('Dynamic Author', 'cubewp-framework'),
+					'custom'       => esc_html__('Custom Author ID', 'cubewp-framework'),
+				],
+				'condition'   => [
+					'author_filter' => 'yes',
+				],
+				'description' => esc_html__('Dynamic Author means: if on an author page, it will use the current author ID; if on a single post page, it will use the post author; otherwise, it falls back to the currently logged-in user.', 'cubewp-framework'),
+			]
+		);
+		$this->add_control(
+			'custom_author_id',
+			[
+				'label'       => esc_html__('Custom Author ID', 'cubewp-framework'),
+				'type'        => Controls_Manager::NUMBER,
+				'min'         => 1,
+				'step'        => 1,
+				'condition'   => [
+					'author_filter' => 'yes',
+					'author_filter_type'   => 'custom',
+				],
+				'description' => esc_html__('Enter the user ID of the author you want to display posts for.', 'cubewp-framework'),
+			]
+		);
+
+
+		$this->add_control('orderby', array(
+			'type'    => Controls_Manager::SELECT,
+			'label'   => esc_html__('Order By', 'cubewp-framework'),
+			'options' => array(
+				'title' => esc_html__('Title', 'cubewp-framework'),
+				'date'  => esc_html__('Most Recent', 'cubewp-framework'),
+				'rand'  => esc_html__('Random', 'cubewp-framework'),
+			),
+			'default' => 'date',
+		));
+		$this->add_control('order', array(
+			'type'      => Controls_Manager::SELECT,
+			'label'     => esc_html__('Order', 'cubewp-framework'),
+			'options'   => array(
+				'ASC'  => esc_html__('Ascending', 'cubewp-framework'),
+				'DESC' => esc_html__('Descending', 'cubewp-framework'),
+			),
+			'default'   => 'DESC',
+			'condition' => array(
+				'orderby!' => 'rand',
+			),
+		));
+		$this->add_control('number_of_posts', array(
+			'type'    => Controls_Manager::SELECT,
+			'label'   => esc_html__('Number Of Posts', 'cubewp-framework'),
+			'options' => array(
+				'-1' => esc_html__('All Posts', 'cubewp-framework'),
+				'1'  => esc_html__('1 Post', 'cubewp-framework'),
+				'2'  => esc_html__('2 Posts', 'cubewp-framework'),
+				'3'  => esc_html__('3 Posts', 'cubewp-framework'),
+				'4'  => esc_html__('4 Posts', 'cubewp-framework'),
+				'5'  => esc_html__('5 Posts', 'cubewp-framework'),
+				'6'  => esc_html__('6 Posts', 'cubewp-framework'),
+				'8'  => esc_html__('8 Posts', 'cubewp-framework'),
+				'9'  => esc_html__('9 Posts', 'cubewp-framework'),
+				'12' => esc_html__('12 Posts', 'cubewp-framework'),
+				'16' => esc_html__('16 Posts', 'cubewp-framework'),
+				'15' => esc_html__('15 Posts', 'cubewp-framework'),
+				'20' => esc_html__('20 Posts', 'cubewp-framework')
+			),
+			'default' => '3'
+		));
+		$this->add_control('ajax_base_posts', array(
+			'type'    => Controls_Manager::SWITCHER,
+			'label'   => esc_html__('Load via AJAX', 'cubewp-framework'),
+			'label_on' => esc_html__('Yes', 'cubewp-framework'),
+			'label_off' => esc_html__('No', 'cubewp-framework'),
+			'return_value' => 'yes',
+			'default' => 'no',
+		));
+		$this->add_control('load_more', array(
+			'type'      => Controls_Manager::SWITCHER,
+			'label'     => esc_html__('Load More Button', 'cubewp-framework'),
+			'default'   => 'yes',
+			'condition' => array(
+				'number_of_posts' => '-1',
+			)
+		));
+		$this->add_control('posts_per_page', array(
+			'type'    => Controls_Manager::NUMBER,
+			'label'   => esc_html__('Posts Per Page', 'cubewp-framework'),
+			'default' => '6',
+			'condition' => array(
+				'number_of_posts' => '-1',
+				'load_more' => 'yes',
+			)
+		));
+
+		$this->add_control('layout', array(
+			'type'    => Controls_Manager::SELECT,
+			'label'   => esc_html__('Layout', 'cubewp-framework'),
+			'options' => array(
+				'grid' => esc_html__('Grid View', 'cubewp-framework'),
+				'list' => esc_html__('List View', 'cubewp-framework')
+			),
+			'default' => 'grid'
+		));
+
+		$this->add_responsive_control(
+			'posts_per_row',
+			[
+				'label' => esc_html__('Posts Per Row', 'cubewp-framework'),
+				'type' => \Elementor\Controls_Manager::SELECT,
+				'default' => 'auto',
+				'condition' => [
+					'layout' => 'grid',
+				],
+				'device_args' => [
+					\Elementor\Controls_Stack::RESPONSIVE_DESKTOP => [
+						'default' => 'auto',
+						'options' => [
+							'auto' => esc_html__('Auto', 'cubewp-framework'),
+							'1' => esc_html__('1 Column', 'cubewp-framework'),
+							'2' => esc_html__('2 Columns', 'cubewp-framework'),
+							'3' => esc_html__('3 Columns', 'cubewp-framework'),
+							'4' => esc_html__('4 Columns', 'cubewp-framework'),
+							'5' => esc_html__('5 Columns', 'cubewp-framework'),
+							'6' => esc_html__('6 Columns', 'cubewp-framework'),
+						],
+					],
+					\Elementor\Controls_Stack::RESPONSIVE_TABLET => [
+						'default' => 'auto',
+						'options' => [
+							'auto' => esc_html__('Auto', 'cubewp-framework'),
+							'1' => esc_html__('1 Column', 'cubewp-framework'),
+							'2' => esc_html__('2 Columns', 'cubewp-framework'),
+							'3' => esc_html__('3 Columns', 'cubewp-framework'),
+							'4' => esc_html__('4 Columns', 'cubewp-framework'),
+							'5' => esc_html__('5 Columns', 'cubewp-framework'),
+							'6' => esc_html__('6 Columns', 'cubewp-framework'),
+						],
+					],
+					\Elementor\Controls_Stack::RESPONSIVE_MOBILE => [
+						'default' => 'auto',
+						'options' => [
+							'auto' => esc_html__('Auto', 'cubewp-framework'),
+							'1' => esc_html__('1 Column', 'cubewp-framework'),
+							'2' => esc_html__('2 Columns', 'cubewp-framework'),
+							'3' => esc_html__('3 Columns', 'cubewp-framework'),
+							'4' => esc_html__('4 Columns', 'cubewp-framework'),
+							'5' => esc_html__('5 Columns', 'cubewp-framework'),
+							'6' => esc_html__('6 Columns', 'cubewp-framework'),
+						],
+					],
+				],
+				'frontend_available' => true,
+			]
+		);
+
+		$this->add_responsive_control('processing_grids_per_row', array(
+			'type' => Controls_Manager::NUMBER,
+			'label' => esc_html__('Processing Grids Per Row', 'cubewp-framework'),
+			'default' => '4',
+			'condition' => array(
+				'posts_per_row' => 'auto',
+				'ajax_base_posts' => 'no',
+			),
+		));
+
+
+		$this->add_control('enable_scroll_on_small_devices', array(
+			'type'      => Controls_Manager::SWITCHER,
+			'label'     => esc_html__('Enable Scroll on Small Devices', 'cubewp-framework'),
+			'default'   => '',
+			'description' => esc_html__('Enable overflow scroll behaviour on small devices.', 'cubewp-framework'),
+			'condition' => array(
+				'cwp_enable_slider!' => 'yes',
+			),
+		));
+
+		$this->end_controls_section();
+
+		$this->start_controls_section('cubewp_posts_widget_additional_setting_section', array(
+			'label' => esc_html__('Filter By Meta / Custom Fields', 'cubewp-framework'),
+			'tab'   => Controls_Manager::TAB_CONTENT,
+			'condition' => array(
+				'posts_by'  => array('all', 'taxonomy'),
+			),
+		));
+		$this->add_control('filter_by_meta', array(
+			'type'      => Controls_Manager::SWITCHER,
+			'label'     => esc_html__('Filter By Meta / Custom Field', 'cubewp-framework'),
+			'default'   => 'no',
+		));
+
+		$this->add_control('meta_relation', array(
+			'type'      => Controls_Manager::SELECT,
+			'label'     => esc_html__('Select Relation', 'cubewp-framework'),
+			'description'   => esc_html__("e.g. If you have multiple custom field's conditions and you set relation OR then system will get result if one of these conditions will be true.", "cubewp-framework"),
+			'options'   => array(
+				'OR'  => esc_html__('OR', 'cubewp-framework'),
+				'AND'  => esc_html__("AND", 'cubewp-framework'),
+			),
+			'default'   => 'OR',
+			'condition' => array(
+				'filter_by_meta'  => 'yes',
+			),
+		));
+
+		$repeater = new Repeater();
+
+		// Get fields by type for options
+		$field_options = get_fields_by_type(array('number', 'text', 'checkbox', 'dropdown'));
+		// Add "custom" option at the beginning
+		$field_options = array('custom' => esc_html__('Custom Key', 'cubewp-framework')) + $field_options;
+
+		$repeater->add_control('meta_key', array(
+			'type'      => Controls_Manager::SELECT2,
+			'label'     => esc_html__('Select Custom Field', 'cubewp-framework'),
+			'options'   => $field_options,
+			'label_block' => true,
+		));
+
+		$repeater->add_control('custom_field_name', array(
+			'type'      => Controls_Manager::TEXT,
+			'label'     => esc_html__('Custom Field Name', 'cubewp-framework'),
+			'placeholder'   => esc_html__("e.g. my_custom_field", "cubewp-framework"),
+			'description'   => esc_html__("Enter the custom field name (meta key) to filter by.", "cubewp-framework"),
+			'label_block' => true,
+			'condition' => array(
+				'meta_key' => 'custom',
+			),
+		));
+
+		$repeater->add_control('meta_value_source', array(
+			'type'      => Controls_Manager::SELECT,
+			'label'     => esc_html__('Meta Value Source', 'cubewp-framework'),
+			'description'   => esc_html__("Select where to get the meta value from.", "cubewp-framework"),
+			'options'   => array(
+				'custom_value'  => esc_html__('Custom Value', 'cubewp-framework'),
+				'current_post_id'  => esc_html__('Current Post ID', 'cubewp-framework'),
+				'current_user_id'  => esc_html__('Current User ID', 'cubewp-framework'),
+				'current_timestamp'  => esc_html__('Current Timestamp', 'cubewp-framework'),
+			),
+			'default'   => 'custom_value',
+			'condition' => array(
+				'meta_key!'  => '',
+			),
+		));
+
+		$repeater->add_control('meta_value', array(
+			'type'      => Controls_Manager::TEXT,
+			'label'     => esc_html__('Put here meta value', 'cubewp-framework'),
+			'placeholder'   => esc_html__("e.g. APPLE", "cubewp-framework"),
+			'description'   => esc_html__("e.g. If custom field is BRAND NAME, you can set value as APPLE to get all those posts who set this meta.", "cubewp-framework"),
+			'label_block' => true,
+			'condition' => array(
+				'meta_key!'  => '',
+				'meta_value_source' => 'custom_value',
+			),
+		));
+
+		$repeater->add_control('meta_compare', array(
+			'type'      => Controls_Manager::SELECT,
+			'label'     => esc_html__('Select Operator to compare ', 'cubewp-framework'),
+			'description'   => esc_html__("e.g. If going to select BETWEEN or NOT BETWEEN then add value like this [100, 200].", "cubewp-framework"),
+			'options'   => array(
+				'='  => esc_html__('Equal', 'cubewp-framework'),
+				'!='  => esc_html__('Not Equal', 'cubewp-framework'),
+				'>'  => esc_html__('Greater Than', 'cubewp-framework'),
+				'>='  => esc_html__('Greater Than or Equal', 'cubewp-framework'),
+				'<'  => esc_html__('Less Than', 'cubewp-framework'),
+				'<='  => esc_html__('Less Than or Equal', 'cubewp-framework'),
+				'LIKE'  => esc_html__('LIKE %', 'cubewp-framework'),
+				'NOT LIKE'  => esc_html__('NOT LIKE', 'cubewp-framework'),
+				'IN' => esc_html__('IN', 'cubewp-framework'),
+				'NOT IN' => esc_html__('NOT IN', 'cubewp-framework'),
+				'BETWEEN' => esc_html__('BETWEEN', 'cubewp-framework'),
+				'NOT BETWEEN' => esc_html__('NOT BETWEEN', 'cubewp-framework'),
+				'EXISTS' => esc_html__('EXISTS', 'cubewp-framework'),
+				'NOT EXISTS' => esc_html__('NOT EXISTS', 'cubewp-framework'),
+			),
+			'default'   => 'LIKE',
+			'condition' => array(
+				'meta_key!'  => '',
+			),
+		));
+
+		$repeater->add_control('include_missing_meta', array(
+			'type'      => Controls_Manager::SWITCHER,
+			'label'     => esc_html__('Include if meta key is missing', 'cubewp-framework'),
+			'description' => esc_html__('If enabled, this condition will also match posts where the selected meta key does not exist (useful for optional end dates, optional numbers, etc.).', 'cubewp-framework'),
+			'default'   => 'no',
+			'condition' => array(
+				'meta_key!'  => '',
+			),
+		));
+
+		$this->add_control('filter_by_custom_fields', array(
+			'label'       => esc_html__('Add Conditions', 'cubewp-framework'),
+			'type'        => Controls_Manager::REPEATER,
+			'fields'      => $repeater->get_controls(),
+			'title_field' => '{{{ meta_key }}}',
+			'condition' => array(
+				'filter_by_meta' => "yes",
+				'posttype!' => '',
+			),
+
+		));
+		$this->end_controls_section();
+		$this->add_slider_controls();
+		$this->add_load_more_style_controls();
+		$this->add_promotional_card_controls();
+		$this->add_cubewp_posts_widget_title_controls();
+	}
+
+	private static function get_post_types()
+	{
+		$post_types = get_post_types(['public' => true], 'objects');
+		$options = [];
+		foreach ($post_types as $post_type) {
+			$options[$post_type->name] = $post_type->label;
+		}
+		unset($options['elementor_library']);
+		unset($options['e-landing-page']);
+		unset($options['attachment']);
+		unset($options['page']);
+
+		self::$post_types = $options;
+	}
+
+	private function add_post_type_controls()
+	{
+		$post_types = self::$post_types;
+		if (is_array($post_types) && ! empty($post_types)) {
+			$this->add_control('posttype', array(
+				'type'        => Controls_Manager::SELECT2,
+				'multiple'    => true,
+				'label'       => esc_html__('Select Post Types', 'cubewp-framework'),
+				'description' => esc_html__('You can select one or multiple post types to show post cards.', 'cubewp-framework'),
+				'options'     => $post_types,
+				'default'     => array('post'),
+				'label_block' => true,
+			));
+			foreach ($post_types as $slug => $post_type) {
+				$this->add_card_style_controls($slug);
+			}
+		}
+	}
+
+	private function add_card_style_controls($post_type)
+	{
+		if (!empty(cubewp_post_card_styles($post_type))) {
+			$this->add_control($post_type . '_card_style', array(
+				'type'        => Controls_Manager::SELECT,
+				/* translators: %s: post type singular name. */
+				'label'       => sprintf(esc_html__('Card Style for %s', 'cubewp-framework'), self::get_post_type_name_by_slug($post_type)),
+				'options'     => cubewp_post_card_styles($post_type),
+				'default'     => 'default_style',
+				'condition'   => array(
+					'posttype' => $post_type
+				)
+			));
+		}
+	}
+
+	private function add_additional_controls()
+	{
+
+		$post_types = self::$post_types;
+		if (is_array($post_types) && ! empty($post_types)) {
+			$options = array(
+				'all' => esc_html__('All', 'cubewp-framework'),
+				'taxonomy' => esc_html__('By Taxonomy', 'cubewp-framework'),
+				'post_ids' => esc_html__('By IDs', 'cubewp-framework'),
+				'related' => esc_html__('Related Posts', 'cubewp-framework'),
+				'nearby' => esc_html__('Nearby Posts', 'cubewp-framework'),
+			);
+			if (class_exists('CubeWp_Booster_Load')) {
+				$options['boosted'] = esc_html__('Boosted Only', 'cubewp-framework');
+			}
+			$this->add_control('posts_by', array(
+				'type'    => Controls_Manager::SELECT,
+				'label'   => esc_html__('Show Posts', 'cubewp-framework'),
+				'options' => $options,
+				'condition' => array(
+					'posttype!' => "",
+				),
+				'default' => 'all'
+			));
+			foreach ($post_types as $slug => $post_type) {
+				$this->add_taxonomy_controls($slug);
+				$this->add_posttype_controls($slug);
+				$this->add_related_posts_controls($slug);
+				$this->add_nearby_posts_controls($slug);
+			}
+		}
+	}
+
+	private function add_taxonomy_controls($post_type)
+	{
+		$taxonomies = get_object_taxonomies($post_type);
+		$taxonomies = array_combine($taxonomies, $taxonomies);
+		if (is_array($taxonomies) && ! empty($taxonomies)) {
+			$this->add_control('taxonomy-' . $post_type, array(
+				'type'      => Controls_Manager::SELECT2,
+				/* translators: %s: post type singular name. */
+				'label'     => sprintf(esc_html__('Select Terms for %s', 'cubewp-framework'), self::get_post_type_name_by_slug($post_type)),
+				'description' => esc_html__('Leave empty if you want to display all posts.', 'cubewp-framework'),
+				'options'   => self::get_terms_by_post_type($post_type),
+				'multiple'  => true,
+				'condition' => array(
+					'posts_by' => "taxonomy",
+					'posttype' => $post_type,
+				),
+				'label_block' => true,
+			));
+		}
+	}
+
+	private function add_posttype_controls($post_type)
+	{
+		$this->add_control($post_type . '_post__in', array(
+			'type'        => Controls_Manager::TEXT,
+			'label'       => false, // Remove label
+			'description' => esc_html__('Enter post IDs separated by commas (e.g., 12, 45, 78). Leave empty to display all posts.', 'cubewp-framework'),
+			'condition'   => array(
+				'posts_by' => "post_ids",
+				'posttype' => $post_type
+			),
+			'label_block' => true,
+		));
+	}
+
+	private function add_related_posts_controls($post_type)
+	{
+		$taxonomies = get_object_taxonomies($post_type);
+		if (empty($taxonomies)) {
+			return;
+		}
+
+		// Source post selection
+		$this->add_control('related_source_post_' . $post_type, array(
+			'type'        => Controls_Manager::SELECT,
+			'label'       => sprintf(esc_html__('Source Post for %s', 'cubewp-framework'), self::get_post_type_name_by_slug($post_type)),
+			'description' => esc_html__('Select which post to use as the source for finding related posts.', 'cubewp-framework'),
+			'options'     => array(
+				'current'  => esc_html__('Current Post', 'cubewp-framework'),
+				'specific' => esc_html__('Specific Post', 'cubewp-framework'),
+			),
+			'default'     => 'current',
+			'condition'   => array(
+				'posts_by' => 'related',
+				'posttype' => $post_type,
+			),
+		));
+
+		$this->add_control('related_source_post_id_' . $post_type, array(
+			'type'        => Controls_Manager::NUMBER,
+			'label'       => sprintf(esc_html__('Source Post ID for %s', 'cubewp-framework'), self::get_post_type_name_by_slug($post_type)),
+			'description' => esc_html__('Enter the post ID to use as the source for finding related posts.', 'cubewp-framework'),
+			'default'     => '',
+			'min'         => 1,
+			'condition'   => array(
+				'posts_by' => 'related',
+				'posttype' => $post_type,
+				'related_source_post_' . $post_type => 'specific',
+			),
+		));
+
+		$repeater = new Repeater();
+
+		$taxonomy_options = array();
+		foreach ($taxonomies as $taxonomy) {
+			$taxonomy_obj = get_taxonomy($taxonomy);
+			if ($taxonomy_obj) {
+				$taxonomy_options[$taxonomy] = $taxonomy_obj->label;
+			}
+		}
+
+		$repeater->add_control('related_taxonomy', array(
+			'type'    => Controls_Manager::SELECT,
+			'label'   => esc_html__('Taxonomy', 'cubewp-framework'),
+			'options' => $taxonomy_options,
+			'default' => !empty($taxonomy_options) ? array_key_first($taxonomy_options) : '',
+		));
+
+		$this->add_control('related_posts_' . $post_type, array(
+			'type'        => Controls_Manager::REPEATER,
+			'label'       => sprintf(esc_html__('Related Posts Settings for %s', 'cubewp-framework'), self::get_post_type_name_by_slug($post_type)),
+			'fields'      => $repeater->get_controls(),
+			'default'     => array(),
+			'title_field' => '{{{ related_taxonomy }}}',
+			'condition'   => array(
+				'posts_by' => 'related',
+				'posttype' => $post_type,
+			),
+		));
+	}
+
+	private function add_nearby_posts_controls($post_type)
+	{
+		// Source post selection
+		$this->add_control('nearby_source_post_' . $post_type, array(
+			'type'        => Controls_Manager::SELECT,
+			'label'       => sprintf(esc_html__('Source Post for %s', 'cubewp-framework'), self::get_post_type_name_by_slug($post_type)),
+			'description' => esc_html__('Select which post to use as the source for finding nearby posts.', 'cubewp-framework'),
+			'options'     => array(
+				'current'  => esc_html__('Current Post', 'cubewp-framework'),
+				'specific' => esc_html__('Specific Post', 'cubewp-framework'),
+			),
+			'default'     => 'current',
+			'condition'   => array(
+				'posts_by' => 'nearby',
+				'posttype' => $post_type,
+			),
+		));
+
+		$this->add_control('nearby_source_post_id_' . $post_type, array(
+			'type'        => Controls_Manager::NUMBER,
+			'label'       => sprintf(esc_html__('Source Post ID for %s', 'cubewp-framework'), self::get_post_type_name_by_slug($post_type)),
+			'description' => esc_html__('Enter the post ID to use as the source for finding nearby posts.', 'cubewp-framework'),
+			'default'     => '',
+			'min'         => 1,
+			'condition'   => array(
+				'posts_by' => 'nearby',
+				'posttype' => $post_type,
+				'nearby_source_post_' . $post_type => 'specific',
+			),
+		));
+
+		// Get google address fields for this post type
+		$google_address_fields = self::get_google_address_fields($post_type);
+
+		if (!empty($google_address_fields)) {
+			$this->add_control('nearby_address_field_' . $post_type, array(
+				'type'        => Controls_Manager::SELECT,
+				'label'       => sprintf(esc_html__('Address Field for %s', 'cubewp-framework'), self::get_post_type_name_by_slug($post_type)),
+				'description' => esc_html__('Select the address field to use for finding nearby posts.', 'cubewp-framework'),
+				'options'     => $google_address_fields,
+				'default'     => !empty($google_address_fields) ? array_key_first($google_address_fields) : '',
+				'condition'   => array(
+					'posts_by' => 'nearby',
+					'posttype' => $post_type,
+				),
+				'label_block' => true,
+			));
+		}
+
+		// Radius controls
+		$this->add_control('nearby_min_radius_' . $post_type, array(
+			'type'        => Controls_Manager::NUMBER,
+			'label'       => sprintf(esc_html__('Minimum Radius for %s', 'cubewp-framework'), self::get_post_type_name_by_slug($post_type)),
+			'description' => esc_html__('Minimum radius value.', 'cubewp-framework'),
+			'default'     => 1,
+			'min'         => 0,
+			'step'        => 0.1,
+			'condition'   => array(
+				'posts_by' => 'nearby',
+				'posttype' => $post_type,
+			),
+		));
+
+		$this->add_control('nearby_default_radius_' . $post_type, array(
+			'type'        => Controls_Manager::NUMBER,
+			'label'       => sprintf(esc_html__('Default Radius for %s', 'cubewp-framework'), self::get_post_type_name_by_slug($post_type)),
+			'description' => esc_html__('Default radius value to use for nearby posts search.', 'cubewp-framework'),
+			'default'     => 10,
+			'min'         => 0,
+			'step'        => 0.1,
+			'condition'   => array(
+				'posts_by' => 'nearby',
+				'posttype' => $post_type,
+			),
+		));
+
+		$this->add_control('nearby_max_radius_' . $post_type, array(
+			'type'        => Controls_Manager::NUMBER,
+			'label'       => sprintf(esc_html__('Maximum Radius for %s', 'cubewp-framework'), self::get_post_type_name_by_slug($post_type)),
+			'description' => esc_html__('Maximum radius value.', 'cubewp-framework'),
+			'default'     => 100,
+			'min'         => 0,
+			'step'        => 0.1,
+			'condition'   => array(
+				'posts_by' => 'nearby',
+				'posttype' => $post_type,
+			),
+		));
+
+		$this->add_control('nearby_radius_unit_' . $post_type, array(
+			'type'        => Controls_Manager::SELECT,
+			'label'       => sprintf(esc_html__('Radius Unit for %s', 'cubewp-framework'), self::get_post_type_name_by_slug($post_type)),
+			'description' => esc_html__('Select the unit for radius measurement.', 'cubewp-framework'),
+			'options'     => array(
+				'km'    => esc_html__('Kilometers', 'cubewp-framework'),
+				'miles' => esc_html__('Miles', 'cubewp-framework'),
+			),
+			'default'     => 'km',
+			'condition'   => array(
+				'posts_by' => 'nearby',
+				'posttype' => $post_type,
+			),
+		));
+	}
+
+	private static function get_post_type_posts($post_types)
+	{
+		$query  = new CubeWp_Query(array(
+			'post_type'      => $post_types,
+			'posts_per_page' => -1
+		));
+		$posts  = $query->cubewp_post_query();
+		$return = array();
+		if ($posts->have_posts()) :
+			while ($posts->have_posts()) : $posts->the_post();
+				$return[get_the_ID()] = get_the_title() . ' [' . get_the_ID() . ']';
+			endwhile;
+		endif;
+
+		return $return;
+	}
+
+	private static function get_terms_by_post_type($post_type)
+	{
+		$object  = cubewp_terms_by_post_types($post_type);
+		$termArray = [];
+		if (!empty($object)) {
+			foreach ($object as $key => $terms) {
+				$termArray['[' . $terms['taxonomy'] . ']' . $terms['slug']] = $terms['name'];
+			}
+		}
+
+		return $termArray;
+	}
+
+	private static function get_post_type_name_by_slug($post_type_slug)
+	{
+		$post_type_object = get_post_type_object($post_type_slug);
+		// Check if the post type object exists and return its label (name)
+		if ($post_type_object) {
+			return $post_type_object->label;
+		}
+		return null;
+	}
+
+	/**
+	 * Get google address fields for a specific post type
+	 * 
+	 * @param string $post_type Post type slug
+	 * @return array Array of field_key => field_label
+	 */
+	private static function get_google_address_fields($post_type)
+	{
+		$fields = array('' => esc_html__('Select Address Field', 'cubewp-framework'));
+		if (function_exists('get_fields_by_post_type')) {
+			$post_type_fields = get_fields_by_post_type($post_type);
+			foreach ($post_type_fields as $field_key => $field_label) {
+				$field_options = get_field_options($field_key);
+				if (isset($field_options['type']) && $field_options['type'] === 'google_address') {
+					$fields[$field_key] = $field_label;
+				}
+			}
+		}
+		return $fields;
+	}
+
+	protected static function split_taxonomy_and_term($input)
+	{
+		if (preg_match('/\[(.*?)\](.*)/', $input, $matches)) {
+			return [
+				'taxonomy' => $matches[1],
+				'term_slug' => $matches[2]
+			];
+		}
+
+		// Return null if the format is not matched
+		return null;
+	}
+
+	private static function _meta_query($args)
+	{
+		if (is_array($args) && isset($args['query']) && !empty($args['query'])) {
+			$meta_query = array();
+			$relation = isset($args['relation']) ? strtoupper((string) $args['relation']) : 'OR';
+			$meta_query['relation'] = in_array($relation, array('AND', 'OR'), true) ? $relation : 'OR';
+			$numeric_comparisons = ['=', '!=', '>', '>=', '<', '<=', 'BETWEEN', 'NOT BETWEEN'];
+			foreach ($args['query'] as $index => $query) {
+				// Determine the meta key
+				$meta_key = '';
+				if (isset($query['meta_key'])) {
+					if ($query['meta_key'] === 'custom') {
+						// Use custom field name if meta_key is "custom"
+						$meta_key = isset($query['custom_field_name']) ? $query['custom_field_name'] : '';
+					} else {
+						// Use the selected field
+						$meta_key = $query['meta_key'];
+					}
+				}
+
+				if (empty($meta_key)) {
+					continue; // Skip if no meta key
+				}
+
+				// Determine the meta value based on source
+				$meta_value = '';
+				$meta_value_source = isset($query['meta_value_source']) ? $query['meta_value_source'] : 'custom_value';
+
+				if ($meta_value_source === 'current_post_id') {
+					// Get meta value from current post
+					$post_id = get_the_ID();
+                    if (cubewp_is_elementor_editing() ) {
+                        $post_id = cubewp_get_elementor_preview_post_id();
+                    }
+                    $meta_value = $post_id;
+				} elseif ($meta_value_source === 'current_user_id') {
+					// Get meta value from current user
+					$meta_value = cubewp_get_elementor_tag_user_id();
+				} elseif ($meta_value_source === 'current_timestamp') {
+					// Get current timestamp (Unix timestamp)
+					$meta_value = current_time('timestamp');
+				} else {
+					// Use custom value
+					$meta_value = isset($query['meta_value']) ? $query['meta_value'] : '';
+				}
+
+				// Add value only if not EXISTS/NOT EXISTS (these don't need values)
+				$compare = isset($query['meta_compare']) ? $query['meta_compare'] : 'LIKE';
+				$include_missing_meta = isset($query['include_missing_meta']) && $query['include_missing_meta'] === 'yes';
+
+				$single_clause = array(
+					'key'     => $meta_key,
+					'compare' => $compare,
+				);
+
+				if (!in_array($compare, array('EXISTS', 'NOT EXISTS'), true)) {
+					$single_clause['value'] = $meta_value;
+				}
+
+				// Set numeric type for numeric comparisons (timestamps, numbers, etc.)
+				if (in_array($compare, $numeric_comparisons, true)) {
+					$single_clause['type'] = 'NUMERIC';
+				}
+
+				// If meta is optional, include posts where key doesn't exist:
+				// ( key NOT EXISTS ) OR ( key compare value )
+				if ($include_missing_meta && !in_array($compare, array('EXISTS', 'NOT EXISTS'), true)) {
+					$meta_query[$index] = array(
+						'relation' => 'OR',
+						array(
+							'key'     => $meta_key,
+							'compare' => 'NOT EXISTS',
+						),
+						$single_clause,
+					);
+				} else {
+					$meta_query[$index] = $single_clause;
+				}
+			}
+			return $meta_query;
+		}
+	}
+
+	protected function render()
+	{
+		$settings   = $this->get_settings_for_display();
+		$meta_query = array();
+		$posts_by = isset($settings['posts_by']) ? $settings['posts_by'] : '';
+		$filter_by_meta = isset($settings['filter_by_meta']) ? $settings['filter_by_meta'] : array();
+
+		$widget_id = $this->get_id();
+		if ($settings['enable_scroll_on_small_devices'] === 'yes') {
+			echo '<style type="text/css">
+            @media (max-width: 767px) {
+                .elementor-element-' . esc_attr($widget_id) . ' .cwp-row {
+                    overflow: scroll;
+                    flex-wrap: nowrap;
+                }
+            }
+        </style>';
+		}
+
+		$args = array(
+			'post_type'       => $settings['posttype'],
+			'taxonomy'        => array(),
+			'author_filter'   => isset($settings['author_filter']) ? $settings['author_filter'] : 'no',
+			'author_filter_type' => isset($settings['author_filter_type']) ? $settings['author_filter_type'] : 'current_user',
+			'custom_author_id' => isset($settings['custom_author_id']) ? $settings['custom_author_id'] : 0,
+			'orderby'         => $settings['orderby'],
+			'order'           => $settings['order'],
+			'number_of_posts' => $settings['number_of_posts'],
+			'load_via_ajax'   => (isset($settings['ajax_base_posts']) && $settings['ajax_base_posts'] === 'yes') ? 'yes' : 'no',
+			'load_more'       => $settings['load_more'],
+			'posts_per_page'  => $settings['posts_per_page'],
+			'processing_grids_per_row' => $settings['processing_grids_per_row'] ?? '4',
+			'layout'          => $settings['layout'],
+			'posts_per_row'   => isset($settings['posts_per_row']) ? $settings['posts_per_row'] : 'auto',
+			'posts_per_row_tablet'   => isset($settings['posts_per_row_tablet']) ? $settings['posts_per_row_tablet'] : 'auto',
+			'posts_per_row_mobile'   => isset($settings['posts_per_row_mobile']) ? $settings['posts_per_row_mobile'] : 'auto',
+			'post__in'        => array(),
+			'boosted_only'    => 'no',
+			'paged'           => '1',
+			'cwp_enable_slider' => $settings['cwp_enable_slider'] === 'yes' ? 'cubewp-post-slider' : '',
+			'promotional_card' => $settings['cubewp_promotional_card'] === 'yes' ? true : false,
+			'promotional_cards' => $settings['cubewp_promotional_cards_list'],
+			'posts_by'        => $posts_by, // Pass posts_by to shortcode
+			'enable_title'    => isset($settings['enable_title']) ? $settings['enable_title'] : 'no',
+            'posts_title'     => isset($settings['posts_title']) ? $settings['posts_title'] : '',
+            'hide_no_results' => isset($settings['hide_no_results']) ? $settings['hide_no_results'] : 'no',
+		);
+
+		// Add slider parameters only if the slider is enabled
+		if ($settings['cwp_enable_slider'] === 'yes') {
+			$args = array_merge($args, array(
+				'prev_icon' => $settings['prev_icon']['value'] ?? '',
+				'next_icon' => $settings['next_icon']['value'] ?? '',
+				'slides_to_show' => $settings['slides_to_show'],
+				'slides_to_scroll' => $settings['slides_to_scroll'],
+				'slides_to_show_tablet' => $settings['slides_to_show_tablet'],
+				'slides_to_show_tablet_portrait' => $settings['slides_to_show_tablet_portrait'],
+				'slides_to_show_mobile' => $settings['slides_to_show_mobile'],
+				'slides_to_scroll_tablet' => $settings['slides_to_scroll_tablet'],
+				'slides_to_scroll_tablet_portrait' => $settings['slides_to_scroll_tablet_portrait'],
+				'slides_to_scroll_mobile' => $settings['slides_to_scroll_mobile'],
+				'autoplay' => $settings['autoplay'] === 'yes' ? true : false,
+				'autoplay_speed' => $settings['autoplay_speed'],
+				'speed' => $settings['speed'],
+				'infinite' => $settings['infinite'] === 'yes' ? true : false,
+				'fade_effect' => $settings['fade_effect'] === 'yes' ? true : false,
+				'variable_width' => $settings['variable_width'] === 'yes' ? true : false,
+				'custom_arrows' => $settings['custom_arrows'] === 'yes' ? true : false,
+				'custom_dots' => $settings['custom_dots'] === 'yes' ? true : false,
+				'enable_wrap_dots_arrows' => $settings['enable_wrap_dots_arrows'] === 'yes' ? true : false,
+				'enable_progress_bar' => $settings['enable_progress_bar'] === 'yes' ? true : false,
+			));
+		}
+
+		if (is_array($settings['posttype']) && ($posts_by !== 'boosted' || $posts_by !== 'all')) {
+			foreach ($settings['posttype'] as $post_type) {
+				if ($posts_by == 'post_ids') {
+					$post_in = isset($settings[$post_type . '_post__in']) ? $settings[$post_type . '_post__in'] : '';
+
+					if (!empty($post_in)) {
+						if (is_array($post_in)) {
+							$post_in = implode(',', $post_in);
+						}
+
+						$post_ids = array_filter(array_map('trim', explode(',', $post_in))); // Trim spaces
+						$post_ids = array_map('intval', $post_ids);
+
+						$args['post__in'] = isset($args['post__in']) ? array_merge($args['post__in'], $post_ids) : $post_ids;
+					}
+				} elseif ($posts_by == 'taxonomy') {
+					$terms = isset($settings['taxonomy-' . $post_type]) ? $settings['taxonomy-' . $post_type] : array();
+					if (!empty($terms)) {
+						foreach ($terms as $term) {
+							$result = self::split_taxonomy_and_term($term);
+							if ($result) {
+								$args['taxonomy'] = array_unique(array_merge($args['taxonomy'], array($result['taxonomy'])));
+								$args[$result['taxonomy'] . '-terms'][] = $result['term_slug'];
+							}
+						}
+					}
+				} elseif ($posts_by == 'related') {
+					// Handle related posts - pass settings to shortcode for processing
+					$related_settings = isset($settings['related_posts_' . $post_type]) ? $settings['related_posts_' . $post_type] : array();
+					if (!empty($related_settings)) {
+						// Store related posts settings in args for shortcode to process
+						$args['related_posts_' . $post_type] = $related_settings;
+
+						// Get source post ID
+						$source_post_option = isset($settings['related_source_post_' . $post_type]) ? $settings['related_source_post_' . $post_type] : 'current';
+						if ($source_post_option === 'specific') {
+							$source_post_id = isset($settings['related_source_post_id_' . $post_type]) ? intval($settings['related_source_post_id_' . $post_type]) : 0;
+							if ($source_post_id > 0) {
+								$args['related_source_post_id_' . $post_type] = $source_post_id;
+							}
+						}
+					}
+				} elseif ($posts_by == 'nearby') {
+					// Handle nearby posts based on address field - using CubeWP's proximity SQL approach
+					$address_field = isset($settings['nearby_address_field_' . $post_type]) ? $settings['nearby_address_field_' . $post_type] : '';
+
+					if (!empty($address_field)) {
+						// Get source post ID
+						$source_post_option = isset($settings['nearby_source_post_' . $post_type]) ? $settings['nearby_source_post_' . $post_type] : 'current';
+						$source_post_id = null;
+
+						if ($source_post_option === 'specific') {
+							$source_post_id = isset($settings['nearby_source_post_id_' . $post_type]) ? intval($settings['nearby_source_post_id_' . $post_type]) : 0;
+						} else {
+							// Use current post
+							$source_post_id = get_the_ID();
+						}
+
+						// Get address coordinates from source post
+						$lat = null;
+						$lng = null;
+
+						if ($source_post_id && $source_post_id > 0) {
+							// Try to get from meta field directly
+							$lat = get_post_meta($source_post_id, $address_field . '_lat', true);
+							$lng = get_post_meta($source_post_id, $address_field . '_lng', true);
+							// If not found, try getting from address array
+							if (empty($lat) || empty($lng)) {
+								$address_meta = get_post_meta($source_post_id, $address_field, true);
+
+								if (is_array($address_meta)) {
+									$lat = isset($address_meta['latitude']) ? $address_meta['latitude'] : (isset($address_meta['lat']) ? $address_meta['lat'] : null);
+									$lng = isset($address_meta['longitude']) ? $address_meta['longitude'] : (isset($address_meta['lng']) ? $address_meta['lng'] : null);
+								}
+							}
+						}
+
+						// If we have coordinates, add parameters for nearby query
+						if (!empty($lat) && !empty($lng)) {
+							$args[$address_field] = 1; // Indicate this field should be used
+							$args[$address_field . '_lat'] = floatval($lat);
+							$args[$address_field . '_lng'] = floatval($lng);
+
+							// Get radius settings
+							$min_radius = isset($settings['nearby_min_radius_' . $post_type]) ? floatval($settings['nearby_min_radius_' . $post_type]) : 1;
+							$default_radius = isset($settings['nearby_default_radius_' . $post_type]) ? floatval($settings['nearby_default_radius_' . $post_type]) : 10;
+							$max_radius = isset($settings['nearby_max_radius_' . $post_type]) ? floatval($settings['nearby_max_radius_' . $post_type]) : 100;
+							$radius_unit = isset($settings['nearby_radius_unit_' . $post_type]) ? $settings['nearby_radius_unit_' . $post_type] : 'km';
+
+							// Check if range is provided (for dynamic radius)
+							$range = isset($settings[$address_field . '_range']) ? floatval($settings[$address_field . '_range']) : $default_radius;
+
+							// Ensure range is within min/max bounds
+							if ($range < $min_radius) {
+								$range = $min_radius;
+							}
+							if ($range > $max_radius) {
+								$range = $max_radius;
+							}
+
+							$args[$address_field . '_range'] = $range;
+							$args['nearby_address_field'] = $address_field;
+							$args['nearby_radius_unit'] = $radius_unit;
+							$args['nearby_min_radius'] = $min_radius;
+							$args['nearby_max_radius'] = $max_radius;
+							$args['nearby_source_post_id'] = $source_post_id;
+						}
+					}
+				}
+				$card_style = isset($settings[$post_type . '_card_style']) ? $settings[$post_type . '_card_style'] : '';
+				if (!empty($card_style)) {
+					$args['card_style'][$post_type] = $card_style;
+				}
+			}
+		}
+
+		if (class_exists('CubeWp_Booster_Load')) {
+			if ($posts_by == 'boosted') {
+				$args['boosted_only'] = 'yes';
+			}
+		}
+
+		if ($filter_by_meta == 'yes') {
+			$meta_query['query'] = isset($settings['filter_by_custom_fields']) ? $settings['filter_by_custom_fields'] : array(); // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query
+			$meta_query['relation'] = isset($settings['meta_relation']) ? $settings['meta_relation'] : 'OR';
+			$args['meta_query'] = self::_meta_query($meta_query); // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query
+		}
+
+		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		echo apply_filters('cubewp_shortcode_posts_output', '', $args);
+	}
+
+	private function add_slider_controls()
+	{
+
+		$this->start_controls_section(
+			'slider_style_section',
+			[
+				'label' => esc_html__('Posts Slider', 'cubewp-framework'),
+				'tab' => Controls_Manager::TAB_CONTENT,
+			]
+		);
+
+		$this->add_control(
+			'cwp_enable_slider',
+			[
+				'label'        => esc_html__('Enable Slider', 'cubewp-framework'),
+				'type'         => Controls_Manager::SWITCHER,
+				'label_on'     => esc_html__('Yes', 'cubewp-framework'),
+				'label_off'    => esc_html__('No', 'cubewp-framework'),
+				'return_value' => 'yes',
+				'default'      => '',
+				'condition'    => [
+					'layout' => 'grid',
+				],
+			]
+		);
+
+
+		$this->add_responsive_control(
+			'slider_post_spacing',
+			[
+				'label'        => esc_html__('Post Spacing', 'cubewp-framework'),
+				'type'         => Controls_Manager::DIMENSIONS,
+				'size_units'   => ['px', 'em', '%'],
+				'selectors'  => [
+					'{{WRAPPER}} .cubewp-post-slider .slick-slide>div ' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}} !important;',
+					'{{WRAPPER}} .cwp-row>div' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}} !important;',
+				]
+			]
+		);
+
+		$this->add_control('slides_to_show', array(
+			'type'    => Controls_Manager::NUMBER,
+			'label'   => esc_html__('Slides To Show', 'cubewp-framework'),
+			'default' => 3,
+			'min'     => 1,
+			'max'     => 10,
+			'step'    => 1,
+			'description' => esc_html__('Number of slides to show at once in the slider.', 'cubewp-framework'),
+			'condition'   => [
+				'cwp_enable_slider' => 'yes',
+			],
+		));
+
+		$this->add_control(
+			'slides_to_scroll',
+			[
+				'type'    => Controls_Manager::NUMBER,
+				'label'   => esc_html__('Slides To Scroll', 'cubewp-framework'),
+				'default' => 1,
+				'min'     => 1,
+				'max'     => 10,
+				'step'    => 1,
+				'description' => esc_html__('Number of slides to scroll at once in the slider.', 'cubewp-framework'),
+				'condition'   => [
+					'cwp_enable_slider' => 'yes',
+				],
+			]
+		);
+
+		$this->add_control(
+			'autoplay',
+			[
+				'type'    => Controls_Manager::SWITCHER,
+				'label'   => esc_html__('Autoplay', 'cubewp-framework'),
+				'default' => 'yes',
+				'description' => esc_html__('Enable or disable autoplay for the slider.', 'cubewp-framework'),
+				'condition'   => [
+					'cwp_enable_slider' => 'yes',
+				],
+			]
+		);
+
+		$this->add_control(
+			'autoplay_speed',
+			[
+				'type'    => Controls_Manager::NUMBER,
+				'label'   => esc_html__('Autoplay Speed (ms)', 'cubewp-framework'),
+				'default' => 2000,
+				'min'     => 500,
+				'max'     => 10000,
+				'step'    => 500,
+				'description' => esc_html__('Set the speed for autoplay in milliseconds.', 'cubewp-framework'),
+				'condition'   => [
+					'cwp_enable_slider' => 'yes',
+					'autoplay'      => 'yes',
+				],
+			]
+		);
+
+		$this->add_control(
+			'speed',
+			[
+				'type'    => Controls_Manager::NUMBER,
+				'label'   => esc_html__('Speed (ms)', 'cubewp-framework'),
+				'default' => 500,
+				'min'     => 100,
+				'max'     => 5000,
+				'step'    => 100,
+				'description' => esc_html__('Set the speed for the slider transition in milliseconds.', 'cubewp-framework'),
+				'condition'   => [
+					'cwp_enable_slider' => 'yes',
+				],
+			]
+		);
+
+		$this->add_control(
+			'fade_effect',
+			[
+				'type' => Controls_Manager::SWITCHER,
+				'label' => esc_html__('Fade Effect', 'cubewp-framework'),
+				'default' => '',
+				'description' => esc_html__('Enable fade effect for slides transition.', 'cubewp-framework'),
+				'condition' => [
+					'cwp_enable_slider' => 'yes',
+				],
+			]
+		);
+
+		$this->add_control(
+			'infinite',
+			[
+				'type'    => Controls_Manager::SWITCHER,
+				'label'   => esc_html__('Infinite Loop', 'cubewp-framework'),
+				'default' => 'yes',
+				'description' => esc_html__('Enable or disable infinite loop for the slider.', 'cubewp-framework'),
+				'condition'   => [
+					'cwp_enable_slider' => 'yes',
+				],
+			]
+		);
+
+		$this->add_control(
+			'variable_width',
+			[
+				'label' => __('Variable Width', 'cubewp-framework'),
+				'type' => \Elementor\Controls_Manager::SWITCHER,
+				'label_on' => __('Yes', 'cubewp-framework'),
+				'label_off' => __('No', 'cubewp-framework'),
+				'return_value' => 'yes',
+				'default' => 'no',
+				'condition'   => [
+					'cwp_enable_slider' => 'yes',
+				],
+			]
+		);
+
+		$this->add_control(
+			'overflow_setting',
+			[
+				'label' => esc_html__('Overflow Setting', 'cubewp-framework'),
+				'type' => Controls_Manager::SWITCHER,
+				'condition' => [
+					'cwp_enable_slider' => 'yes',
+				],
+				'selectors' => [
+					'{{WRAPPER}} .cubewp-post-slider .slick-list.draggable' => 'overflow: inherit;',
+				],
+			]
+		);
+
+		$this->add_control(
+			'enable_progress_bar',
+			[
+				'type' => Controls_Manager::SWITCHER,
+				'label' => esc_html__('Enable Progress Bar', 'cubewp-framework'),
+				'default' => '',
+				'condition' => [
+					'cwp_enable_slider' => 'yes',
+				],
+			]
+		);
+
+		$this->add_responsive_control(
+			'progress_bar_height',
+			[
+				'label' => esc_html__('Progress Bar Height', 'cubewp-framework'),
+				'type' => Controls_Manager::SLIDER,
+				'size_units' => ['px'],
+				'range' => [
+					'px' => [
+						'min' => 1,
+						'max' => 50,
+						'step' => 1,
+					],
+				],
+				'default' => [
+					'unit' => 'px',
+					'size' => 5,
+				],
+				'selectors' => [
+					'{{WRAPPER}} .slick-progress, {{WRAPPER}} .slick-progress .slick-progress-bar' => 'height: {{SIZE}}{{UNIT}};',
+				],
+				'condition' => [
+					'cwp_enable_slider' => 'yes',
+					'enable_progress_bar' => 'yes',
+				],
+			]
+		);
+
+		$this->add_responsive_control(
+			'progress_bar_back_color',
+			[
+				'label' => esc_html__('Progress Bar Background Color', 'cubewp-framework'),
+				'type' => Controls_Manager::COLOR,
+				'default' => '#000000',
+				'selectors' => [
+					'{{WRAPPER}} .slick-progress' => 'background-color: {{VALUE}};',
+				],
+				'condition' => [
+					'cwp_enable_slider' => 'yes',
+					'enable_progress_bar' => 'yes',
+				],
+			]
+		);
+
+		$this->add_responsive_control(
+			'progress_bar_color',
+			[
+				'label' => esc_html__('Progress Bar Fill Color', 'cubewp-framework'),
+				'type' => Controls_Manager::COLOR,
+				'default' => '#ddd',
+				'selectors' => [
+					'{{WRAPPER}} .slick-progress .slick-progress-bar' => 'background-color: {{VALUE}};',
+				],
+				'condition' => [
+					'cwp_enable_slider' => 'yes',
+					'enable_progress_bar' => 'yes',
+				],
+			]
+		);
+
+		$this->add_responsive_control(
+			'scroll_bar_margin_top',
+			[
+				'label' => esc_html__('Progress Bar Margin Top', 'cubewp-framework'),
+				'type' => Controls_Manager::SLIDER,
+				'range' => [
+					'px' => [
+						'min' => -100,
+						'max' => 100,
+						'step' => 1,
+					],
+				],
+				'default' => [
+					'size' => '',
+					'unit' => 'px',
+				],
+				'selectors' => [
+					'{{WRAPPER}} .slick-progress' => 'margin-top: {{SIZE}}px;',
+				],
+				'condition' => [
+					'cwp_enable_slider' => 'yes',
+					'enable_progress_bar' => 'yes',
+				],
+			]
+		);
+
+		$this->add_control(
+			'slider_dots_arrow_settings_divider',
+			[
+				'type' => Controls_Manager::DIVIDER,
+				'style' => 'thick',
+				'condition'   => [
+					'cwp_enable_slider' => 'yes',
+				],
+			]
+		);
+
+		$this->add_control(
+			'custom_arrows',
+			[
+				'type' => Controls_Manager::SWITCHER,
+				'label' => esc_html__('Enable Arrows', 'cubewp-framework'),
+				'default' => 'yes',
+				'condition' => [
+					'cwp_enable_slider' => 'yes',
+				],
+			]
+		);
+
+		$this->add_control(
+			'prev_icon',
+			[
+				'label' => __('Previous Icon', 'cubewp-framework'),
+				'type' => Controls_Manager::ICONS,
+				'default' => [
+					'value' => 'fas fa-chevron-left',
+					'library' => 'fa-solid',
+				],
+				'label_block' => true,
+				'condition'   => [
+					'cwp_enable_slider' => 'yes',
+					'custom_arrows' => 'yes',
+				],
+			]
+		);
+
+		$this->add_control(
+			'next_icon',
+			[
+				'label' => __('Next Icon', 'cubewp-framework'),
+				'type' => Controls_Manager::ICONS,
+				'default' => [
+					'value' => 'fas fa-chevron-right',
+					'library' => 'fa-solid',
+				],
+				'label_block' => true,
+				'condition'   => [
+					'cwp_enable_slider' => 'yes',
+					'custom_arrows' => 'yes',
+				],
+			]
+		);
+
+		$this->add_responsive_control(
+			'icon_size',
+			[
+				'label' => esc_html__('Icon Size (px)', 'cubewp-framework'),
+				'type' => Controls_Manager::SLIDER,
+				'size_units' => ['px'],
+				'range' => [
+					'px' => [
+						'min' => 5,
+						'max' => 100,
+						'step' => 1,
+					],
+				],
+				'default' => [
+					'unit' => 'px',
+					'size' => 20,
+				],
+				'selectors' => [
+					'{{WRAPPER}} .cubewp-post-slider .slick-prev i, {{WRAPPER}} .cubewp-post-slider .slick-next i' => 'font-size: {{SIZE}}{{UNIT}};',
+				],
+				'condition' => [
+					'cwp_enable_slider' => 'yes',
+					'custom_arrows' => 'yes',
+				],
+			]
+		);
+
+		$this->add_responsive_control(
+			'icon_color',
+			[
+				'label' => esc_html__('Icon Color', 'cubewp-framework'),
+				'type' => Controls_Manager::COLOR,
+				'default' => '#000000',
+				'selectors' => [
+					'{{WRAPPER}} .cubewp-post-slider .slick-prev i, {{WRAPPER}} .cubewp-post-slider .slick-next i' => 'color: {{VALUE}};',
+				],
+				'condition' => [
+					'cwp_enable_slider' => 'yes',
+					'custom_arrows' => 'yes',
+				],
+			]
+		);
+
+		$this->add_responsive_control(
+			'icon_hover_color',
+			[
+				'label' => esc_html__('Icon Hover Color', 'cubewp-framework'),
+				'type' => Controls_Manager::COLOR,
+				'default' => '#ffffff',
+				'selectors' => [
+					'{{WRAPPER}} .cubewp-post-slider .slick-prev:hover i, {{WRAPPER}} .cubewp-post-slider .slick-next:hover i' => 'color: {{VALUE}};',
+				],
+				'condition' => [
+					'cwp_enable_slider' => 'yes',
+					'custom_arrows' => 'yes',
+				],
+			]
+		);
+
+		$this->add_responsive_control(
+			'icon_background_color',
+			[
+				'label' => esc_html__('Icon & Svg Background Color', 'cubewp-framework'),
+				'type' => Controls_Manager::COLOR,
+				'default' => '#ffffff',
+				'selectors' => [
+					'{{WRAPPER}} .cubewp-post-slider .slick-prev, {{WRAPPER}} .cubewp-post-slider .slick-next' => 'background-color: {{VALUE}};',
+				],
+				'condition' => [
+					'cwp_enable_slider' => 'yes',
+					'custom_arrows' => 'yes',
+				],
+			]
+		);
+
+		$this->add_responsive_control(
+			'icon_hover_background_color',
+			[
+				'label' => esc_html__('Icon & Svg Hover Background Color', 'cubewp-framework'),
+				'type' => Controls_Manager::COLOR,
+				'default' => '#000000',
+				'selectors' => [
+					'{{WRAPPER}} .cubewp-post-slider .slick-prev:hover, {{WRAPPER}} .cubewp-post-slider .slick-next:hover' => 'background-color: {{VALUE}};',
+				],
+				'condition' => [
+					'cwp_enable_slider' => 'yes',
+					'custom_arrows' => 'yes',
+				],
+			]
+		);
+
+		$this->add_responsive_control(
+			'svg_color',
+			[
+				'label' => esc_html__('SVG Color', 'cubewp-framework'),
+				'type' => Controls_Manager::COLOR,
+				'default' => '#000000',
+				'selectors' => [
+					'{{WRAPPER}} .cubewp-post-slider .slick-prev svg path, {{WRAPPER}} .cubewp-post-slider .slick-next svg path' => 'fill: {{VALUE}};',
+				],
+				'condition' => [
+					'cwp_enable_slider' => 'yes',
+					'custom_arrows' => 'yes',
+				],
+			]
+		);
+
+		$this->add_responsive_control(
+			'svg_hover_color',
+			[
+				'label' => esc_html__('SVG Hover Color', 'cubewp-framework'),
+				'type' => Controls_Manager::COLOR,
+				'default' => '#FF0000',
+				'selectors' => [
+					'{{WRAPPER}} .cubewp-post-slider .slick-prev:hover svg path, {{WRAPPER}} .cubewp-post-slider .slick-next:hover svg path' => 'fill: {{VALUE}};',
+				],
+				'condition' => [
+					'cwp_enable_slider' => 'yes',
+					'custom_arrows' => 'yes',
+				],
+			]
+		);
+
+		$this->add_responsive_control(
+			'svg_width',
+			[
+				'label' => esc_html__('SVG Width', 'cubewp-framework'),
+				'type' => \Elementor\Controls_Manager::SLIDER,
+				'default' => [
+					'size' => 24,
+					'unit' => 'px',
+				],
+				'range' => [
+					'px' => [
+						'min' => 0,
+						'max' => 100,
+					],
+					'em' => [
+						'min' => 1,
+						'max' => 10,
+					],
+				],
+				'selectors' => [
+					'{{WRAPPER}} .cubewp-post-slider .slick-prev svg, {{WRAPPER}} .cubewp-post-slider .slick-next svg' => 'width: {{SIZE}}{{UNIT}};',
+				],
+				'condition' => [
+					'cwp_enable_slider' => 'yes',
+					'custom_arrows' => 'yes',
+				],
+			]
+		);
+
+		$this->add_responsive_control(
+			'svg_height',
+			[
+				'label' => esc_html__('SVG Height', 'cubewp-framework'),
+				'type' => \Elementor\Controls_Manager::SLIDER,
+				'default' => [
+					'size' => 24,
+					'unit' => 'px',
+				],
+				'range' => [
+					'px' => [
+						'min' => 0,
+						'max' => 100,
+					],
+					'em' => [
+						'min' => 1,
+						'max' => 10,
+					],
+				],
+				'selectors' => [
+					'{{WRAPPER}} .cubewp-post-slider .slick-prev svg, {{WRAPPER}} .cubewp-post-slider .slick-next svg' => 'height: {{SIZE}}{{UNIT}};',
+				],
+				'condition' => [
+					'cwp_enable_slider' => 'yes',
+					'custom_arrows' => 'yes',
+				],
+			]
+		);
+
+		$this->add_responsive_control(
+			'icon_border',
+			[
+				'label' => esc_html__('Border', 'cubewp-framework'),
+				'type' => Controls_Manager::DIMENSIONS,
+				'size_units' => ['px', 'em', '%'],
+				'selectors' => [
+					'{{WRAPPER}} .cubewp-post-slider .slick-prev, {{WRAPPER}} .cubewp-post-slider .slick-next' => 'border-width: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}}; border-style: solid;',
+				],
+				'condition' => [
+					'cwp_enable_slider' => 'yes',
+					'custom_arrows' => 'yes',
+				],
+			]
+		);
+
+		$this->add_responsive_control(
+			'icon_border_radius',
+			[
+				'label' => esc_html__('Border Radius', 'cubewp-framework'),
+				'type' => Controls_Manager::SLIDER,
+				'size_units' => ['px', '%'],
+				'range' => [
+					'px' => [
+						'min' => 0,
+						'max' => 200,
+						'step' => 1,
+					],
+					'%' => [
+						'min' => 0,
+						'max' => 100,
+						'step' => 1,
+					],
+				],
+				'default' => [
+					'unit' => 'px',
+					'size' => 5,
+				],
+				'selectors' => [
+					'{{WRAPPER}} .cubewp-post-slider .slick-prev, {{WRAPPER}} .cubewp-post-slider .slick-next' => 'border-radius: {{SIZE}}{{UNIT}};',
+				],
+				'condition' => [
+					'cwp_enable_slider' => 'yes',
+					'custom_arrows' => 'yes',
+				],
+			]
+		);
+
+		$this->add_responsive_control(
+			'icon_border_color',
+			[
+				'label' => esc_html__('Border Color', 'cubewp-framework'),
+				'type' => Controls_Manager::COLOR,
+				'default' => '#000000',
+				'selectors' => [
+					'{{WRAPPER}} .cubewp-post-slider .slick-prev, {{WRAPPER}} .cubewp-post-slider .slick-next' => 'border-color: {{VALUE}};',
+				],
+				'condition' => [
+					'cwp_enable_slider' => 'yes',
+					'custom_arrows' => 'yes',
+				],
+			]
+		);
+
+		$this->add_responsive_control(
+			'icon_border_color_hover',
+			[
+				'label' => esc_html__('Border Color on Hover', 'cubewp-framework'),
+				'type' => Controls_Manager::COLOR,
+				'default' => '#ffffff',
+				'selectors' => [
+					'{{WRAPPER}} .cubewp-post-slider .slick-prev:hover, {{WRAPPER}} .cubewp-post-slider .slick-next:hover' => 'border-color: {{VALUE}};',
+				],
+				'condition' => [
+					'cwp_enable_slider' => 'yes',
+					'custom_arrows' => 'yes',
+				],
+			]
+		);
+
+		$this->add_control(
+			'icon_border_transition',
+			[
+				'label' => esc_html__('Transition Duration', 'cubewp-framework'),
+				'type' => Controls_Manager::SLIDER,
+				'default' => [
+					'size' => 0.3,
+				],
+				'range' => [
+					'px' => [
+						'min' => 0,
+						'max' => 2,
+						'step' => 0.1,
+					],
+				],
+				'selectors' => [
+					'{{WRAPPER}} .cubewp-post-slider .slick-prev, {{WRAPPER}} .cubewp-post-slider .slick-next' => 'transition: background-color {{SIZE}}s, color {{SIZE}}s, border-color {{SIZE}}s;',
+				],
+				'condition' => [
+					'cwp_enable_slider' => 'yes',
+					'custom_arrows' => 'yes',
+				],
+			]
+		);
+
+		$this->add_responsive_control(
+			'icon_padding',
+			[
+				'label' => esc_html__('Icon & Svg Padding', 'cubewp-framework'),
+				'type' => Controls_Manager::DIMENSIONS,
+				'size_units' => ['px', 'em', '%'],
+				'selectors' => [
+					'{{WRAPPER}} .cubewp-post-slider .slick-prev, {{WRAPPER}} .cubewp-post-slider .slick-next' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+				'condition' => [
+					'cwp_enable_slider' => 'yes',
+					'custom_arrows' => 'yes',
+				],
+			]
+		);
+
+		$this->add_group_control(
+			Group_Control_Box_Shadow::get_type(),
+			[
+				'name' => 'slider_arrow_box_shadow',
+				'label' => __('Arrow Box Shadow', 'cubewp-framework'),
+				'selector' => '{{WRAPPER}} .cubewp-post-slider .slick-arrow',
+				'separator' => 'before',
+				'condition' => [
+					'cwp_enable_slider' => 'yes',
+					'custom_arrows' => 'yes',
+				],
+			]
+		);
+
+		$this->add_control(
+			'icon_position_divider_heading',
+			[
+				'label' => esc_html__('Set the Icons Positions', 'cubewp-framework'),
+				'type' => Controls_Manager::HEADING,
+				'separator' => 'before',
+				'condition'   => [
+					'cwp_enable_slider' => 'yes',
+					'custom_arrows' => 'yes',
+				],
+			]
+		);
+
+		$this->add_responsive_control(
+			'icon_top_position',
+			[
+				'label' => esc_html__('Top Position', 'cubewp-framework'),
+				'type' => Controls_Manager::SLIDER,
+				'size_units' => ['px', '%'],
+				'range' => [
+					'px' => [
+						'min' => -500,
+						'max' => 2000,
+						'step' => 1,
+					],
+					'%' => [
+						'min' => -100,
+						'max' => 100,
+					],
+				],
+				'default' => [
+					'unit' => 'px',
+					'size' => 50,
+				],
+				'selectors' => [
+					'{{WRAPPER}} .cubewp-post-slider .slick-prev, {{WRAPPER}} .cubewp-post-slider .slick-next' => 'top: {{SIZE}}{{UNIT}} !important;',
+				],
+				'condition'    => [
+					'cwp_enable_slider' => 'yes',
+					'custom_arrows' => 'yes',
+				],
+			]
+		);
+
+		$this->add_responsive_control(
+			'icon_bottom_position',
+			[
+				'label' => esc_html__('Bottom Position', 'cubewp-framework'),
+				'type' => Controls_Manager::SLIDER,
+				'size_units' => ['px', '%'],
+				'range' => [
+					'px' => [
+						'min' => -500,
+						'max' => 2000,
+						'step' => 1,
+					],
+					'%' => [
+						'min' => -100,
+						'max' => 100,
+					],
+				],
+				'default' => [
+					'unit' => 'px',
+					'size' => 50,
+				],
+				'selectors' => [
+					'{{WRAPPER}} .cubewp-post-slider .slick-prev, {{WRAPPER}} .cubewp-post-slider .slick-next' => 'bottom: {{SIZE}}{{UNIT}} !important;',
+				],
+				'condition'    => [
+					'cwp_enable_slider' => 'yes',
+					'custom_arrows' => 'yes',
+				],
+			]
+		);
+
+		$this->add_responsive_control(
+			'icon_prev_left_position',
+			[
+				'label' => esc_html__('Left Position', 'cubewp-framework'),
+				'type' => Controls_Manager::SLIDER,
+				'size_units' => ['px', '%'],
+				'range' => [
+					'px' => [
+						'min' => -500,
+						'max' => 2000,
+						'step' => 1,
+					],
+					'%' => [
+						'min' => -100,
+						'max' => 100,
+					],
+				],
+				'default' => [
+					'unit' => 'px',
+					'size' => 10,
+				],
+				'selectors' => [
+					'{{WRAPPER}} .cubewp-post-slider .slick-prev' => 'left: {{SIZE}}{{UNIT}} !important;',
+				],
+				'condition'    => [
+					'cwp_enable_slider' => 'yes',
+					'custom_arrows' => 'yes',
+				],
+			]
+		);
+
+		$this->add_responsive_control(
+			'icon_next_right_position',
+			[
+				'label' => esc_html__('Right Position', 'cubewp-framework'),
+				'type' => Controls_Manager::SLIDER,
+				'size_units' => ['px', '%'],
+				'range' => [
+					'px' => [
+						'min' => -500,
+						'max' => 2000,
+						'step' => 1,
+					],
+					'%' => [
+						'min' => -100,
+						'max' => 100,
+					],
+				],
+				'default' => [
+					'unit' => 'px',
+					'size' => 10,
+				],
+				'selectors' => [
+					'{{WRAPPER}} .cubewp-post-slider .slick-next' => 'right: {{SIZE}}{{UNIT}} !important;',
+				],
+				'condition'    => [
+					'cwp_enable_slider' => 'yes',
+					'custom_arrows' => 'yes',
+				],
+			]
+		);
+
+		$this->add_control(
+			'custom_dots',
+			[
+				'label' => esc_html__('Enable Dots', 'cubewp-framework'),
+				'type' => Controls_Manager::SWITCHER,
+				'label_on'     => esc_html__('Yes', 'cubewp-framework'),
+				'label_off'    => esc_html__('No', 'cubewp-framework'),
+				'return_value' => 'yes',
+				'default'      => '',
+				'condition' => [
+					'cwp_enable_slider' => 'yes',
+				],
+			]
+		);
+
+		$this->add_responsive_control(
+			'dots_display_flex',
+			[
+				'label' => esc_html__('Dots Display', 'cubewp-framework'),
+				'type' => \Elementor\Controls_Manager::SELECT,
+				'options' => [
+					'block' => esc_html__('Block', 'cubewp-framework'),
+					'flex' => esc_html__('Flex', 'cubewp-framework'),
+				],
+				'default' => 'flex',
+				'selectors' => [
+					'{{WRAPPER}} .cubewp-post-slider .slick-dots' => 'display: {{VALUE}};',
+				],
+				'condition' => [
+					'cwp_enable_slider' => 'yes',
+					'custom_dots' => 'yes',
+				],
+			]
+		);
+
+		$this->add_responsive_control(
+			'dots_flex_direction',
+			[
+				'label' => esc_html__('Dots Flex Direction', 'cubewp-framework'),
+				'type' => \Elementor\Controls_Manager::SELECT,
+				'options' => [
+					'row' => esc_html__('Row', 'cubewp-framework'),
+					'row-reverse' => esc_html__('Row Reverse', 'cubewp-framework'),
+					'column' => esc_html__('Column', 'cubewp-framework'),
+					'column-reverse' => esc_html__('Column Reverse', 'cubewp-framework'),
+				],
+				'selectors' => [
+					'{{WRAPPER}} .cubewp-post-slider .slick-dots' => 'flex-direction: {{VALUE}};',
+				],
+				'condition' => [
+					'custom_dots' => 'yes',
+					'dots_display_flex' => 'flex',
+					'cwp_enable_slider' => 'yes',
+				],
+			]
+		);
+
+		$this->add_responsive_control(
+			'dots_gap',
+			[
+				'label' => __('Dots Gap', 'cubewp-framework'),
+				'type' => \Elementor\Controls_Manager::SLIDER,
+				'size_units' => ['px'],
+				'range' => [
+					'px' => [
+						'min' => 0,
+						'max' => 50,
+						'step' => 1,
+					],
+				],
+				'default' => [
+					'unit' => 'px',
+					'size' => 5,
+				],
+				'selectors' => [
+					'{{WRAPPER}} .cubewp-post-slider .slick-dots' => 'gap:{{SIZE}}{{UNIT}};',
+				],
+				'condition'   => [
+					'cwp_enable_slider' => 'yes',
+					'custom_dots' => 'yes',
+				],
+			]
+		);
+
+		$this->add_responsive_control(
+			'dots_position_select',
+			[
+				'label' => esc_html__('Dots Position', 'cubewp-framework'),
+				'type' => \Elementor\Controls_Manager::SELECT,
+				'options' => [
+					'static' => esc_html__('Static', 'cubewp-framework'),
+					'absolute' => esc_html__('Absolute', 'cubewp-framework'),
+					'relative' => esc_html__('Relative', 'cubewp-framework'),
+					'fixed' => esc_html__('Fixed', 'cubewp-framework'),
+				],
+				'default' => 'static',
+				'selectors' => [
+					'{{WRAPPER}} .cubewp-post-slider .slick-dots' => 'position: {{VALUE}};',
+				],
+				'condition' => [
+					'cwp_enable_slider' => 'yes',
+					'custom_dots' => 'yes',
+				],
+			]
+		);
+
+		$this->add_responsive_control(
+			'dots_top_position',
+			[
+				'label' => esc_html__('Dots Top Position', 'cubewp-framework'),
+				'type' => Controls_Manager::SLIDER,
+				'size_units' => ['px', '%'],
+				'range' => [
+					'px' => [
+						'min' => -500,
+						'max' => 2000,
+						'step' => 1,
+					],
+					'%' => [
+						'min' => -100,
+						'max' => 100,
+					],
+				],
+				'default' => [
+					'unit' => 'px',
+					'size' => 50,
+				],
+				'selectors' => [
+					'{{WRAPPER}} .cubewp-post-slider .slick-dots' => 'top: {{SIZE}}{{UNIT}} !important;',
+				],
+				'condition' => [
+					'custom_dots' => 'yes',
+					'dots_position_select' => 'absolute',
+					'cwp_enable_slider' => 'yes',
+				],
+			]
+		);
+
+		$this->add_responsive_control(
+			'dots_bottom_position',
+			[
+				'label' => esc_html__('Dots Bottom Position', 'cubewp-framework'),
+				'type' => Controls_Manager::SLIDER,
+				'size_units' => ['px', '%'],
+				'range' => [
+					'px' => [
+						'min' => -500,
+						'max' => 2000,
+						'step' => 1,
+					],
+					'%' => [
+						'min' => -100,
+						'max' => 100,
+					],
+				],
+				'default' => [
+					'unit' => 'px',
+					'size' => 50,
+				],
+				'selectors' => [
+					'{{WRAPPER}} .cubewp-post-slider .slick-dots' => 'bottom: {{SIZE}}{{UNIT}} !important;',
+				],
+				'condition' => [
+					'custom_dots' => 'yes',
+					'dots_position_select' => 'absolute',
+					'cwp_enable_slider' => 'yes',
+				],
+			]
+		);
+
+		$this->add_responsive_control(
+			'dots_left_position',
+			[
+				'label' => esc_html__('Dots Left Position', 'cubewp-framework'),
+				'type' => Controls_Manager::SLIDER,
+				'size_units' => ['px', '%'],
+				'range' => [
+					'px' => [
+						'min' => -500,
+						'max' => 2000,
+						'step' => 1,
+					],
+					'%' => [
+						'min' => -100,
+						'max' => 100,
+					],
+				],
+				'default' => [
+					'unit' => 'px',
+					'size' => 10,
+				],
+				'selectors' => [
+					'{{WRAPPER}} .cubewp-post-slider .slick-dots' => 'left: {{SIZE}}{{UNIT}} !important;',
+				],
+				'condition' => [
+					'custom_dots' => 'yes',
+					'dots_position_select' => 'absolute',
+					'cwp_enable_slider' => 'yes',
+				],
+			]
+		);
+
+		$this->add_responsive_control(
+			'dots_right_position',
+			[
+				'label' => esc_html__('Dots Right Position', 'cubewp-framework'),
+				'type' => Controls_Manager::SLIDER,
+				'size_units' => ['px', '%'],
+				'range' => [
+					'px' => [
+						'min' => -500,
+						'max' => 2000,
+						'step' => 1,
+					],
+					'%' => [
+						'min' => -100,
+						'max' => 100,
+					],
+				],
+				'default' => [
+					'unit' => 'px',
+					'size' => 10,
+				],
+				'selectors' => [
+					'{{WRAPPER}} .cubewp-post-slider .slick-dots' => 'right: {{SIZE}}{{UNIT}} !important;',
+				],
+				'condition' => [
+					'custom_dots' => 'yes',
+					'dots_position_select' => 'absolute',
+					'cwp_enable_slider' => 'yes',
+				],
+			]
+		);
+
+		$this->add_control(
+			'dots_position_z_index',
+			[
+				'label' => esc_html__('Dots Z-Index', 'cubewp-framework'),
+				'type' => \Elementor\Controls_Manager::NUMBER,
+				'min' => -9999,
+				'max' => 9999,
+				'selectors' => [
+					'{{WRAPPER}} .cubewp-post-slider .slick-dots' => 'z-index: {{VALUE}} !important;',
+				],
+				'condition' => [
+					'custom_dots' => 'yes',
+					'dots_position_select' => 'absolute',
+					'cwp_enable_slider' => 'yes',
+				],
+			]
+		);
+
+		$this->add_responsive_control(
+			'dots_padding',
+			[
+				'label' => esc_html__('Dots Padding', 'cubewp-framework'),
+				'type' => Controls_Manager::DIMENSIONS,
+				'size_units' => ['px', 'em', '%'],
+				'selectors' => [
+					'{{WRAPPER}} .cubewp-post-slider .slick-dots li button' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+				'condition' => [
+					'custom_dots' => 'yes',
+					'cwp_enable_slider' => 'yes',
+				],
+			]
+		);
+
+		$this->add_responsive_control(
+			'dots_border_style',
+			[
+				'label' => __('Dots Border Style', 'cubewp-framework'),
+				'type' => \Elementor\Controls_Manager::SELECT,
+				'default' => 'None',
+				'options' => [
+					'none' => __('None', 'cubewp-framework'),
+					'solid' => __('Solid', 'cubewp-framework'),
+					'dotted' => __('Dotted', 'cubewp-framework'),
+					'dashed' => __('Dashed', 'cubewp-framework'),
+				],
+				'selectors' => [
+					'{{WRAPPER}} .cubewp-post-slider .slick-dots li' => 'border-style: {{VALUE}};',
+				],
+				'condition' => [
+					'custom_dots' => 'yes',
+					'cwp_enable_slider' => 'yes',
+				],
+			]
+		);
+
+		$this->add_responsive_control(
+			'dots_border_width',
+			[
+				'label' => __('Dots Border Width', 'cubewp-framework'),
+				'type' => \Elementor\Controls_Manager::DIMENSIONS,
+				'size_units' => ['px'],
+				'default' => [
+					'top' => '',
+					'right' => '',
+					'bottom' => '',
+					'left' => '',
+					'unit' => 'px',
+				],
+				'selectors' => [
+					'{{WRAPPER}} .cubewp-post-slider .slick-dots li' => 'border-width: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+				'condition' => [
+					'custom_dots' => 'yes',
+					'cwp_enable_slider' => 'yes',
+					'dots_border_style!' => 'none',
+				],
+			]
+		);
+
+		$this->add_responsive_control(
+			'dots_outside_padding',
+			[
+				'label' => esc_html__('Dots Outside Padding', 'cubewp-framework'),
+				'type' => Controls_Manager::DIMENSIONS,
+				'size_units' => ['px', 'em', '%'],
+				'selectors' => [
+					'{{WRAPPER}} .cubewp-post-slider .slick-dots li' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+				'condition' => [
+					'custom_dots' => 'yes',
+					'cwp_enable_slider' => 'yes',
+				],
+			]
+		);
+
+		$this->add_responsive_control(
+			'dots_outside_color',
+			[
+				'label' => esc_html__('Dots Outside Backgroud Color', 'cubewp-framework'),
+				'type' => \Elementor\Controls_Manager::COLOR,
+				'default' => '#ffffff',
+				'selectors' => [
+					'{{WRAPPER}} .cubewp-post-slider .slick-dots li' => 'background-color: {{VALUE}};',
+				],
+				'condition' => [
+					'custom_dots' => 'yes',
+					'cwp_enable_slider' => 'yes',
+				],
+			]
+		);
+
+		$this->add_responsive_control(
+			'active_dot_outside_color',
+			[
+				'label' => esc_html__('Active Dot Outside Backgroud Color', 'cubewp-framework'),
+				'type' => \Elementor\Controls_Manager::COLOR,
+				'default' => '#000000',
+				'selectors' => [
+					'{{WRAPPER}} .cubewp-post-slider .slick-dots .slick-active' => 'background-color: {{VALUE}};',
+				],
+				'condition' => [
+					'custom_dots' => 'yes',
+					'cwp_enable_slider' => 'yes',
+				],
+			]
+		);
+
+		$this->add_responsive_control(
+			'dots_border_color',
+			[
+				'label' => __('Dots Border Color', 'cubewp-framework'),
+				'type' => \Elementor\Controls_Manager::COLOR,
+				'default' => '#000000',
+				'selectors' => [
+					'{{WRAPPER}} .cubewp-post-slider .slick-dots li' => 'border-color: {{VALUE}};',
+				],
+				'condition' => [
+					'custom_dots' => 'yes',
+					'cwp_enable_slider' => 'yes',
+				],
+			]
+		);
+
+		$this->add_responsive_control(
+			'dots_active_border_color',
+			[
+				'label' => __('Active Dot Border Color', 'cubewp-framework'),
+				'type' => \Elementor\Controls_Manager::COLOR,
+				'default' => '#000000',
+				'selectors' => [
+					'{{WRAPPER}} .cubewp-post-slider .slick-dots .slick-active' => 'border-color: {{VALUE}};',
+				],
+				'condition' => [
+					'custom_dots' => 'yes',
+					'cwp_enable_slider' => 'yes',
+				],
+			]
+		);
+
+		$this->add_responsive_control(
+			'dots_border_radius',
+			[
+				'label' => __('Dots Border Radius', 'cubewp-framework'),
+				'type' => \Elementor\Controls_Manager::NUMBER,
+				'default' => 0,
+				'min' => 0,
+				'max' => 500,
+				'step' => 1,
+				'selectors' => [
+					'{{WRAPPER}} .cubewp-post-slider .slick-dots li,{{WRAPPER}} .cubewp-post-slider .slick-dots li button' => 'border-radius: {{VALUE}}px;',
+				],
+				'condition' => [
+					'custom_dots' => 'yes',
+					'cwp_enable_slider' => 'yes',
+				],
+			]
+		);
+
+		$this->add_responsive_control(
+			'dots_background_color',
+			[
+				'label' => __('Dots Background Color', 'cubewp-framework'),
+				'type' => \Elementor\Controls_Manager::COLOR,
+				'default' => '#ffffff',
+				'selectors' => [
+					'{{WRAPPER}} .cubewp-post-slider .slick-dots li button' => 'background-color: {{VALUE}};',
+				],
+				'condition' => [
+					'custom_dots' => 'yes',
+					'cwp_enable_slider' => 'yes',
+				],
+			]
+		);
+
+		$this->add_responsive_control(
+			'dots_active_background_color',
+			[
+				'label' => __('Active Dot Background Color', 'cubewp-framework'),
+				'type' => \Elementor\Controls_Manager::COLOR,
+				'default' => '#000000',
+				'selectors' => [
+					'{{WRAPPER}} .cubewp-post-slider .slick-dots .slick-active button' => 'background-color: {{VALUE}};',
+				],
+				'condition' => [
+					'custom_dots' => 'yes',
+					'cwp_enable_slider' => 'yes',
+				],
+			]
+		);
+
+		$this->add_responsive_control(
+			'dots_width',
+			[
+				'label' => __('Dots Width', 'cubewp-framework'),
+				'type' => \Elementor\Controls_Manager::NUMBER,
+				'default' => 10,
+				'min' => 1,
+				'max' => 100,
+				'step' => 1,
+				'selectors' => [
+					'{{WRAPPER}} .cubewp-post-slider .slick-dots li button' => 'width: {{VALUE}}px;',
+				],
+				'condition' => [
+					'custom_dots' => 'yes',
+					'cwp_enable_slider' => 'yes',
+				],
+			]
+		);
+
+		$this->add_responsive_control(
+			'dots_height',
+			[
+				'label' => __('Dots Height', 'cubewp-framework'),
+				'type' => \Elementor\Controls_Manager::NUMBER,
+				'default' => 10,
+				'min' => 1,
+				'max' => 100,
+				'step' => 1,
+				'selectors' => [
+					'{{WRAPPER}} .cubewp-post-slider .slick-dots li button' => 'height: {{VALUE}}px;',
+				],
+				'condition' => [
+					'custom_dots' => 'yes',
+					'cwp_enable_slider' => 'yes',
+				],
+			]
+		);
+
+		$this->add_responsive_control(
+			'active_dot_width',
+			[
+				'label' => __('Active Dot Width', 'cubewp-framework'),
+				'type' => \Elementor\Controls_Manager::NUMBER,
+				'default' => 12,
+				'min' => 1,
+				'max' => 100,
+				'step' => 1,
+				'selectors' => [
+					'{{WRAPPER}} .cubewp-post-slider .slick-dots .slick-active button' => 'width: {{VALUE}}px;',
+				],
+				'condition' => [
+					'custom_dots' => 'yes',
+					'cwp_enable_slider' => 'yes',
+				],
+			]
+		);
+
+		$this->add_responsive_control(
+			'active_dot_height',
+			[
+				'label' => __('Active Dot Height', 'cubewp-framework'),
+				'type' => \Elementor\Controls_Manager::NUMBER,
+				'default' => 12,
+				'min' => 1,
+				'max' => 100,
+				'step' => 1,
+				'selectors' => [
+					'{{WRAPPER}} .cubewp-post-slider .slick-dots .slick-active button' => 'height: {{VALUE}}px;',
+				],
+				'condition' => [
+					'custom_dots' => 'yes',
+					'cwp_enable_slider' => 'yes',
+				],
+			]
+		);
+
+		$this->add_control(
+			'slider_responsive_settings_heading',
+			[
+				'label' => esc_html__('Responsive Settings For Slides To Show And Scroll', 'cubewp-framework'),
+				'type' => Controls_Manager::HEADING,
+				'separator' => 'before',
+				'condition'   => [
+					'cwp_enable_slider' => 'yes',
+				],
+			]
+		);
+
+		$this->add_control(
+			'slides_to_show_tablet',
+			[
+				'label' => esc_html__('Slides To Show On (Tablet)', 'cubewp-framework'),
+				'type' => Controls_Manager::NUMBER,
+				'min' => 1,
+				'max' => 10,
+				'step' => 1,
+				'default' => 3,
+				'condition' => [
+					'cwp_enable_slider' => 'yes',
+				],
+			]
+		);
+
+		$this->add_control(
+			'slides_to_show_tablet_portrait',
+			[
+				'label' => esc_html__('Slides To Show On (Tablet Portrait)', 'cubewp-framework'),
+				'type' => Controls_Manager::NUMBER,
+				'min' => 1,
+				'max' => 10,
+				'step' => 1,
+				'default' => 2,
+				'condition' => [
+					'cwp_enable_slider' => 'yes',
+				],
+			]
+		);
+
+		$this->add_control(
+			'slides_to_show_mobile',
+			[
+				'label' => esc_html__('Slides To Show On (Mobile)', 'cubewp-framework'),
+				'type' => Controls_Manager::NUMBER,
+				'min' => 1,
+				'max' => 10,
+				'step' => 1,
+				'default' => 1,
+				'condition' => [
+					'cwp_enable_slider' => 'yes',
+				],
+			]
+		);
+
+		$this->add_control(
+			'slider_responsive_settings_divider',
+			[
+				'type' => Controls_Manager::DIVIDER,
+				'style' => 'thick',
+				'condition'   => [
+					'cwp_enable_slider' => 'yes',
+				],
+			]
+		);
+
+		$this->add_control(
+			'slides_to_scroll_tablet',
+			[
+				'label' => esc_html__('Slides To Scroll On (Tablet)', 'cubewp-framework'),
+				'type' => Controls_Manager::NUMBER,
+				'min' => 1,
+				'max' => 10,
+				'step' => 1,
+				'default' => 1,
+				'condition' => [
+					'cwp_enable_slider' => 'yes',
+				],
+			]
+		);
+
+		$this->add_control(
+			'slides_to_scroll_tablet_portrait',
+			[
+				'label' => esc_html__('Slides To Scroll On (Tablet Portrait)', 'cubewp-framework'),
+				'type' => Controls_Manager::NUMBER,
+				'min' => 1,
+				'max' => 10,
+				'step' => 1,
+				'default' => 1,
+				'condition' => [
+					'cwp_enable_slider' => 'yes',
+				],
+			]
+		);
+
+		$this->add_control(
+			'slides_to_scroll_mobile',
+			[
+				'label' => esc_html__('Slides To Scroll On (Mobile)', 'cubewp-framework'),
+				'type' => Controls_Manager::NUMBER,
+				'min' => 1,
+				'max' => 10,
+				'step' => 1,
+				'default' => 1,
+				'condition' => [
+					'cwp_enable_slider' => 'yes',
+				],
+			]
+		);
+
+		// slider wrape dots 
+		$this->add_control(
+			'slider_dots_wrap_settings_heading',
+			[
+				'label' => esc_html__('Wrap Dots With Arrows', 'cubewp-framework'),
+				'type' => Controls_Manager::HEADING,
+				'separator' => 'before',
+				'condition'   => [
+					'cwp_enable_slider' => 'yes',
+				],
+			]
+		);
+
+		$this->add_control(
+			'enable_wrap_dots_arrows',
+			[
+				'label'        => esc_html__('Enable Wrap Dots With Arrows', 'cubewp-framework'),
+				'type'         => Controls_Manager::SWITCHER,
+				'label_on'     => esc_html__('Yes', 'cubewp-framework'),
+				'label_off'    => esc_html__('No', 'cubewp-framework'),
+				'return_value' => 'yes',
+				'default'      => '',
+				'condition'   => [
+					'cwp_enable_slider' => 'yes',
+				],
+			]
+		);
+
+		$this->add_control(
+			'icon_direction_position_vertical',
+			[
+				'label' => esc_html__('Vertical Direction', 'cubewp-framework'),
+				'type' => Controls_Manager::CHOOSE,
+				'options' => [
+					'top' => [
+						'title' => esc_html__('Top', 'cubewp-framework'),
+						'icon' => 'eicon-v-align-top',
+					],
+					'bottom' => [
+						'title' => esc_html__('Bottom', 'cubewp-framework'),
+						'icon' => 'eicon-v-align-bottom',
+					],
+				],
+				'default' => 'bottom',
+				'condition' => [
+					'enable_wrap_dots_arrows' => 'yes',
+				],
+			]
+		);
+
+		$this->add_responsive_control(
+			'vp_scrollbar_Top_position',
+			[
+				'label' => esc_html__('Top Position', 'cubewp-framework'),
+				'type' => Controls_Manager::SLIDER,
+				'size_units' => ['px', '%', 'em'],
+				'default' => [
+					'unit' => 'px',
+					'size' => 0,
+				],
+				'range' => [
+					'px' => [
+						'min' => -500,
+						'max' => 500,
+						'step' => 1,
+					],
+					'%' => [
+						'min' => -100,
+						'max' => 100,
+						'step' => 1,
+					],
+					'em' => [
+						'min' => -10,
+						'max' => 10,
+						'step' => 0.1,
+					],
+				],
+				'selectors' => [
+					'{{WRAPPER}} .slick-arrows-wrapper' => 'top: {{SIZE}}{{UNIT}};',
+				],
+				'condition' => [
+					'enable_wrap_dots_arrows' => 'yes',
+					'icon_direction_position_vertical' => 'top',
+				],
+			]
+		);
+		$this->add_responsive_control(
+			'vp_scrollbar_bottom_position',
+			[
+				'label' => esc_html__('Bottom Position', 'cubewp-framework'),
+				'type' => Controls_Manager::SLIDER,
+				'size_units' => ['px', '%', 'em'],
+				'default' => [
+					'unit' => 'px',
+					'size' => 0,
+				],
+				'range' => [
+					'px' => [
+						'min' => -500,
+						'max' => 500,
+						'step' => 1,
+					],
+					'%' => [
+						'min' => -100,
+						'max' => 100,
+						'step' => 1,
+					],
+					'em' => [
+						'min' => -10,
+						'max' => 10,
+						'step' => 0.1,
+					],
+				],
+				'selectors' => [
+					'{{WRAPPER}} .slick-arrows-wrapper' =>  'bottom: {{SIZE}}{{UNIT}};',
+				],
+				'condition' => [
+					'enable_wrap_dots_arrows' => 'yes',
+					'icon_direction_position_vertical' => 'bottom',
+				],
+			]
+		);
+
+		$this->add_responsive_control(
+			'icon_direction_position',
+			[
+				'label' => esc_html__('horizontal Direction', 'cubewp-framework'),
+				'type' => Controls_Manager::CHOOSE,
+				'options' => [
+					'left' => [
+						'title' => esc_html__('Left', 'cubewp-framework'),
+						'icon' => 'eicon-h-align-left',
+					],
+					'right' => [
+						'title' => esc_html__('Right', 'cubewp-framework'),
+						'icon' => 'eicon-h-align-right',
+					],
+				],
+				'default' => 'right',
+				'condition' => [
+					'enable_wrap_dots_arrows' => 'yes',
+				],
+
+			]
+		);
+
+		$this->add_responsive_control(
+			'vp_scrollbar_right_position',
+			[
+				'label' => esc_html__('Right Position', 'cubewp-framework'),
+				'type' => Controls_Manager::SLIDER,
+				'size_units' => ['px', '%', 'em'],
+				'default' => [
+					'unit' => 'px',
+					'size' => 0,
+				],
+				'range' => [
+					'px' => [
+						'min' => -500,
+						'max' => 500,
+						'step' => 1,
+					],
+					'%' => [
+						'min' => -100,
+						'max' => 100,
+						'step' => 1,
+					],
+					'em' => [
+						'min' => -10,
+						'max' => 10,
+						'step' => 0.1,
+					],
+				],
+				'selectors' => [
+					'{{WRAPPER}} .slick-arrows-wrapper' =>  'right: {{SIZE}}{{UNIT}};',
+				],
+				'condition' => [
+					'enable_wrap_dots_arrows' => 'yes',
+					'icon_direction_position' => 'right',
+				],
+			]
+		);
+		$this->add_responsive_control(
+			'vp_scrollbar_left_position',
+			[
+				'label' => esc_html__('Left Position', 'cubewp-framework'),
+				'type' => Controls_Manager::SLIDER,
+				'size_units' => ['px', '%', 'em'],
+				'default' => [
+					'unit' => 'px',
+					'size' => 0,
+				],
+				'range' => [
+					'px' => [
+						'min' => -500,
+						'max' => 500,
+						'step' => 1,
+					],
+					'%' => [
+						'min' => -100,
+						'max' => 100,
+						'step' => 1,
+					],
+					'em' => [
+						'min' => -10,
+						'max' => 10,
+						'step' => 0.1,
+					],
+				],
+				'selectors' => [
+					'{{WRAPPER}} .slick-arrows-wrapper' =>  'left: {{SIZE}}{{UNIT}};',
+				],
+				'condition' => [
+					'enable_wrap_dots_arrows' => 'yes',
+					'icon_direction_position' => 'left',
+				],
+			]
+		);
+		$this->add_responsive_control(
+			'gap_between_items',
+			[
+				'label' => esc_html__('Gap Between Items', 'cubewp-framework'),
+				'type' => Controls_Manager::SLIDER,
+				'size_units' => ['px', '%', 'em'],
+				'default' => [
+					'unit' => 'px',
+					'size' => 10,
+				],
+				'range' => [
+					'px' => [
+						'min' => 0,
+						'max' => 100,
+						'step' => 1,
+					],
+					'%' => [
+						'min' => 0,
+						'max' => 10,
+						'step' => 0.1,
+					],
+					'em' => [
+						'min' => 0,
+						'max' => 5,
+						'step' => 0.1,
+					],
+				],
+				'selectors' => [
+					'{{WRAPPER}} .slick-arrows-wrapper' =>  'gap: {{SIZE}}{{UNIT}};',
+				],
+				'condition' => [
+					'enable_wrap_dots_arrows' => 'yes',
+					'cwp_enable_slider' => 'yes',
+				],
+			]
+		);
+
+		$this->add_responsive_control(
+			'wrap_justify_content',
+			[
+				'label' => esc_html__('Justify Content', 'cubewp-framework'),
+				'type' => Controls_Manager::SELECT,
+				'options' => [
+					'flex-start' => esc_html__('Flex Start', 'cubewp-framework'),
+					'center' => esc_html__('Center', 'cubewp-framework'),
+					'flex-end' => esc_html__('Flex End', 'cubewp-framework'),
+					'space-between' => esc_html__('Space Between', 'cubewp-framework'),
+					'space-around' => esc_html__('Space Around', 'cubewp-framework'),
+					'space-evenly' => esc_html__('Space Evenly', 'cubewp-framework'),
+				],
+				'default' => 'center',
+				'condition' => [
+					'enable_wrap_dots_arrows' => 'yes',
+					'cwp_enable_slider' => 'yes',
+				],
+				'selectors' => [
+					'{{WRAPPER}} .slick-arrows-wrapper' => 'justify-content: {{VALUE}};',
+				],
+			]
+		);
+
+		$this->add_responsive_control(
+			'wrap_dots_arrows_padding',
+			[
+				'label' => esc_html__('Padding', 'cubewp-framework'),
+				'type' => Controls_Manager::DIMENSIONS,
+				'size_units' => ['px', '%', 'em'],
+				'default' => [
+					'top' => 0,
+					'right' => 0,
+					'bottom' => 0,
+					'left' => 0,
+					'unit' => 'px',
+				],
+				'selectors' => [
+					'{{WRAPPER}} .cwp-row > .slick-arrows-wrapper' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}} !important;',
+				],
+				'condition' => [
+					'enable_wrap_dots_arrows' => 'yes',
+				],
+			]
+		);
+
+
+		$this->end_controls_section();
+	}
+
+	private function add_promotional_card_controls()
+	{
+		$this->start_controls_section('cubewp_widget_additional_setting_section', array(
+			'label' => esc_html__('Promotional Card Settings', 'cubewp-framework'),
+			'tab'   => Controls_Manager::TAB_CONTENT,
+		));
+
+		$this->add_control('cubewp_promotional_card', array(
+			'type'    => Controls_Manager::SWITCHER,
+			'label'   => esc_html__('Show Promotional Cards', 'cubewp-framework'),
+			'default' => 'no',
+		));
+
+		// Create Repeater
+		$repeater_CARDS = new Repeater();
+
+		$repeater_CARDS->add_control('cubewp_promotional_card_option', array(
+			'type'        => Controls_Manager::SELECT,
+			'label'       => esc_html__('Promotional Cards', 'cubewp-framework'),
+			'options'     => cubewp_get_get_promotional_cards_list(),
+		));
+
+		$repeater_CARDS->add_control('cubewp_promotional_card_position', array(
+			'type'        => Controls_Manager::NUMBER,
+			'label'       => esc_html__('Position', 'cubewp-framework'),
+			'default'     => 3,
+			'placeholder' => esc_html__("3", "cubewp-framework"),
+			'min'         => 1,
+		));
+
+		$repeater_CARDS->add_responsive_control('cubewp_promotional_card_width', array(
+			'label'      => esc_html__('Width', 'cubewp-framework'),
+			'type'       => Controls_Manager::SLIDER,
+			'size_units' => ['px', '%'],
+			'default'    => [
+				'unit' => '%',
+				'size' => 100,
+			],
+			'range'      => [
+				'px' => [
+					'min' => 50,
+					'max' => 1000,
+				],
+				'%' => [
+					'min' => 10,
+					'max' => 100,
+				],
+			],
+			'description' => esc_html__('Set the width of the card.', 'cubewp-framework'),
+		));
+
+		// Add Repeater Control
+		$this->add_control('cubewp_promotional_cards_list', array(
+			'type'        => Controls_Manager::REPEATER,
+			'label'       => esc_html__('Promotional Cards List', 'cubewp-framework'),
+			'fields'      => $repeater_CARDS->get_controls(),
+			'default'     => [],
+			'title_field' => '{{{ cubewp_promotional_card_option }}}',
+			'condition'   => [
+				'cubewp_promotional_card' => 'yes',
+			],
+		));
+
+		$this->end_controls_section();
+	}
+
+	private function add_cubewp_posts_widget_title_controls(){
+		// Add Title and Content Settings Section
+        $this->start_controls_section(
+            'cubewp_posts_title_section',
+            array(
+                'label' => esc_html__('Title & Content Settings', 'cubewp-framework'),
+                'tab'   => Controls_Manager::TAB_CONTENT,
+            )
+        );
+        
+        // Switcher to enable/disable title
+        $this->add_control(
+            'enable_title',
+            array(
+                'type'         => Controls_Manager::SWITCHER,
+                'label'        => esc_html__('Enable Title', 'cubewp-framework'),
+                'label_on'     => esc_html__('Yes', 'cubewp-framework'),
+                'label_off'    => esc_html__('No', 'cubewp-framework'),
+                'return_value' => 'yes',
+                'default'      => 'no',
+            )
+        );
+        
+        // Text field for title (shown when enabled)
+        $this->add_control(
+            'posts_title',
+            array(
+                'type'        => Controls_Manager::TEXT,
+                'label'       => esc_html__('Title', 'cubewp-framework'),
+                'default'     => '',
+                'placeholder' => esc_html__('Enter title here', 'cubewp-framework'),
+                'condition'   => array(
+                    'enable_title' => 'yes',
+                ),
+            )
+        );
+        
+        // Switcher to hide "no results found" template
+        $this->add_control(
+            'hide_no_results',
+            array(
+                'type'         => Controls_Manager::SWITCHER,
+                'label'        => esc_html__('Hide No Results Found Template', 'cubewp-framework'),
+                'label_on'     => esc_html__('Yes', 'cubewp-framework'),
+                'label_off'    => esc_html__('No', 'cubewp-framework'),
+                'return_value' => 'yes',
+                'default'      => 'no',
+                'description'  => esc_html__('When enabled, the "No Results Found" template will be hidden when there are no posts.', 'cubewp-framework'),
+            )
+        );
+        
+        $this->end_controls_section();
+        
+        // Add Title Style Section
+        $this->start_controls_section(
+            'cubewp_posts_title_style_section',
+            array(
+                'label'     => esc_html__('Title Style', 'cubewp-framework'),
+                'tab'       => Controls_Manager::TAB_STYLE,
+                'condition' => array(
+                    'enable_title' => 'yes',
+                ),
+            )
+        );
+        
+        // Title Typography
+        $this->add_group_control(
+            \Elementor\Group_Control_Typography::get_type(),
+            array(
+                'name'     => 'title_typography',
+                'label'    => esc_html__('Typography', 'cubewp-framework'),
+                'selector' => '{{WRAPPER}} .cubewp-posts-title',
+            )
+        );
+        
+        // Title Color
+        $this->add_control(
+            'title_color',
+            array(
+                'type'      => Controls_Manager::COLOR,
+                'label'     => esc_html__('Color', 'cubewp-framework'),
+                'selectors' => array(
+                    '{{WRAPPER}} .cubewp-posts-title' => 'color: {{VALUE}};',
+                ),
+            )
+        );
+        
+        // Title Text Align
+        $this->add_responsive_control(
+            'title_text_align',
+            array(
+                'type'      => Controls_Manager::CHOOSE,
+                'label'     => esc_html__('Text Align', 'cubewp-framework'),
+                'options'   => array(
+                    'left'   => array(
+                        'title' => esc_html__('Left', 'cubewp-framework'),
+                        'icon'  => 'eicon-text-align-left',
+                    ),
+                    'center' => array(
+                        'title' => esc_html__('Center', 'cubewp-framework'),
+                        'icon'  => 'eicon-text-align-center',
+                    ),
+                    'right'  => array(
+                        'title' => esc_html__('Right', 'cubewp-framework'),
+                        'icon'  => 'eicon-text-align-right',
+                    ),
+                ),
+                'default'   => 'left',
+                'selectors' => array(
+                    '{{WRAPPER}} .cubewp-posts-title' => 'text-align: {{VALUE}};',
+                ),
+            )
+        );
+        
+        // Title Margin
+        $this->add_responsive_control(
+            'title_margin',
+            array(
+                'type'       => Controls_Manager::DIMENSIONS,
+                'label'      => esc_html__('Margin', 'cubewp-framework'),
+                'size_units' => array('px', 'em', '%'),
+                'selectors'  => array(
+                    '{{WRAPPER}} .cubewp-posts-title' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ),
+            )
+        );
+        
+        $this->end_controls_section();
+	}
+
+	/**
+	 * Load More button and container style controls (visible when Number Of Posts = All and Load More = Yes).
+	 */
+	private function add_load_more_style_controls() {
+		$load_more_condition = array(
+			'number_of_posts' => '-1',
+			'load_more'       => 'yes',
+		);
+
+		// Load More Container
+		$this->start_controls_section(
+			'load_more_container_style',
+			array(
+				'label'     => esc_html__('Load More Container', 'cubewp-framework'),
+				'tab'       => Controls_Manager::TAB_STYLE,
+				'condition' => $load_more_condition,
+			)
+		);
+		$this->add_responsive_control(
+			'load_more_container_align',
+			array(
+				'label'     => esc_html__('Alignment', 'cubewp-framework'),
+				'type'      => Controls_Manager::CHOOSE,
+				'options'   => array(
+					'left'   => array(
+						'title' => esc_html__('Left', 'cubewp-framework'),
+						'icon'  => 'eicon-text-align-left',
+					),
+					'center' => array(
+						'title' => esc_html__('Center', 'cubewp-framework'),
+						'icon'  => 'eicon-text-align-center',
+					),
+					'right'  => array(
+						'title' => esc_html__('Right', 'cubewp-framework'),
+						'icon'  => 'eicon-text-align-right',
+					),
+				),
+				'default'   => 'center',
+				'selectors' => array(
+					'{{WRAPPER}} .cubewp-load-more-conatiner' => 'text-align: {{VALUE}};',
+				),
+			)
+		);
+		$this->add_responsive_control(
+			'load_more_container_padding',
+			array(
+				'label'      => esc_html__('Padding', 'cubewp-framework'),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => array('px', 'em', '%'),
+				'selectors'  => array(
+					'{{WRAPPER}} .cubewp-load-more-conatiner' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				),
+			)
+		);
+		$this->add_responsive_control(
+			'load_more_container_margin',
+			array(
+				'label'      => esc_html__('Margin', 'cubewp-framework'),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => array('px', 'em', '%'),
+				'selectors'  => array(
+					'{{WRAPPER}} .cubewp-load-more-conatiner' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				),
+			)
+		);
+		$this->add_control(
+			'load_more_container_background',
+			array(
+				'label'     => esc_html__('Background Color', 'cubewp-framework'),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => array(
+					'{{WRAPPER}} .cubewp-load-more-conatiner' => 'background-color: {{VALUE}};',
+				),
+			)
+		);
+		$this->end_controls_section();
+
+		// Load More Button
+		$this->start_controls_section(
+			'load_more_button_style',
+			array(
+				'label'     => esc_html__('Load More Button', 'cubewp-framework'),
+				'tab'       => Controls_Manager::TAB_STYLE,
+				'condition' => $load_more_condition,
+			)
+		);
+		$this->add_group_control(
+			\Elementor\Group_Control_Typography::get_type(),
+			array(
+				'name'     => 'load_more_button_typography',
+				'label'    => esc_html__('Typography', 'cubewp-framework'),
+				'selector' => '{{WRAPPER}} .cubewp-load-more-conatiner .cubewp-load-more-button',
+			)
+		);
+		$this->add_control(
+			'load_more_button_color',
+			array(
+				'label'     => esc_html__('Text Color', 'cubewp-framework'),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => array(
+					'{{WRAPPER}} .cubewp-load-more-conatiner .cubewp-load-more-button' => 'color: {{VALUE}};',
+				),
+			)
+		);
+		$this->add_control(
+			'load_more_button_bg',
+			array(
+				'label'     => esc_html__('Background Color', 'cubewp-framework'),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => array(
+					'{{WRAPPER}} .cubewp-load-more-conatiner .cubewp-load-more-button' => 'background-color: {{VALUE}};',
+				),
+			)
+		);
+		$this->add_responsive_control(
+			'load_more_button_padding',
+			array(
+				'label'      => esc_html__('Padding', 'cubewp-framework'),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => array('px', 'em', '%'),
+				'selectors'  => array(
+					'{{WRAPPER}} .cubewp-load-more-conatiner .cubewp-load-more-button' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				),
+			)
+		);
+		$this->add_responsive_control(
+			'load_more_button_border_radius',
+			array(
+				'label'      => esc_html__('Border Radius', 'cubewp-framework'),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => array('px', '%'),
+				'selectors'  => array(
+					'{{WRAPPER}} .cubewp-load-more-conatiner .cubewp-load-more-button' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				),
+			)
+		);
+		$this->add_group_control(
+			\Elementor\Group_Control_Border::get_type(),
+			array(
+				'name'     => 'load_more_button_border',
+				'label'    => esc_html__('Border', 'cubewp-framework'),
+				'selector' => '{{WRAPPER}} .cubewp-load-more-conatiner .cubewp-load-more-button',
+			)
+		);
+		$this->add_group_control(
+			Group_Control_Box_Shadow::get_type(),
+			array(
+				'name'     => 'load_more_button_box_shadow',
+				'label'    => esc_html__('Box Shadow', 'cubewp-framework'),
+				'selector' => '{{WRAPPER}} .cubewp-load-more-conatiner .cubewp-load-more-button',
+			)
+		);
+		$this->add_control(
+			'load_more_button_heading_hover',
+			array(
+				'label'     => esc_html__('Hover', 'cubewp-framework'),
+				'type'      => Controls_Manager::HEADING,
+				'separator' => 'before',
+			)
+		);
+		$this->add_control(
+			'load_more_button_color_hover',
+			array(
+				'label'     => esc_html__('Text Color', 'cubewp-framework'),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => array(
+					'{{WRAPPER}} .cubewp-load-more-conatiner .cubewp-load-more-button:hover' => 'color: {{VALUE}};',
+				),
+			)
+		);
+		$this->add_control(
+			'load_more_button_bg_hover',
+			array(
+				'label'     => esc_html__('Background Color', 'cubewp-framework'),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => array(
+					'{{WRAPPER}} .cubewp-load-more-conatiner .cubewp-load-more-button:hover' => 'background-color: {{VALUE}};',
+				),
+			)
+		);
+		$this->add_control(
+			'load_more_button_border_color_hover',
+			array(
+				'label'     => esc_html__('Border Color', 'cubewp-framework'),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => array(
+					'{{WRAPPER}} .cubewp-load-more-conatiner .cubewp-load-more-button:hover' => 'border-color: {{VALUE}};',
+				),
+			)
+		);
+		$this->end_controls_section();
+	}
+}

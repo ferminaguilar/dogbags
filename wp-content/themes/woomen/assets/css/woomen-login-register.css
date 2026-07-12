@@ -1,0 +1,83 @@
+form#login-form .cwp-frontend-form-container .cwp-frontend-section-container,
+form#cwp-from-subscriber .cwp-frontend-form-container .cwp-frontend-section-container {
+    margin-bottom: -3px !important;
+}
+form#login-form .cwp-frontend-form-container .cwp-frontend-section-heading-container,
+form#cwp-from-subscriber .cwp-frontend-form-container .cwp-frontend-section-heading-container {
+    display: none !important;
+}
+form#login-form .cwp-frontend-form-container .cwp-frontend-section-container .cwp-frontend-section-content-container,
+form#cwp-from-subscriber .cwp-frontend-form-container .cwp-frontend-section-container .cwp-frontend-section-content-container {
+    padding: 0px !important;
+    border: none !important;
+}
+form#login-form .cwp-frontend-form-container .cwp-frontend-section-container .cwp-field-container,
+form#cwp-from-subscriber .cwp-frontend-form-container .cwp-frontend-section-container .cwp-field-container {
+    margin: 0 0 30px 0 !important;
+    padding: 0px 0px 0px 0px !important;
+}
+form#login-form .cwp-frontend-form-container .cwp-frontend-section-container .cwp-field-container label,
+form#cwp-from-subscriber .cwp-frontend-form-container .cwp-frontend-section-container .cwp-field-container label {
+    font-size: 12px !important;
+    font-weight: 500 !important;
+    line-height: 20px !important;
+    letter-spacing: 0.0px !important;
+    color: #767676 !important;
+    margin-bottom: 0px !important;
+}
+form#login-form .cwp-frontend-form-container .cwp-field-container input[type=text],
+form#login-form .cwp-frontend-form-container .cwp-field-container input[type=number],
+form#login-form .cwp-frontend-form-container .cwp-field-container input[type=email],
+form#login-form .cwp-frontend-form-container .cwp-field-container input[type=password],
+form#login-form .cwp-frontend-form-container .cwp-field-container input[type=url],
+form#login-form .cwp-frontend-form-container .cwp-field-container input[type=google_address],
+form#login-form .cwp-frontend-form-container .cwp-field-container textarea,
+form#login-form .cwp-frontend-form-container .cwp-field-container select,
+form#cwp-from-subscriber .cwp-frontend-form-container .cwp-field-container input[type=text],
+form#cwp-from-subscriber .cwp-frontend-form-container .cwp-field-container input[type=number],
+form#cwp-from-subscriber .cwp-frontend-form-container .cwp-field-container input[type=email],
+form#cwp-from-subscriber .cwp-frontend-form-container .cwp-field-container input[type=password],
+form#cwp-from-subscriber .cwp-frontend-form-container .cwp-field-container input[type=url],
+form#cwp-from-subscriber .cwp-frontend-form-container .cwp-field-container input[type=google_address],
+form#cwp-from-subscriber .cwp-frontend-form-container .cwp-field-container textarea,
+form#cwp-from-subscriber .cwp-frontend-form-container .cwp-field-container select {
+    margin: 0px;
+    padding: 3px 0 8px 0 !important;
+    border-radius: 0px !important;
+    border: none !important;
+    border-bottom: 1px solid #E6E6E6 !important;
+    height: auto !important;
+    color: #000 !important;
+    font-size: 13px !important;
+    font-weight: 500 !important;
+    line-height: 23px !important;
+}
+form#login-form .cwp-frontend-form-container .cwp-frontend-section-container .cwp-field-container a,
+form#cwp-from-subscriber .cwp-frontend-form-container .cwp-frontend-section-container .cwp-field-container a {
+    margin-left: 5px !important;
+    text-transform: capitalize !important;
+}
+form#login-form .cwp-frontend-form-container .cwp-frontend-section-container .cwp-field-container .form-control:focus,
+form#cwp-from-subscriber .cwp-frontend-form-container .cwp-frontend-section-container .cwp-field-container .form-control:focus {
+    box-shadow: none !important;
+    border-bottom: 2px solid #1D1D1D !important;
+}
+form#login-form .cwp-frontend-form-container input[type=submit],
+form#cwp-from-subscriber .cwp-frontend-form-container input[type=submit] {
+    background: #1D1D1D !important;
+    border: 1px solid #1D1D1D !important;
+    border-radius: 0px !important;
+    padding: 18px 0px !important;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    line-height: 16px !important;
+    letter-spacing: 0px !important;
+    color: #FFFFFF !important;
+    transition: .3s !important;
+    margin: 2px 0 0 0 !important;
+}
+form#login-form .cwp-frontend-form-container input[type=submit]:hover,
+form#cwp-from-subscriber .cwp-frontend-form-container input[type=submit]:hover {
+    background: #fff !important;
+    color: #1D1D1D !important;
+} 

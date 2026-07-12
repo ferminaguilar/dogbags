@@ -1,0 +1,1284 @@
+# Loco Gettext template
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: woo-merchant\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-09-15 21:45+0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: cland <cubewp@gmail.com>\n"
+"Language-Team: Cridio <contact@cubewp.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION\n"
+"POT-Revision-Date: Tue Mar 08 2016 16:05:54 GMT+0500 (Pakistan Standard Time)\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Generator: Poedit 3.7\n"
+"X-Poedit-KeywordsList: "
+"_:1;gettext:1;dgettext:2;ngettext:1,2;dngettext:2,3;__:1;_e:1;_c:1;_n:1,2;_n_noop:1,2;_nc:1,2;__ngettext:1,2;__ngettext_noop:1,2;_x:1,2c;_ex:1,2c;_nx:1,2,4c;_nx_noop:1,2,3c;_n_js:1,2;_nx_js:1,2,3c;esc_attr__:1;esc_html__:1;esc_attr_e:1;esc_html_e:1;esc_attr_x:1,2c;esc_html_x:1,2c;comments_number_link:2,3;t:1;st:1;trans:1;transChoice:1,2\n"
+"X-Poedit-Basepath: ..\n"
+"X-Textdomain-Support: yes\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: classes/Woo_Merchant_EDD_SL_Plugin_Updater.php:245
+#, php-format
+msgid ""
+"There is a new version of %1$s available. %2$sView version %3$s details%4$s."
+msgstr ""
+
+#: classes/Woo_Merchant_EDD_SL_Plugin_Updater.php:253
+#, php-format
+msgid ""
+"There is a new version of %1$s available. %2$sView version %3$s details%4$s or "
+"%5$supdate now%6$s."
+msgstr ""
+
+#: classes/Woo_Merchant_EDD_SL_Plugin_Updater.php:503
+msgid "You do not have permission to install plugin updates"
+msgstr ""
+
+#: classes/Woo_Merchant_EDD_SL_Plugin_Updater.php:503
+msgid "Error"
+msgstr ""
+
+#: classes/class-woo-merchant-elementor.php:86
+#: classes/class-woo-merchant-feature-settings.php:83
+#: classes/class-woo-merchant-product-settings.php:89
+msgid "Woo Merchant"
+msgstr ""
+
+#: classes/class-woo-merchant-enqueue.php:88
+msgid "Products added to cart successfully!"
+msgstr ""
+
+#: classes/class-woo-merchant-enqueue.php:89
+msgid "Add to cart"
+msgstr ""
+
+#: classes/class-woo-merchant-enqueue.php:90
+#: classes/features/class-woo-merchant-pre-order.php:53
+msgid "Pre-Order Now"
+msgstr ""
+
+#: classes/class-woo-merchant-feature-settings.php:82
+msgid "WooCommerce Merchant Features"
+msgstr ""
+
+#: classes/class-woo-merchant-feature-settings.php:102
+msgid "WooCommerce Merchant Settings"
+msgstr ""
+
+#: classes/class-woo-merchant-feature-settings.php:108
+msgid "WooCommerce Checkout "
+msgstr ""
+
+#: classes/class-woo-merchant-feature-settings.php:112
+msgid "Enable WooCommerce Checkout Styles"
+msgstr ""
+
+#: classes/class-woo-merchant-feature-settings.php:119
+msgid "Select Checkout Style "
+msgstr ""
+
+#: classes/class-woo-merchant-feature-settings.php:130
+msgid "Woo Merchant Cross Sell"
+msgstr ""
+
+#: classes/class-woo-merchant-feature-settings.php:134
+msgid "Enable Frequently Bought Together"
+msgstr ""
+
+#: classes/class-woo-merchant-feature-settings.php:141
+msgid "Woo Merchant Spend & Save Discounts"
+msgstr ""
+
+#: classes/class-woo-merchant-feature-settings.php:145
+msgid "Enable Spend & Save Discount"
+msgstr ""
+
+#: classes/class-woo-merchant-feature-settings.php:152
+msgid "Discount Offer"
+msgstr ""
+
+#: classes/class-woo-merchant-feature-settings.php:154
+msgid "Fixed Amount"
+msgstr ""
+
+#: classes/class-woo-merchant-feature-settings.php:154
+msgid "Percentage"
+msgstr ""
+
+#: classes/class-woo-merchant-feature-settings.php:161
+msgid "Discount value"
+msgstr ""
+
+#: classes/class-woo-merchant-feature-settings.php:169
+#: classes/class-woo-merchant-feature-settings.php:207
+msgid "Spent Amount Threshold"
+msgstr ""
+
+#: classes/class-woo-merchant-feature-settings.php:176
+msgid "Woo Merchant Spend & Get a Gift offer"
+msgstr ""
+
+#: classes/class-woo-merchant-feature-settings.php:180
+msgid "Enable Spend & Get a Gift offer"
+msgstr ""
+
+#: classes/class-woo-merchant-feature-settings.php:189
+msgid "Select Free Product"
+msgstr ""
+
+#: classes/class-woo-merchant-feature-settings.php:194
+msgid "Select Free Gift Product"
+msgstr ""
+
+#: classes/class-woo-merchant-feature-settings.php:215
+msgid "Woo Merchant Sale End CountDown"
+msgstr ""
+
+#: classes/class-woo-merchant-feature-settings.php:219
+msgid "Enable Sale End Countdown"
+msgstr ""
+
+#: classes/class-woo-merchant-feature-settings.php:227
+msgid "Sale End Countdown Display Position"
+msgstr ""
+
+#: classes/class-woo-merchant-feature-settings.php:237
+msgid "Woo Merchant Low Stock Notification"
+msgstr ""
+
+#: classes/class-woo-merchant-feature-settings.php:241
+msgid "Enable Low Stock Notification"
+msgstr ""
+
+#: classes/class-woo-merchant-feature-settings.php:249
+msgid "Low Stock Notification Display Position"
+msgstr ""
+
+#: classes/class-woo-merchant-feature-settings.php:259
+msgid "Woo Merchant Buy Now Button"
+msgstr ""
+
+#: classes/class-woo-merchant-feature-settings.php:263
+msgid "Enable Buy Now Button"
+msgstr ""
+
+#: classes/class-woo-merchant-feature-settings.php:271
+msgid "Woo Merchant Size Guide Button"
+msgstr ""
+
+#: classes/class-woo-merchant-feature-settings.php:275
+msgid "Enable Size Guide Button"
+msgstr ""
+
+#: classes/class-woo-merchant-feature-settings.php:282
+msgid "Manage Size Guide Button"
+msgstr ""
+
+#: classes/class-woo-merchant-feature-settings.php:284
+msgid "By Elementor Widget"
+msgstr ""
+
+#: classes/class-woo-merchant-feature-settings.php:284
+msgid "By Product Page Hook"
+msgstr ""
+
+#: classes/class-woo-merchant-feature-settings.php:292
+msgid "Size Guide Button Display Position"
+msgstr ""
+
+#: classes/class-woo-merchant-feature-settings.php:304
+msgid "Save Settings"
+msgstr ""
+
+#: classes/class-woo-merchant-load.php:136
+#, php-format
+msgid ""
+"Woo Merchant requires WooCommerce to be installed and active. You can download "
+"%s here."
+msgstr ""
+
+#: classes/class-woo-merchant-product-settings.php:61
+msgctxt "Order status"
+msgid "WM Pre Ordered"
+msgstr ""
+
+#: classes/class-woo-merchant-product-settings.php:67
+#, php-format
+msgid "Pre Ordered <span class=\"count\">(%s)</span>"
+msgid_plural "Pre Ordered <span class=\"count\">(%s)</span>"
+msgstr[0] ""
+msgstr[1] ""
+
+#: classes/class-woo-merchant-product-settings.php:76
+msgid "WM Pre Ordered"
+msgstr ""
+
+#: classes/class-woo-merchant-product-settings.php:149
+msgid "Enable discount"
+msgstr ""
+
+#: classes/class-woo-merchant-product-settings.php:150
+msgid "Enable discount for this product"
+msgstr ""
+
+#: classes/class-woo-merchant-product-settings.php:153
+#: classes/class-woo-merchant-product-settings.php:326
+#: classes/class-woo-merchant-product-settings.php:508
+msgid "No"
+msgstr ""
+
+#: classes/class-woo-merchant-product-settings.php:154
+#: classes/class-woo-merchant-product-settings.php:327
+#: classes/class-woo-merchant-product-settings.php:509
+msgid "Yes"
+msgstr ""
+
+#: classes/class-woo-merchant-product-settings.php:161
+msgid "Discount Type"
+msgstr ""
+
+#: classes/class-woo-merchant-product-settings.php:162
+msgid "Select discount type"
+msgstr ""
+
+#: classes/class-woo-merchant-product-settings.php:166
+msgid "Discount Fixed Price"
+msgstr ""
+
+#: classes/class-woo-merchant-product-settings.php:167
+msgid "Discount Percentage"
+msgstr ""
+
+#: classes/class-woo-merchant-product-settings.php:174
+msgid "Discount Value"
+msgstr ""
+
+#: classes/class-woo-merchant-product-settings.php:175
+msgid "Enter discount value."
+msgstr ""
+
+#: classes/class-woo-merchant-product-settings.php:185
+msgid "Discount Threshold"
+msgstr ""
+
+#: classes/class-woo-merchant-product-settings.php:186
+msgid "Threshold amount for discount."
+msgstr ""
+
+#: classes/class-woo-merchant-product-settings.php:202
+msgid "Select Discount Display Position"
+msgstr ""
+
+#: classes/class-woo-merchant-product-settings.php:206
+#: classes/class-woo-merchant-product-settings.php:380
+#: classes/class-woo-merchant-product-settings.php:520
+msgid "Select the WooCommerce hook to apply."
+msgstr ""
+
+#: classes/class-woo-merchant-product-settings.php:285
+msgid "Low Stock Quantity Threshold"
+msgstr ""
+
+#: classes/class-woo-merchant-product-settings.php:286
+msgid "Enter the quantity threshold."
+msgstr ""
+
+#: classes/class-woo-merchant-product-settings.php:324
+msgid "Enable Free Gift with Woo Merchant"
+msgstr ""
+
+#: classes/class-woo-merchant-product-settings.php:334
+msgid "Free Gift Product:"
+msgstr ""
+
+#: classes/class-woo-merchant-product-settings.php:336
+msgid "Free Gift Product..."
+msgstr ""
+
+#: classes/class-woo-merchant-product-settings.php:354
+msgid "Free Gift Promotion Type"
+msgstr ""
+
+#: classes/class-woo-merchant-product-settings.php:355
+msgid "Select the type of free gift promotion."
+msgstr ""
+
+#: classes/class-woo-merchant-product-settings.php:360
+msgid "Select Promotion Type"
+msgstr ""
+
+#: classes/class-woo-merchant-product-settings.php:361
+msgid "Buy One Get One Free"
+msgstr ""
+
+#: classes/class-woo-merchant-product-settings.php:362
+msgid "Buy Two Get One Free"
+msgstr ""
+
+#: classes/class-woo-merchant-product-settings.php:376
+msgid "Select Free Gift Display Position"
+msgstr ""
+
+#: classes/class-woo-merchant-product-settings.php:461
+msgid "Size Guide Image"
+msgstr ""
+
+#: classes/class-woo-merchant-product-settings.php:463
+msgid "Upload/Add image"
+msgstr ""
+
+#: classes/class-woo-merchant-product-settings.php:465
+msgid "Remove image"
+msgstr ""
+
+#: classes/class-woo-merchant-product-settings.php:506
+msgid "Enable Cross-sells with Woo Merchant"
+msgstr ""
+
+#: classes/class-woo-merchant-product-settings.php:516
+msgid "Select Display Position"
+msgstr ""
+
+#: classes/class-woo-merchant-product-settings.php:555
+#: classes/class-woo-merchant-product-settings.php:621
+msgid "Enable Pre-Order"
+msgstr ""
+
+#: classes/class-woo-merchant-product-settings.php:556
+msgid ""
+"Check this box to allow customers to pre-order this product before it becomes "
+"available."
+msgstr ""
+
+#: classes/class-woo-merchant-product-settings.php:563
+#: classes/class-woo-merchant-product-settings.php:629
+msgid "Pre-Order Availability Date"
+msgstr ""
+
+#: classes/class-woo-merchant-product-settings.php:567
+msgid ""
+"Specify the date and time when this pre-order product will be available for "
+"purchase."
+msgstr ""
+
+#: classes/class-woo-merchant-product-settings.php:622
+msgid ""
+"Check this box to allow customers to pre-order this product variation before it "
+"becomes available."
+msgstr ""
+
+#: classes/class-woo-merchant-product-settings.php:633
+msgid ""
+"Specify the date and time when this pre-order variation will be available for "
+"purchase."
+msgstr ""
+
+#: classes/elementor-widgets/class-woo-merchant-frequently-bought-together-widget.php:22
+msgid "Frequently Bought Together"
+msgstr ""
+
+#: classes/elementor-widgets/class-woo-merchant-frequently-bought-together-widget.php:40
+#: classes/elementor-widgets/class-woo-merchant-pre-order-notice-widget.php:37
+#: classes/elementor-widgets/class-woo-merchant-sale-end-countdown-widget.php:35
+#: classes/elementor-widgets/class-woo-merchant-size-guide-widget.php:37
+msgid "Content"
+msgstr ""
+
+#: classes/elementor-widgets/class-woo-merchant-frequently-bought-together-widget.php:49
+#: classes/elementor-widgets/class-woo-merchant-sale-end-countdown-widget.php:44
+msgid "Layout Styles"
+msgstr ""
+
+#: classes/elementor-widgets/class-woo-merchant-frequently-bought-together-widget.php:52
+#: classes/elementor-widgets/class-woo-merchant-sale-end-countdown-widget.php:47
+msgid "Style 1"
+msgstr ""
+
+#: classes/elementor-widgets/class-woo-merchant-frequently-bought-together-widget.php:53
+#: classes/elementor-widgets/class-woo-merchant-sale-end-countdown-widget.php:48
+msgid "Style 2"
+msgstr ""
+
+#: classes/elementor-widgets/class-woo-merchant-pre-order-notice-widget.php:19
+msgid "Pre Order Notice"
+msgstr ""
+
+#: classes/elementor-widgets/class-woo-merchant-pre-order-notice-widget.php:44
+#: classes/elementor-widgets/class-woo-merchant-size-guide-widget.php:44
+msgid "Icon"
+msgstr ""
+
+#: classes/elementor-widgets/class-woo-merchant-pre-order-notice-widget.php:57
+#: classes/elementor-widgets/class-woo-merchant-size-guide-widget.php:57
+msgid "Icon Size"
+msgstr ""
+
+#: classes/elementor-widgets/class-woo-merchant-pre-order-notice-widget.php:89
+#: classes/elementor-widgets/class-woo-merchant-size-guide-widget.php:89
+msgid "Icon Color"
+msgstr ""
+
+#: classes/elementor-widgets/class-woo-merchant-pre-order-notice-widget.php:102
+msgid "Text"
+msgstr ""
+
+#: classes/elementor-widgets/class-woo-merchant-pre-order-notice-widget.php:104
+msgid ""
+"Pre-order now to make sure you do not miss out! As soon as it is in stock, we "
+"will ship it to you."
+msgstr ""
+
+#: classes/elementor-widgets/class-woo-merchant-pre-order-notice-widget.php:105
+#: classes/elementor-widgets/class-woo-merchant-sale-end-countdown-widget.php:60
+#: classes/elementor-widgets/class-woo-merchant-size-guide-widget.php:105
+msgid "Enter text here"
+msgstr ""
+
+#: classes/elementor-widgets/class-woo-merchant-pre-order-notice-widget.php:113
+#: classes/elementor-widgets/class-woo-merchant-size-guide-widget.php:113
+msgid "Text Color"
+msgstr ""
+
+#: classes/elementor-widgets/class-woo-merchant-pre-order-notice-widget.php:125
+#: classes/elementor-widgets/class-woo-merchant-size-guide-widget.php:125
+msgid "Typography"
+msgstr ""
+
+#: classes/elementor-widgets/class-woo-merchant-pre-order-notice-widget.php:133
+#: classes/elementor-widgets/class-woo-merchant-pre-order-notice-widget.php:204
+#: classes/elementor-widgets/class-woo-merchant-size-guide-widget.php:133
+#: classes/elementor-widgets/class-woo-merchant-size-guide-widget.php:204
+msgid "Space Between"
+msgstr ""
+
+#: classes/elementor-widgets/class-woo-merchant-pre-order-notice-widget.php:160
+#: classes/elementor-widgets/class-woo-merchant-size-guide-widget.php:160
+msgid "Alignment"
+msgstr ""
+
+#: classes/elementor-widgets/class-woo-merchant-pre-order-notice-widget.php:164
+#: classes/elementor-widgets/class-woo-merchant-pre-order-notice-widget.php:192
+#: classes/elementor-widgets/class-woo-merchant-size-guide-widget.php:164
+#: classes/elementor-widgets/class-woo-merchant-size-guide-widget.php:192
+msgid "Start"
+msgstr ""
+
+#: classes/elementor-widgets/class-woo-merchant-pre-order-notice-widget.php:168
+#: classes/elementor-widgets/class-woo-merchant-pre-order-notice-widget.php:200
+#: classes/elementor-widgets/class-woo-merchant-size-guide-widget.php:168
+#: classes/elementor-widgets/class-woo-merchant-size-guide-widget.php:200
+msgid "Center"
+msgstr ""
+
+#: classes/elementor-widgets/class-woo-merchant-pre-order-notice-widget.php:172
+#: classes/elementor-widgets/class-woo-merchant-pre-order-notice-widget.php:196
+#: classes/elementor-widgets/class-woo-merchant-size-guide-widget.php:172
+#: classes/elementor-widgets/class-woo-merchant-size-guide-widget.php:196
+msgid "End"
+msgstr ""
+
+#: classes/elementor-widgets/class-woo-merchant-pre-order-notice-widget.php:187
+#: classes/elementor-widgets/class-woo-merchant-size-guide-widget.php:187
+msgid "Justify Content"
+msgstr ""
+
+#: classes/elementor-widgets/class-woo-merchant-pre-order-notice-widget.php:208
+#: classes/elementor-widgets/class-woo-merchant-size-guide-widget.php:208
+msgid "Space Around"
+msgstr ""
+
+#: classes/elementor-widgets/class-woo-merchant-pre-order-notice-widget.php:212
+#: classes/elementor-widgets/class-woo-merchant-size-guide-widget.php:212
+msgid "Space Evenly"
+msgstr ""
+
+#: classes/elementor-widgets/class-woo-merchant-pre-order-notice-widget.php:225
+#: classes/elementor-widgets/class-woo-merchant-size-guide-widget.php:225
+msgid "Flex Direction"
+msgstr ""
+
+#: classes/elementor-widgets/class-woo-merchant-pre-order-notice-widget.php:230
+#: classes/elementor-widgets/class-woo-merchant-size-guide-widget.php:230
+msgid "Row"
+msgstr ""
+
+#: classes/elementor-widgets/class-woo-merchant-pre-order-notice-widget.php:234
+#: classes/elementor-widgets/class-woo-merchant-size-guide-widget.php:234
+msgid "Row Reverse"
+msgstr ""
+
+#: classes/elementor-widgets/class-woo-merchant-pre-order-notice-widget.php:238
+#: classes/elementor-widgets/class-woo-merchant-size-guide-widget.php:238
+msgid "Column"
+msgstr ""
+
+#: classes/elementor-widgets/class-woo-merchant-pre-order-notice-widget.php:242
+#: classes/elementor-widgets/class-woo-merchant-size-guide-widget.php:242
+msgid "Column Reverse"
+msgstr ""
+
+#: classes/elementor-widgets/class-woo-merchant-pre-order-notice-widget.php:255
+msgid "Padding"
+msgstr ""
+
+#: classes/elementor-widgets/class-woo-merchant-pre-order-notice-widget.php:267
+msgid "Margin"
+msgstr ""
+
+#: classes/elementor-widgets/class-woo-merchant-pre-order-notice-widget.php:279
+msgid "Background Color"
+msgstr ""
+
+#: classes/elementor-widgets/class-woo-merchant-sale-end-countdown-widget.php:17
+msgid "Sale End Countdown"
+msgstr ""
+
+#: classes/elementor-widgets/class-woo-merchant-sale-end-countdown-widget.php:57
+#: classes/elementor-widgets/class-woo-merchant-size-guide-widget.php:102
+msgid "Title"
+msgstr ""
+
+#: classes/elementor-widgets/class-woo-merchant-sale-end-countdown-widget.php:59
+#: classes/elementor-widgets/class-woo-merchant-sale-end-countdown-widget.php:81
+#: classes/features/class-woo-merchant-sale-end-countdown.php:44
+#: includes/helper.php:489
+msgid "HURRY UP! SALE ENDS IN:"
+msgstr ""
+
+#: classes/elementor-widgets/class-woo-merchant-size-guide-widget.php:19
+#: classes/elementor-widgets/class-woo-merchant-size-guide-widget.php:307
+#: classes/features/class-woo-merchant-size-guide-button.php:53
+#: classes/features/class-woo-merchant-size-guide-button.php:54
+#: classes/features/class-woo-merchant-size-guide-button.php:56
+msgid "Size Guide"
+msgstr ""
+
+#: classes/features/class-woo-merchant-buy-now-button.php:64
+msgid "Buy It Now"
+msgstr ""
+
+#: classes/features/class-woo-merchant-low-stock-notification.php:63
+#, php-format
+msgid "Hurry Up! Only %d units left in stock!"
+msgstr ""
+
+#: classes/features/class-woo-merchant-pre-order.php:86
+#, php-format
+msgid "Available on %s"
+msgstr ""
+
+#: classes/features/class-woo-merchant-pre-order.php:104
+msgid "Pre-Order"
+msgstr ""
+
+#: classes/features/class-woo-merchant-pre-order.php:105
+msgid "No specific date"
+msgstr ""
+
+#: classes/features/class-woo-merchant-pre-order.php:130
+msgid "Pre-Order Notice:"
+msgstr ""
+
+#: classes/features/class-woo-merchant-pre-order.php:130
+msgid "This item is a pre-order and will be available on"
+msgstr ""
+
+#: classes/features/class-woo-merchant-product-discount.php:100
+#: classes/features/class-woo-merchant-product-discount.php:104
+msgid "Bulk Purchase Discount"
+msgstr ""
+
+#: classes/features/class-woo-merchant-product-discount.php:147
+#, php-format
+msgid "Buy %d, get %s off"
+msgstr ""
+
+#: classes/features/class-woo-merchant-product-discount.php:153
+#, php-format
+msgid "Buy %d, get %d%% off"
+msgstr ""
+
+#: classes/features/class-woo-merchant-product-discount.php:163
+msgid "Save"
+msgstr ""
+
+#: classes/features/class-woo-merchant-product-discount.php:176
+msgid "Total Price x 1"
+msgstr ""
+
+#: classes/features/class-woo-merchant-product-discount.php:180
+msgid "Discounted Price x 1"
+msgstr ""
+
+#: classes/features/class-woo-merchant-product-discount.php:246
+msgid "Discount for Free Gifts"
+msgstr ""
+
+#: classes/features/class-woo-merchant-product-discount.php:330
+msgid "Buy 1 get 1 free"
+msgstr ""
+
+#: classes/features/class-woo-merchant-product-discount.php:332
+msgid "Buy 2 get 1 free"
+msgstr ""
+
+#: classes/features/class-woo-merchant-spend-offer.php:49
+#: classes/features/class-woo-merchant-spend-offer.php:52
+msgid "Spend & Save Discount"
+msgstr ""
+
+#: classes/features/class-woo-merchant-spend-offer.php:103
+#, php-format
+msgid "Congraturaltions! You get %s discount on this order."
+msgstr ""
+
+#: classes/features/class-woo-merchant-spend-offer.php:105
+#, php-format
+msgid "Spend %s for buying product to get a"
+msgstr ""
+
+#: classes/features/class-woo-merchant-spend-offer.php:106
+#: classes/features/class-woo-merchant-spend-offer.php:110
+msgid "Discount"
+msgstr ""
+
+#: classes/features/class-woo-merchant-spend-offer.php:109
+#, php-format
+msgid "Spend %s more for buying product to get a"
+msgstr ""
+
+#: classes/features/class-woo-merchant-spend-offer.php:163
+msgid "Spend and Get a Gift"
+msgstr ""
+
+#: classes/features/class-woo-merchant-spend-offer.php:167
+msgid "The free gift is currently out of stock and cannot be added to your cart."
+msgstr ""
+
+#: classes/features/class-woo-merchant-spend-offer.php:216
+#, php-format
+msgid "Spend %s and get a free gift from us!."
+msgstr ""
+
+#: classes/features/class-woo-merchant-spend-offer.php:227
+msgid "Free"
+msgstr ""
+
+#: includes/checkout-functions.php:38
+msgid "Payment"
+msgstr ""
+
+#: includes/checkout-functions.php:39
+msgid "All transactions are secure and encrypted."
+msgstr ""
+
+#: includes/checkout-functions.php:125 includes/checkout-functions.php:160
+#: includes/checkout-functions.php:197
+msgid "Delivery:"
+msgstr ""
+
+#: includes/checkout-functions.php:131 includes/checkout-functions.php:168
+#: includes/checkout-functions.php:205
+msgid "Store Name:"
+msgstr ""
+
+#: includes/checkout-functions.php:132 includes/checkout-functions.php:169
+#: includes/checkout-functions.php:206
+msgid "Store Location:"
+msgstr ""
+
+#: includes/checkout-functions.php:193
+msgid "Delivery Details"
+msgstr ""
+
+#: includes/checkout-functions.php:225
+msgid "Text me with news and offers"
+msgstr ""
+
+#: includes/checkout-functions.php:225
+msgid "optional"
+msgstr ""
+
+#: includes/checkout-functions.php:233
+msgid "Remember me"
+msgstr ""
+
+#: includes/checkout-functions.php:236
+msgid "Save my information for a faster checkout"
+msgstr ""
+
+#: includes/checkout-functions.php:256
+msgid "Attach with Store"
+msgstr ""
+
+#: includes/checkout-functions.php:258
+msgid "Enable this option to attach this shipping method with a store."
+msgstr ""
+
+#: includes/helper.php:296
+#, php-format
+msgid "Original price was: %s."
+msgstr ""
+
+#: includes/helper.php:300
+#, php-format
+msgid "Current price is: %s."
+msgstr ""
+
+#: includes/helper.php:304 includes/helper.php:309
+msgid "Price information is not available."
+msgstr ""
+
+#: includes/helper.php:415
+msgid "For"
+msgstr ""
+
+#: includes/helper.php:415
+msgid "items(s)"
+msgstr ""
+
+#: includes/helper.php:423
+msgid "Add All to Cart"
+msgstr ""
+
+#: woocommerce/cart/cart-empty.php:35
+msgid "Return to shop"
+msgstr ""
+
+#: woocommerce/cart/cart-shipping.php:51
+#, php-format
+msgid "Shipping to %s."
+msgstr ""
+
+#: woocommerce/cart/cart-shipping.php:52
+msgid "Change address"
+msgstr ""
+
+#: woocommerce/cart/cart-shipping.php:54
+msgid "Shipping options will be updated during checkout."
+msgstr ""
+
+#: woocommerce/cart/cart-shipping.php:62
+msgid "Shipping costs are calculated during checkout."
+msgstr ""
+
+#: woocommerce/cart/cart-shipping.php:64
+msgid "Enter your address to view shipping options."
+msgstr ""
+
+#: woocommerce/cart/cart-shipping.php:67
+msgid ""
+"There are no shipping options available. Please ensure that your address has "
+"been entered correctly, or contact us if you need any help."
+msgstr ""
+
+#: woocommerce/cart/cart-shipping.php:81
+#, php-format
+msgid "No shipping options were found for %s."
+msgstr ""
+
+#: woocommerce/cart/cart-shipping.php:85
+msgid "Enter a different address"
+msgstr ""
+
+#: woocommerce/cart/cart-totals.php:28
+msgid "Cart totals"
+msgstr ""
+
+#: woocommerce/cart/cart-totals.php:30 woocommerce/cart/cart-totals.php:31
+#: woocommerce/cart/cart.php:55 woocommerce/cart/cart.php:261
+#: woocommerce/checkout/review-order.php:155
+msgid "Subtotal"
+msgstr ""
+
+#: woocommerce/cart/cart-totals.php:52 woocommerce/cart/cart-totals.php:53
+msgid "Shipping"
+msgstr ""
+
+#: woocommerce/cart/cart-totals.php:72
+#, php-format
+msgid "(estimated for %s)"
+msgstr ""
+
+#: woocommerce/cart/cart-totals.php:98 woocommerce/cart/cart-totals.php:99
+#: woocommerce/checkout/review-order.php:236
+#: woocommerce/order/order-details.php:57
+msgid "Total"
+msgstr ""
+
+#: woocommerce/cart/cart.php:39 woocommerce/checkout/form-checkout.php:60
+#: woocommerce/checkout/thankyou.php:27
+msgid "SHOPPING CART"
+msgstr ""
+
+#: woocommerce/cart/cart.php:41 woocommerce/checkout/form-checkout.php:63
+#: woocommerce/checkout/thankyou.php:29
+msgid "CHECKOUT"
+msgstr ""
+
+#: woocommerce/cart/cart.php:43 woocommerce/checkout/form-checkout.php:66
+#: woocommerce/checkout/thankyou.php:31
+msgid "ORDER COMPLETE"
+msgstr ""
+
+#: woocommerce/cart/cart.php:52 woocommerce/cart/cart.php:107
+#: woocommerce/cart/cart.php:204 woocommerce/checkout/form-pay.php:27
+#: woocommerce/order/order-details.php:56
+msgid "Product"
+msgstr ""
+
+#: woocommerce/cart/cart.php:53 woocommerce/cart/cart.php:116
+#: woocommerce/cart/cart.php:229
+msgid "Price"
+msgstr ""
+
+#: woocommerce/cart/cart.php:54 woocommerce/cart/cart.php:140
+#: woocommerce/cart/cart.php:235
+msgid "Quantity"
+msgstr ""
+
+#: woocommerce/cart/cart.php:99 woocommerce/cart/cart.php:183
+#: woocommerce/cart/mini-cart.php:53
+#, php-format
+msgid "Remove %s from cart"
+msgstr ""
+
+#: woocommerce/cart/cart.php:136
+msgid "Variations"
+msgstr ""
+
+#: woocommerce/cart/cart.php:224
+msgid "Available on backorder"
+msgstr ""
+
+#: woocommerce/cart/cart.php:280 woocommerce/checkout/form-coupon.php:37
+msgid "Coupon:"
+msgstr ""
+
+#: woocommerce/cart/cart.php:280 woocommerce/checkout/form-coupon.php:38
+msgid "Coupon code"
+msgstr ""
+
+#: woocommerce/cart/cart.php:280 woocommerce/checkout/form-coupon.php:42
+msgid "Apply coupon"
+msgstr ""
+
+#: woocommerce/cart/cart.php:285
+msgid "Update cart"
+msgstr ""
+
+#: woocommerce/cart/cross-sells.php:24
+msgid "You may be interested in&hellip;"
+msgstr ""
+
+#: woocommerce/cart/mini-cart.php:98
+msgid "No products in the cart."
+msgstr ""
+
+#: woocommerce/cart/proceed-to-checkout-button.php:26
+msgid "Proceed to checkout"
+msgstr ""
+
+#: woocommerce/cart/shipping-calculator.php:24
+msgid "Calculate shipping"
+msgstr ""
+
+#: woocommerce/cart/shipping-calculator.php:30
+msgid "Country / region:"
+msgstr ""
+
+#: woocommerce/cart/shipping-calculator.php:32
+msgid "Select a country / region&hellip;"
+msgstr ""
+
+#: woocommerce/cart/shipping-calculator.php:51
+#: woocommerce/cart/shipping-calculator.php:57
+#: woocommerce/cart/shipping-calculator.php:70
+msgid "State / County"
+msgstr ""
+
+#: woocommerce/cart/shipping-calculator.php:56
+#: woocommerce/cart/shipping-calculator.php:69
+msgid "State / County:"
+msgstr ""
+
+#: woocommerce/cart/shipping-calculator.php:58
+msgid "Select an option&hellip;"
+msgstr ""
+
+#: woocommerce/cart/shipping-calculator.php:79
+msgid "City:"
+msgstr ""
+
+#: woocommerce/cart/shipping-calculator.php:80
+msgid "City"
+msgstr ""
+
+#: woocommerce/cart/shipping-calculator.php:86
+msgid "Postcode / ZIP:"
+msgstr ""
+
+#: woocommerce/cart/shipping-calculator.php:87
+msgid "Postcode / ZIP"
+msgstr ""
+
+#: woocommerce/cart/shipping-calculator.php:91
+msgid "Update"
+msgstr ""
+
+#: woocommerce/checkout/cart-errors.php:21
+msgid ""
+"There are some issues with the items in your cart. Please go back to the cart "
+"page and resolve these issues before checking out."
+msgstr ""
+
+#: woocommerce/checkout/cart-errors.php:25
+msgid "Return to cart"
+msgstr ""
+
+#: woocommerce/checkout/form-billing.php:42
+msgid "Billing &amp; Shipping"
+msgstr ""
+
+#: woocommerce/checkout/form-billing.php:46
+msgid "Billing details"
+msgstr ""
+
+#: woocommerce/checkout/form-billing.php:70
+msgid "Create an account?"
+msgstr ""
+
+#: woocommerce/checkout/form-checkout.php:41
+#: woocommerce/checkout/form-checkout.php:98
+msgid "You must be logged in to checkout."
+msgstr ""
+
+#: woocommerce/checkout/form-checkout.php:108
+msgid "Additional Information"
+msgstr ""
+
+#: woocommerce/checkout/form-checkout.php:122
+msgid "Order Summary"
+msgstr ""
+
+#: woocommerce/checkout/form-checkout.php:128
+msgid "Edit Order"
+msgstr ""
+
+#: woocommerce/checkout/form-coupon.php:28
+msgid "Have a coupon?"
+msgstr ""
+
+#: woocommerce/checkout/form-coupon.php:28
+msgid "Click here to enter your code"
+msgstr ""
+
+#: woocommerce/checkout/form-coupon.php:33
+msgid "If you have a coupon code, please apply it below."
+msgstr ""
+
+#: woocommerce/checkout/form-login.php:26
+msgid "Returning customer?"
+msgstr ""
+
+#: woocommerce/checkout/form-login.php:26
+msgid "Click here to login"
+msgstr ""
+
+#: woocommerce/checkout/form-login.php:32
+msgid ""
+"If you have shopped with us before, please enter your details below. If you are "
+"a new customer, please proceed to the Billing section."
+msgstr ""
+
+#: woocommerce/checkout/form-pay.php:28
+msgid "Qty"
+msgstr ""
+
+#: woocommerce/checkout/form-pay.php:29
+msgid "Totals"
+msgstr ""
+
+#: woocommerce/checkout/form-pay.php:89
+msgid ""
+"Sorry, it seems that there are no available payment methods for your location. "
+"Please contact us if you require assistance or wish to make alternate "
+"arrangements."
+msgstr ""
+
+#: woocommerce/checkout/form-shipping.php:26
+msgid "Ship to a different address?"
+msgstr ""
+
+#: woocommerce/checkout/form-shipping.php:57
+msgid "Additional information"
+msgstr ""
+
+#: woocommerce/checkout/form-verify-email.php:29
+msgid "We were unable to verify the email address you provided. Please try again."
+msgstr ""
+
+#: woocommerce/checkout/form-verify-email.php:36
+#, php-format
+msgid ""
+"To view this page, you must either %1$slogin%2$s or verify the email address "
+"associated with the order."
+msgstr ""
+
+#: woocommerce/checkout/form-verify-email.php:44
+msgid "Email address"
+msgstr ""
+
+#: woocommerce/checkout/form-verify-email.php:50
+msgid "Verify"
+msgstr ""
+
+#: woocommerce/checkout/order-receipt.php:25 woocommerce/checkout/thankyou.php:58
+msgid "Order number:"
+msgstr ""
+
+#: woocommerce/checkout/order-receipt.php:29 woocommerce/checkout/thankyou.php:63
+msgid "Date:"
+msgstr ""
+
+#: woocommerce/checkout/order-receipt.php:33 woocommerce/checkout/thankyou.php:68
+msgid "Total:"
+msgstr ""
+
+#: woocommerce/checkout/order-receipt.php:38 woocommerce/checkout/thankyou.php:74
+msgid "Payment method:"
+msgstr ""
+
+#: woocommerce/checkout/order-received.php:29
+msgid "Order Received"
+msgstr ""
+
+#: woocommerce/checkout/order-received.php:43
+msgid "Thank you. Your order has been received."
+msgstr ""
+
+#: woocommerce/checkout/payment.php:34
+msgid ""
+"Sorry, it seems that there are no available payment methods. Please contact us "
+"if you require assistance or wish to make alternate arrangements."
+msgstr ""
+
+#: woocommerce/checkout/payment.php:34
+msgid "Please fill in your details above to see available payment methods."
+msgstr ""
+
+#: woocommerce/checkout/payment.php:44
+#, php-format
+msgid ""
+"Since your browser does not support JavaScript, or it is disabled, please "
+"ensure you click the %1$sUpdate Totals%2$s button before placing your order. "
+"You may be charged more than the amount stated above if you fail to do so."
+msgstr ""
+
+#: woocommerce/checkout/payment.php:46
+msgid "Update totals"
+msgstr ""
+
+#: woocommerce/checkout/review-order.php:246
+msgid "You May Also Like"
+msgstr ""
+
+#: woocommerce/checkout/review-order.php:287
+msgid "ADD"
+msgstr ""
+
+#: woocommerce/checkout/review-order.php:298
+msgid "Delivery"
+msgstr ""
+
+#: woocommerce/checkout/review-order.php:356
+msgid "Store locations"
+msgstr ""
+
+#: woocommerce/checkout/review-order.php:357
+#, php-format
+msgid "There are %s stores with stock close to your location."
+msgstr ""
+
+#: woocommerce/checkout/review-order.php:381
+msgid "Usually ready in 24 hours"
+msgstr ""
+
+#: woocommerce/checkout/review-order.php:410
+msgid "TOTAL SAVINGS"
+msgstr ""
+
+#: woocommerce/checkout/terms.php:31
+msgid "required"
+msgstr ""
+
+#: woocommerce/checkout/thankyou.php:42
+msgid ""
+"Unfortunately your order cannot be processed as the originating bank/merchant "
+"has declined your transaction. Please attempt your purchase again."
+msgstr ""
+
+#: woocommerce/checkout/thankyou.php:45
+msgid "Pay"
+msgstr ""
+
+#: woocommerce/checkout/thankyou.php:47
+msgid "My account"
+msgstr ""
+
+#: woocommerce/order/attribution-details.php:27
+msgid "Origin"
+msgstr ""
+
+#: woocommerce/order/attribution-details.php:41
+msgid "Show details"
+msgstr ""
+
+#: woocommerce/order/attribution-details.php:42
+msgid "Hide details"
+msgstr ""
+
+#: woocommerce/order/attribution-details.php:51
+msgid "Source type"
+msgstr ""
+
+#: woocommerce/order/attribution-details.php:59
+msgid "Campaign"
+msgstr ""
+
+#: woocommerce/order/attribution-details.php:68
+msgid "Source"
+msgstr ""
+
+#: woocommerce/order/attribution-details.php:77
+msgid "Medium"
+msgstr ""
+
+#: woocommerce/order/attribution-details.php:86
+msgid "Source platform"
+msgstr ""
+
+#: woocommerce/order/attribution-details.php:95
+msgid "Creative format"
+msgstr ""
+
+#: woocommerce/order/attribution-details.php:104
+msgid "Marketing tactic"
+msgstr ""
+
+#: woocommerce/order/attribution-details.php:114
+msgid "Device type"
+msgstr ""
+
+#: woocommerce/order/attribution-details.php:123
+msgid "Session page views"
+msgstr ""
+
+#: woocommerce/order/attribution-details.php:127
+msgid "The number of unique pages viewed by the customer prior to this order."
+msgstr ""
+
+#: woocommerce/order/customer-history.php:28
+msgid "Total orders"
+msgstr ""
+
+#: woocommerce/order/customer-history.php:31
+msgid ""
+"Total number of non-cancelled, non-failed orders for this customer, including "
+"the current one."
+msgstr ""
+
+#: woocommerce/order/customer-history.php:43
+msgid "Total revenue"
+msgstr ""
+
+#: woocommerce/order/customer-history.php:46
+msgid ""
+"This is the Customer Lifetime Value, or the total amount you have earned from "
+"this customer's orders."
+msgstr ""
+
+#: woocommerce/order/customer-history.php:55
+msgid "Average order value"
+msgstr ""
+
+#: woocommerce/order/form-tracking.php:34
+msgid ""
+"To track your order please enter your Order ID in the box below and press the "
+"\"Track\" button. This was given to you on your receipt and in the confirmation "
+"email you should have received."
+msgstr ""
+
+#: woocommerce/order/form-tracking.php:36
+msgid "Order ID"
+msgstr ""
+
+#: woocommerce/order/form-tracking.php:36
+msgid "Found in your order confirmation email."
+msgstr ""
+
+#: woocommerce/order/form-tracking.php:37
+msgid "Billing email"
+msgstr ""
+
+#: woocommerce/order/form-tracking.php:37
+msgid "Email you used during checkout."
+msgstr ""
+
+#: woocommerce/order/form-tracking.php:49
+msgid "Track"
+msgstr ""
+
+#: woocommerce/order/order-again.php:22
+msgid "Order again"
+msgstr ""
+
+#: woocommerce/order/order-details-customer.php:31
+msgid "Billing address"
+msgstr ""
+
+#: woocommerce/order/order-details-customer.php:34
+#: woocommerce/order/order-details-customer.php:63
+msgid "N/A"
+msgstr ""
+
+#: woocommerce/order/order-details-customer.php:61
+msgid "Shipping address"
+msgstr ""
+
+#: woocommerce/order/order-details.php:50
+msgid "Order details"
+msgstr ""
+
+#: woocommerce/order/order-details.php:98
+msgid "Note:"
+msgstr ""
+
+#: woocommerce/order/order-downloads.php:24
+msgid "Downloads"
+msgstr ""
+
+#: woocommerce/order/order-downloads.php:56
+msgid "&infin;"
+msgstr ""
+
+#: woocommerce/order/order-downloads.php:62
+msgid "Never"
+msgstr ""
+
+#: woocommerce/order/tracking.php:30
+#, php-format
+msgid "Order #%1$s was placed on %2$s and is currently %3$s."
+msgstr ""
+
+#: woocommerce/order/tracking.php:41
+msgid "Order updates"
+msgstr ""
+
+#: woocommerce/order/tracking.php:47
+msgid "l jS \\o\\f F Y, h:ia"
+msgstr ""

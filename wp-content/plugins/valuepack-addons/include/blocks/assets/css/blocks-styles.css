@@ -1,0 +1,92 @@
+/* css for templates  */
+
+#vp-library-modal .vp-elementor-template-library-template-name {
+  text-align: right;
+  flex: 1 0 0%;
+}
+
+div#elementor-template-library-filter-toolbar-remote {
+  display: flex;
+  gap: 15px;
+}
+
+div#elementor-template-library-filter-toolbar-remote .select2-container {
+  min-width: 130px;
+}
+
+div#elementor-template-library-filter-toolbar-remote .select2-selection__clear {
+  display: none;
+}
+
+#elementor-template-library-footer-banner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 26px;
+}
+
+.elementor-template-library-template-remote {
+  position: relative;
+}
+
+.elementor-template-library-template-remote .template-tag {
+  position: absolute;
+  right: 0;
+  background-color: #f30909de;
+  color: #fff;
+  padding: 4px 15px;
+  font-size: 12px;
+  border-radius: 2px;
+  z-index: 99999;
+}
+
+.elementor-template-library-template-remote .template-tag.Free {
+  background-color: #219104;
+}
+.elementor-template-library-template-remote
+  .elementor-template-library-template-body
+  i.eicon-zoom-in-bold {
+  color: #fff !important;
+}
+
+.vp-load-more-wrap {
+  margin: 10px 0;
+}
+.vp-load-more-wrap .vp-load-more-btn.vp-load-more-done {
+  cursor: default;
+  opacity: 0.8;
+}
+.vp-no-results {
+  padding: 40px 20px;
+  text-align: center;
+  color: #6d7882;
+}
+
+.elementor-template-library-template-remote:not(.elementor-template-library-template-page):not(.elementor-template-library-template-lp) img, .elementor-template-library-template-remote:not(.elementor-template-library-template-block):not(.elementor-template-library-template-lp) img {
+  display: block;
+  width: 100%;
+}
+.elementor-template-library-template-remote img {
+  display: block;
+  height: 200px;
+  object-fit: contain;
+  padding: 1px;
+  object-position: top;
+}
+
+.elementor-template-library-template-footer {
+  transform: translateY(0%) !important;
+  border-top: 1px solid #ddd;
+}
+
+.elementor-template-library-template-footer  .elementor-template-library-template-action {
+  display: block !important;
+}
+
+.elementor-template-library-template-remote .elementor-template-library-template-body {
+  height: unset !important;
+}
+.elementor-template-library-template-remote {
+  width: calc(33.3% - 30px) !important;
+}

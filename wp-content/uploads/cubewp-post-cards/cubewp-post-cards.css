@@ -1,0 +1,1012 @@
+/* Custom Card Styles */
+					.card {
+						width: 18rem;
+						border: 1px solid #ddd;
+						border-radius: 0.25rem;
+						overflow: hidden;
+						box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+						transition: all 0.3s ease;
+					}
+					
+					.card:hover {
+						box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+					}
+					
+					.card-img-top {
+						width: 100%;
+						height: auto;
+						border-bottom: 1px solid #ddd;
+					}
+					
+					.card-body {
+						padding: 1rem;
+					}
+					
+					.card-title {
+						font-size: 1.25rem;
+						font-weight: 500;
+						margin-bottom: 0.75rem;
+					}
+					
+					.card-text {
+						font-size: 1rem;
+						margin-bottom: 1rem;
+						color: #555;
+					}
+					
+					.btn-primary {
+						background-color: #007bff;
+						border: none;
+						padding: 0.5rem 1rem;
+						font-size: 1rem;
+						color: #fff;
+						text-align: center;
+						cursor: pointer;
+						border-radius: 0.25rem;
+						transition: background-color 0.3s ease;
+					}
+					
+					.btn-primary:hover {
+						background-color: #0056b3;
+					}
+				 
+
+
+/*----Grid View-----*/
+.cwp-post {
+	background: #ffffff;
+	border: 1px solid #e0e0e0;
+	border-radius: 5px;
+	filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.102218));
+	margin: 10px 0px;
+	overflow: hidden;
+	transition: 300ms;
+}
+
+.cwp-post:hover {
+	filter: none;
+}
+
+.cwp-post-thumbnail {
+	height: 220px;
+	width: 100%;
+	position: relative;
+}
+
+.cwp-post .cwp-post-thumbnail img {
+	height: 100%;
+	object-fit: cover;
+	transition: 300ms;
+	width: 100%;
+}
+
+/*-------List View------*/
+.list-view .cwp-col-12 {
+	width: 100% !important;
+}
+
+.list-view .cwp-post {
+	align-items: flex-start;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: flex-start;
+	position: relative;
+}
+
+.list-view .cwp-post-thumbnail {
+	width: 30%;
+	min-height: 160px;
+	height: 185px;
+}
+
+.list-view .cwp-post-content-container {
+	width: 70%;
+}
+
+.list-view .cwp-post-content {
+	padding: 30px 20px;
+}
+
+.list-view .cwp-post-content h4 {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	width: 100%;
+}
+
+.list-view ul.cwp-post-terms {
+	padding: 20px 20px 0 20px;
+}
+
+.cwp-promoted-post {
+	border: 1px solid #ddbb2a;
+	border-radius: 4px;
+	color: #ddbb2a;
+	cursor: default;
+	display: inline-block;
+	font-size: 10px;
+	line-height: 1;
+	padding: 2px 5px;
+	position: relative;
+	top: -2px;
+}
+
+.cwp-post-content {
+	padding: 15px;
+}
+
+.cwp-post-content h4 {
+	font-size: 20px;
+	font-weight: bold;
+	line-height: 1.3;
+	margin: 0 0 5px 0;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+}
+
+.cwp-post-content p {
+	font-size: 14px;
+	line-height: 1.3;
+	margin: 0 0 0 0;
+}
+
+.cwp-post-terms {
+	align-items: center;
+	border-top: 1px solid #e0e0e0;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: flex-start;
+	line-height: 1.5;
+	list-style: none;
+	margin: 0;
+	padding: 15px 15px 10px;
+}
+
+.cwp-post-terms li {
+	margin: 0 5px 5px 0;
+}
+
+.cwp-post-terms li a {
+	display: block;
+	font-size: 12px;
+	background: #f6f6f6;
+	max-width: 100px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	padding: 8px 8px;
+	font-weight: 500;
+	text-transform: capitalize;
+	border-radius: 210px;
+	line-height: 10px;
+	color: #343A40;
+}
+
+/*---Save button-------*/
+.cwp-archive-save {
+	position: absolute;
+	background: rgba(0, 0, 0, 0) linear-gradient(0deg, rgba(0, 0, 0, .9) 8%, rgba(0, 0, 0, 0) 94%) repeat scroll 0 0;
+	bottom: 0;
+	padding: 15px 14px 5px 14px;
+	width: 100%;
+}
+
+.cwp-archive-save .cwp-single-save-btns.cwp-single-widget {
+	float: right;
+	color: #fff;
+}
+
+span.cwp-main.cwp-save-post svg:nth-child(2) {
+	display: none;
+}
+
+span.cwp-main.cwp-saved-post svg:first-child {
+	display: none;
+}
+
+.cwp-single-save-btns.cwp-single-widget span.cwp-main,
+.cwp-single-share-btn.cwp-single-widget span.cwp-main {
+	cursor: pointer;
+}
+.cwp-post-boosted {
+	padding: 1px 10px;
+	position: absolute;
+	top: 15px;
+	left: 15px;
+	background: #FFBB00;
+	border-radius: 12px;
+	color: #000000;
+	font-weight: 500;
+	font-size: 13px;
+}
+.woo-style-14-card {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background: #ffffff;
+    transition: .3s ease;
+    padding: 20px;
+}
+
+.woo-style-14-card:hover {
+    box-shadow: 0px 15px 24px 0px #0000000D;
+}
+
+.woo-style-14-gallery {
+    height: 100%;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+}
+
+.woo-style-14-gallery img {
+    height: auto !important;
+    object-fit: contain;
+    transition: .3s ease;
+    width: 100% !important;
+    background-color: #F6F6F6;
+}
+
+.woo-style-14-tags {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    transition: .3s ease;
+    transform: translateY(-200px);
+}
+
+.woo-style-14-card:hover .woo-style-14-tags{
+    transform: translateY(0px);
+}
+
+.woo-style-14-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px !important;
+}
+
+.woo-style-14-cat {
+    font-family: Roboto;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 16px;
+    color: #1D1D1D;
+    transition: .3s ease;
+}
+
+.woo-style-14-cat:hover {
+    color: #000000;
+}
+
+.woo-style-14-content a {
+    text-align: center;
+}
+
+.woo-style-14-title {
+    text-transform: capitalize;
+    color: #1D1D1D;
+    font-family: Roboto;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 16px;
+    transition: .3s ease;
+}
+
+
+.woo-style-14-title:hover {
+    color: #000000;
+    text-decoration: underline;
+}
+
+.woo-style-14-thumbnail{
+    position: relative;
+    overflow: hidden;
+}
+
+.women-wc-quick-checkout{
+    cursor: pointer;
+}
+
+.woo-style-14-price {
+    display: flex;
+    justify-content: center;
+    font-family: Roboto;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 16px;
+    color: #1D1D1D;
+    margin: 0px;
+}
+
+.woo-style-14-stars .star-rating {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 8px;
+}
+
+.woo-style-14-stars .star-rating:before {
+    content: "sssss";
+    float: left;
+    position: absolute;
+    color: #3B3738;
+    letter-spacing: 3px;
+    font-family: WooCommerce;
+    line-height: 1;
+    font-size: 10px;
+}
+
+.woo-style-14-stars .star-rating span {
+    display: none;
+}
+
+.woo-style-14-gallery.woomen-shop-this-look-slider-4 i {
+    position: absolute;
+    top: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    cursor: pointer;
+    align-items: center;
+    transition: 0.3s;
+    z-index: 999999;
+    justify-content: center;
+    border-radius: 100%;
+    font-size: 12px;
+    transition: .3s ease;
+    background: #fff;
+    color: #1D1D1D;
+}
+
+.woo-style-14-gallery.woomen-shop-this-look-slider-4 i:hover {
+    background: #1D1D1D;
+    color: #ffffff;
+}
+
+.woo-style-14-gallery.woomen-shop-this-look-slider-4 .fa-chevron-left {
+    left: -30px;
+}
+
+.woo-style-14-gallery.woomen-shop-this-look-slider-4:hover .fa-chevron-left {
+    left: 10px;
+}
+
+.woo-style-14-gallery.woomen-shop-this-look-slider-4 .fa-chevron-right {
+    right: -30px;
+}
+
+.woo-style-14-gallery.woomen-shop-this-look-slider-4:hover .fa-chevron-right {
+    right: 10px;
+}
+
+.woo-style-14-card .woo-style-14-tags .cwp-main,
+.woo-style-14-eye,
+.woo-style-14-bag {
+    width: 35px;
+    height: 35px;
+    background: #FFFFFF !important;
+    color: #1D1D1D;
+    border-radius: 100% !important;
+    transition: .3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.woo-style-14-card .woo-style-14-tags .cwp-main:hover,
+.woo-style-14-eye:hover,
+.woo-style-14-bag:hover{
+    background: #1D1D1D !important;
+    color: #fff;
+}
+
+.woo-style-14-card .woo-style-14-tags .cwp-main:hover path,
+.woo-style-14-eye:hover path,
+.woo-style-14-bag:hover path {
+    fill: #fff !important;
+}
+
+
+
+
+.woo-style-14-save.save-tooltip {
+    position: relative !important;
+}
+
+.woo-style-14-stars .star-rating span::before {
+    font-size: 10px;
+    letter-spacing: 3px;
+}
+.woo-gallery-overlay-image {
+    position: absolute;
+    top: 0px;
+    width: 100%;
+    object-fit: contain;
+    opacity: 0;
+    visibility: hidden;
+    height: 100% !important;
+    background: rgb(246, 246, 246);
+    transition: 0.3s;
+}
+.cwp-single-save-btns.cwp-single-widget span.cwp-main, 
+.cwp-single-share-btn.cwp-single-widget span.cwp-main {
+    color: rgb(0, 0, 0) !important;
+    border: unset !important;
+}
+.cwp-single-save-btns.cwp-single-widget span.cwp-main svg, 
+.cwp-single-share-btn.cwp-single-widget span.cwp-main svg{
+    width:13px;
+}
+.cwp-single-share-btn.cwp-single-widget, .cwp-single-save-btns.cwp-single-widget .woo-ajax-loader {
+    width: 100%;
+    justify-content: center;
+}
+ [data-tooltip][data-flow^="left"]::before {
+    border-left-color: #1d1d1d !important;
+    color: #FFFFFF !important;
+}
+
+@media (max-width: 767px) {
+    .woo-style-14-card {
+        padding: 10px 0px;
+    }
+}
+
+
+
+
+.woo-style-26-card {
+    display: flex !important;
+    flex-direction: row;
+    gap: 20px;
+    padding-left: 0;
+    position: relative;
+}
+
+.woo-style-26-thumbnail {
+    background: #F7F7F7;
+    overflow: hidden;
+    width: 80px;
+    align-items: center;
+    display: flex;
+}
+.woo-style-26-thumbnail img {
+    object-fit: contain;
+    height: auto !important;
+    width: 100%;
+    transition: .3s;
+}
+.woo-style-26-card:hover .woo-style-26-thumbnail img {
+    transform: scale(1.1);
+}
+.woo-style-26-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    width: calc(100% - 155px);
+    padding: 15px 0;
+    justify-content: center;
+}
+.woo-style-26-title {
+    color: #1d1d1d;
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 24px;
+    letter-spacing: 0.02em;
+    display: block;
+    transition: .3s;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%;
+    overflow: hidden;
+}
+
+.woo-style-26-title:hover {
+    color: #141414;
+    text-decoration: underline;
+}
+
+.woo-style-26-price {
+    color: #1d1d1d;
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 24px;
+    letter-spacing: 0.02em;
+    margin: 0;
+}
+.woo-overlay-move {
+    position: relative;
+    height: 100%;
+}
+.woo-gallery-overlay-image {
+    position: absolute;
+    top: 0;
+    height: 100% !important;
+    width: 100%;
+    object-fit: contain;
+    background: #f6f6f6;
+    transition: .3s;
+    opacity: 0;
+    visibility: hidden;
+}
+.woo-style-26-card:hover .woo-gallery-overlay-image {
+    opacity: 1;
+    visibility: visible;
+}
+.woo-style-26-shop-now {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 35px;
+}
+.woo-style-26-shop-now svg {
+    border: 1px solid #1D1D1D;
+    border-radius: 50%;
+}
+ 
+.woo-style-26-shop-now .women-wc-quick-checkout {
+    border-radius: 50%;
+}
+/* Custom Card Styles */
+.woocomerce-location-details {
+    width: 100%;
+    background-color: white;
+    padding: 19px 30px 29px 29px !important;
+    margin-bottom: 30px;
+}
+
+.woocomerce-location-details .woocomerce-heading-icon {
+    padding-bottom: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.woocomerce-location-details .woocomerce-heading-icon svg {
+    margin-top: 1px;
+}
+
+.woocomerce-address p,
+.woocomerce-contact p,
+.woocomerce-timming p {
+    color: #1d1d1d;
+    font-family: "Plus Jakarta Sans";
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 24px;
+    margin: 0;
+    width: calc(100% - 26px);
+}
+
+.woocomerce-address svg {
+    width: 16px;
+    height: 16px;
+    margin-top: 7px;
+}
+
+.woocomerce-contact svg {
+    width: 17px;
+    height: 16px;
+    margin-top: 4px;
+}
+
+.woocomerce-timming svg {
+    width: 16px;
+    height: 20px;
+    margin-top: 4px;
+}
+
+.woocomerce-location-content {
+    display: flex;
+    flex-direction: column;
+    gap: 19px;
+    margin-bottom: 20px;
+}
+
+.woocomerce-address {
+    display: flex;
+    gap: 10px;
+}
+
+.woocomerce-contact {
+    display: flex;
+    gap: 10px;
+    padding-bottom: 19px;
+}
+
+.woocomerce-timming {
+    display: flex;
+    gap: 10px;
+}
+
+.woocomerce-see-details button {
+    font-family: "Plus Jakarta Sans";
+    font-weight: 600;
+    font-size: 13px;
+    line-height: 16px;
+    letter-spacing: 0.26px;
+    background: transparent;
+    border: none;
+    padding: 7px 0px 3px 0px;
+    color: #1d1d1d;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-bottom: 1px solid #1D1D1D;
+}
+
+.woocomerce-see-details button svg path {
+    fill: #1d1d1d;
+}
+
+.woomen-find-store{
+    position: relative;
+}
+
+.woocomerce-location-details-sidebar {
+    position: absolute;
+    background: #fff;
+    top: 0;
+    right: -1000px;
+    width: 100%;
+    height: 100%;
+    padding: 0 40px;
+    z-index: 999;
+    display: flex;
+    flex-direction: column;
+    transition: .3s;
+}
+
+.woocomerce-location-details-sidebar.active {
+    right: 0px;
+}
+
+.woocomerce-location-details-sidebar .heading {
+    padding: 22px 0 23px 0;
+    border-bottom: 1px solid #E6E6E6;
+    display: flex;
+    align-items: center;
+    position: relative;
+    margin: 0 0 20px 0;
+    gap: 10px;
+}
+
+.woocomerce-location-details-sidebar .heading h2 {
+    font-family: "Plus Jakarta Sans";
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 28px;
+    text-align: center;
+    color: #1D1D1D;
+    width: calc(100% - 22px);
+}
+
+.woocomerce-location-back-btn {
+    cursor: pointer;
+}
+
+.woocomerce-location-back-btn svg path {
+    fill: #1D1D1D;
+}
+
+.store-locator-cards-animate {
+    position: unset !important;
+}
+
+.woocomerce-location-details-sidebar .content-heading {
+    font-family: "Plus Jakarta Sans";
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 28px;
+    color: #1D1D1D;
+    margin: 0 0 -4px 0;
+    text-transform: uppercase;
+}
+
+.woocomerce-location-get-direction {
+    background: #1d1d1d;
+    border: 1px solid #1d1d1d;
+    color: #fff;
+    padding: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    font-family: "Plus Jakarta Sans";
+    font-weight: 600;
+    font-size: 13px;
+    line-height: 16px;
+    letter-spacing: 0.26px;
+    transition: .3s;
+    margin: 4px 0 0 0;
+}
+
+.woocomerce-location-get-direction svg path{
+    transition: .3s;
+    fill: #fff;
+}
+
+.woocomerce-location-get-direction:hover{
+    background: #fff;
+    color: #1d1d1d;
+}
+
+.woocomerce-location-get-direction:hover svg path{
+    fill: #1d1d1d;
+}
+
+.woocomerce-location-opening-hours ul {
+    padding: 0px;
+    margin: 19px 0px 19px 0px;
+}
+
+.woocomerce-location-opening-hours ul li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.woocomerce-location-opening-hours p {
+    font-family: "Plus Jakarta Sans";
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 24px;
+    color: #1D1D1D;
+}
+
+.woocomerce-location-details-sidebar .social-share > div {
+    padding: 0px !important;
+    justify-content: flex-start !important;
+    gap: 20px;
+}
+
+.woocomerce-location-details-sidebar .social-share > div a {
+    margin: 0px !important;
+    font-size: 16px;
+}
+
+@media (max-width:1024px){
+
+    .woocomerce-location-details-sidebar {
+        padding: 0px;
+    }
+
+}
+
+/* Custom Card Styles */
+.woocomerce-location-details {
+    width: 100%;
+    background-color: white;
+    padding: 19px 30px 29px 29px !important;
+    margin-bottom: 30px;
+}
+
+.woocomerce-location-details .woocomerce-heading-icon {
+    padding-bottom: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.woocomerce-location-details .woocomerce-heading-icon svg {
+    margin-top: 1px;
+}
+
+.woocomerce-address p,
+.woocomerce-contact p,
+.woocomerce-timming p {
+    color: #1d1d1d;
+    font-family: "Plus Jakarta Sans";
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 24px;
+    margin: 0;
+    width: calc(100% - 26px);
+}
+
+.woocomerce-address svg {
+    width: 16px;
+    height: 16px;
+    margin-top: 7px;
+}
+
+.woocomerce-contact svg {
+    width: 17px;
+    height: 16px;
+    margin-top: 4px;
+}
+
+.woocomerce-timming svg {
+    width: 16px;
+    height: 20px;
+    margin-top: 4px;
+}
+
+.woocomerce-location-content {
+    display: flex;
+    flex-direction: column;
+    gap: 19px;
+    margin-bottom: 20px;
+}
+
+.woocomerce-address {
+    display: flex;
+    gap: 10px;
+}
+
+.woocomerce-contact {
+    display: flex;
+    gap: 10px;
+    padding-bottom: 19px;
+}
+
+.woocomerce-timming {
+    display: flex;
+    gap: 10px;
+}
+
+.woocomerce-see-details button {
+    font-family: "Plus Jakarta Sans";
+    font-weight: 600;
+    font-size: 13px;
+    line-height: 16px;
+    letter-spacing: 0.26px;
+    background: transparent;
+    border: none;
+    padding: 7px 0px 3px 0px;
+    color: #1d1d1d;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-bottom: 1px solid #1D1D1D;
+}
+
+.woocomerce-see-details button svg path {
+    fill: #1d1d1d;
+}
+
+.woomen-find-store{
+    position: relative;
+}
+
+.woocomerce-location-details-sidebar {
+    position: absolute;
+    background: #fff;
+    top: 0;
+    right: -1000px;
+    width: 100%;
+    height: 100%;
+    padding: 0 40px;
+    z-index: 999;
+    display: flex;
+    flex-direction: column;
+    transition: .3s;
+}
+
+.woocomerce-location-details-sidebar.active {
+    right: 0px;
+}
+
+.woocomerce-location-details-sidebar .heading {
+    padding: 22px 0 23px 0;
+    border-bottom: 1px solid #E6E6E6;
+    display: flex;
+    align-items: center;
+    position: relative;
+    margin: 0 0 20px 0;
+    gap: 10px;
+}
+
+.woocomerce-location-details-sidebar .heading h2 {
+    font-family: "Plus Jakarta Sans";
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 28px;
+    text-align: center;
+    color: #1D1D1D;
+    width: calc(100% - 22px);
+}
+
+.woocomerce-location-back-btn {
+    cursor: pointer;
+}
+
+.woocomerce-location-back-btn svg path {
+    fill: #1D1D1D;
+}
+
+.store-locator-cards-animate {
+    position: unset !important;
+}
+
+.woocomerce-location-details-sidebar .content-heading {
+    font-family: "Plus Jakarta Sans";
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 28px;
+    color: #1D1D1D;
+    margin: 0 0 -4px 0;
+    text-transform: uppercase;
+}
+
+.woocomerce-location-get-direction {
+    background: #1d1d1d;
+    border: 1px solid #1d1d1d;
+    color: #fff;
+    padding: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    font-family: "Plus Jakarta Sans";
+    font-weight: 600;
+    font-size: 13px;
+    line-height: 16px;
+    letter-spacing: 0.26px;
+    transition: .3s;
+    margin: 4px 0 0 0;
+}
+
+.woocomerce-location-get-direction svg path{
+    transition: .3s;
+    fill: #fff;
+}
+
+.woocomerce-location-get-direction:hover{
+    background: #fff;
+    color: #1d1d1d;
+}
+
+.woocomerce-location-get-direction:hover svg path{
+    fill: #1d1d1d;
+}
+
+.woocomerce-location-opening-hours ul {
+    padding: 0px;
+    margin: 19px 0px 19px 0px;
+}
+
+.woocomerce-location-opening-hours ul li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.woocomerce-location-opening-hours p {
+    font-family: "Plus Jakarta Sans";
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 24px;
+    color: #1D1D1D;
+}
+
+.woocomerce-location-details-sidebar .social-share > div {
+    padding: 0px !important;
+    justify-content: flex-start !important;
+    gap: 20px;
+}
+
+.woocomerce-location-details-sidebar .social-share > div a {
+    margin: 0px !important;
+    font-size: 16px;
+}
+
+@media (max-width:1024px){
+
+    .woocomerce-location-details-sidebar {
+        padding: 0px;
+    }
+
+}

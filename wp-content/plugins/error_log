@@ -1,0 +1,4 @@
+[07-Mar-2026 07:09:39 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function add_action() in /home/fermpgjg/dogbags.dog/wp-content/plugins/hello.php:69
+Stack trace:
+#0 {main}
+  thrown in /home/fermpgjg/dogbags.dog/wp-content/plugins/hello.php on line 69

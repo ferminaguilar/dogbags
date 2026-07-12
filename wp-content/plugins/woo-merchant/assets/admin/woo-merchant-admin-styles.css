@@ -1,0 +1,402 @@
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 34px;
+    height: 20px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 20px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 14px;
+    width: 14px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: #0073aa;
+}
+
+input:checked + .slider:before {
+    transform: translateX(14px);
+}
+
+.wm-conditional-field{
+    display:none;
+}
+
+ .wrap.woo-merchant-setting-page {
+    background-color: #f0f2f5; 
+    color: #34495e;
+    padding: 30px;
+    border-radius: 12px;
+}
+
+h1 {
+    color: #2c3e50;
+    font-size: 32px;
+    margin-bottom: 30px;
+    border-bottom: 1px solid #e0e6ec;
+    padding-bottom: 20px;
+    font-weight: 700;
+}
+
+.updated p, .notice.e-notice p {
+    margin: 0;
+    line-height: 1.7;
+    color: #556c7f;
+    font-size: 15px;
+}
+
+.updated strong {
+    color: #2db7f5;
+    font-weight: 600;
+}
+
+form .updated a,form  .e-notice a {
+    color: #2db7f5;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.updated a:hover, .e-notice a:hover {
+    color: #1a9cd7;
+    text-decoration: underline;
+}
+   
+ 
+.form-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin-top: 35px;
+    background-color: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.05);
+}
+
+.form-table th,
+.form-table td {
+    padding: 18px 25px;
+    border-bottom: 1px solid #f2f2f2;
+    text-align: left;
+}
+
+.form-table th {
+    width: 35%;
+    vertical-align: top;
+    font-weight: 600;
+    color: #495057;
+    background-color: #fdfdfd;
+    line-height: 1.5;
+}
+
+.form-table td {
+    vertical-align: middle;
+    color: #6c757d;
+}
+
+.form-table tbody tr:last-child th,
+.form-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.wm-settings-section th {
+    background-color: #fafafa;
+    border-bottom: 1px solid #e9ecef;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    text-align: left;
+    font-weight: 700;
+    color: #34495e;
+}
+
+.wm-settings-section h2 {
+    font-size: 24px;
+    margin: 0;
+    padding: 0;
+}
+
+input[type="text"],
+input[type="number"],
+select {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #dcdfe6;
+    border-radius: 6px;
+    font-size: 15px;
+    color: #495057;
+    background-color: #fff;
+    box-sizing: border-box;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+select:focus {
+    border-color: #40a9ff;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(24, 144, 255, 0.15);
+}
+
+.wc-product-search.select2-hidden-accessible + .select2-container--default .select2-selection--single {
+    height: 44px;
+    border: 1px solid #dcdfe6;
+    border-radius: 6px;
+    background-color: #fff;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.wc-product-search.select2-hidden-accessible + .select2-container--default .select2-selection--single .select2-selection__rendered {
+    line-height: 44px;
+    padding-left: 15px;
+    color: #495057;
+}
+
+.wc-product-search.select2-hidden-accessible + .select2-container--default .select2-selection--single .select2-selection__arrow {
+    height: 42px;
+    width: 30px;
+}
+
+.select2-container--default.select2-container--open .select2-selection--single,
+.select2-container--default.select2-container--focus .select2-selection--single {
+    border-color: #40a9ff !important;
+    box-shadow: 0 0 0 3px rgba(24, 144, 255, 0.15) !important;
+}
+
+.select2-container--default .select2-results__option {
+    padding: 10px 15px;
+    font-size: 15px;
+    color: #495057;
+}
+
+.select2-container--default .select2-results__option--highlighted.select2-results__option--selectable {
+    background-color: #e6f7ff;
+    color: #1890ff;
+}
+
+.select2-container--default .select2-results__option--selected {
+    background-color: #f0f0f0;
+}
+
+.select2-dropdown {
+    border: 1px solid #dcdfe6;
+    border-radius: 6px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 28px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #cbd4e0;
+    transition: .4s;
+    border-radius: 28px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 20px;
+    width: 20px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+input:checked + .slider {
+    background-color: #6852EB;
+}
+
+input:focus + .slider {
+    box-shadow: 0 0 0 3px #6852eb4f;
+}
+
+input:checked + .slider:before {
+    transform: translateX(22px);
+}
+
+.conditional-with- {
+    transition: all 0.4s ease-in-out;
+}
+
+.conditional-with-[style*="display: none"] {
+    opacity: 0;
+    max-height: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.submit {
+    text-align: right;
+    padding: 25px 0 0;
+}
+
+.submit input[type="submit"] {
+    background-color: #6852EB;
+    color: #fff;
+    border: none;
+    padding: 14px 30px;
+    border-radius: 8px;
+    font-size: 17px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.submit input[type="submit"]:hover {
+    background-color: #6852EB;
+    box-shadow: 0 6px 15px #6852eb3b;
+}
+
+@media (max-width: 768px) {
+    .wrap.woo-merchant-setting-page {
+        margin: 15px;
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 26px;
+        margin-bottom: 20px;
+    }
+
+    .updated, .notice.e-notice {
+        padding: 15px 20px;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    .e-notice__aside {
+        padding-top: 0;
+        margin-bottom: 10px;
+    }
+    .e-notice__content h3 {
+        font-size: 20px;
+        margin-bottom: 8px;
+    }
+    .e-notice__actions {
+        justify-content: center;
+    }
+
+    .form-table th,
+    .form-table td {
+        display: block;
+        width: 100%;
+        text-align: left;
+        padding: 12px 20px;
+    }
+
+    .form-table th {
+        padding-bottom: 5px;
+        font-size: 16px;
+        background-color: #fbfbfb;
+        border-bottom: none;
+    }
+
+    .form-table td {
+        padding-top: 5px;
+        padding-bottom: 15px;
+    }
+
+    .wm-settings-section th {
+        text-align: left;
+        padding: 15px 20px;
+    }
+    .wm-settings-section h2 {
+        font-size: 20px;
+    }
+
+    .submit {
+        text-align: center;
+    }
+
+    .submit input[type="submit"] {
+        width: 100%;
+        max-width: 300px;
+    }
+}
+
+.wp-core-ui select {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 6px 15px;
+    color: #1d1d1d;
+}
+
+form p.submit {
+    position: sticky;
+    bottom: 16px;
+    background-color: #ffffff26;
+    padding: 15px !important;
+    border-radius: 7px;
+    max-width: 889px;
+    width: 100%;
+    backdrop-filter: blur(6px);
+    border: 1px solid #1d1d1d !important;
+    margin-top: 32px;
+    text-align: center;
+}
+ 
+
+.wrap.woo-merchant-setting-page  .form-table {
+    max-width: 920px;
+    width: 100%;
+}
+
+.wrap.woo-merchant-setting-page h1 {
+    font-size: 30px;
+    margin: 0;
+    padding: 0;
+    font-weight: 600;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+}

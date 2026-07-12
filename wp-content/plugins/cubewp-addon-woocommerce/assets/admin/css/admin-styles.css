@@ -1,0 +1,32 @@
+.vp_video-tabs {
+    margin-bottom: 10px;
+}
+
+.vp_video-tabs button {
+    background: #f7f7f7;
+    border: 1px solid #ccc;
+    padding: 6px 12px;
+    cursor: pointer;
+    margin-right: 5px;
+}
+
+.vp_video-tabs button.active {
+    background: #e2e2e2;
+}
+
+.vp_video-tab-content {
+    display: none;
+}
+
+.vp_video-tab-content.active {
+    display: block;
+    margin-top: 10px;
+}
+.form-field-inner {
+    display: flex;
+    gap: 8px;
+}
+
+.form-field-inner input {
+    width: calc(100% - 160px);
+}

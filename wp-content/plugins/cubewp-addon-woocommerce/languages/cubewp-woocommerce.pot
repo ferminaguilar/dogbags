@@ -1,0 +1,662 @@
+# Loco Gettext template
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: cubewp-woocommerce\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-09-15 21:49+0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: cland <cubewp@gmail.com>\n"
+"Language-Team: Cridio <contact@cubewp.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION\n"
+"POT-Revision-Date: Tue Mar 08 2016 16:05:54 GMT+0500 (Pakistan Standard Time)\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Generator: Poedit 3.7\n"
+"X-Poedit-KeywordsList: "
+"_:1;gettext:1;dgettext:2;ngettext:1,2;dngettext:2,3;__:1;_e:1;_c:1;_n:1,2;_n_noop:1,2;_nc:1,2;__ngettext:1,2;__ngettext_noop:1,2;_x:1,2c;_ex:1,2c;_nx:1,2,4c;_nx_noop:1,2,3c;_n_js:1,2;_nx_js:1,2,3c;esc_attr__:1;esc_html__:1;esc_attr_e:1;esc_html_e:1;esc_attr_x:1,2c;esc_html_x:1,2c;comments_number_link:2,3;t:1;st:1;trans:1;transChoice:1,2\n"
+"X-Poedit-Basepath: ..\n"
+"X-Textdomain-Support: yes\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: cube/classes/class-cubewp-woocommerce-coupons.php:115
+msgid ""
+"Great news! Your coupon submission has been successfully received. However, it "
+"is currently undergoing a pending review. In the meantime, you can manage your "
+"coupons from the dashboard and be redirected there."
+msgstr ""
+
+#: cube/classes/class-cubewp-woocommerce-coupons.php:116
+msgid ""
+"Great news! Your coupon submission has been successfully received. You can "
+"manage your coupons from the dashboard and be redirected there."
+msgstr ""
+
+#: cube/classes/class-cubewp-woocommerce-coupons.php:169
+msgid "Description (optional)"
+msgstr ""
+
+#: cube/classes/class-cubewp-woocommerce-coupons.php:188
+msgid "Value of the coupon."
+msgstr ""
+
+#: cube/classes/class-cubewp-woocommerce-coupons.php:191
+msgid "Check this box if the coupon grants free shipping."
+msgstr ""
+
+#: cube/classes/class-cubewp-woocommerce-coupons.php:194
+msgid "The coupon will expire at 00:00:00 of this date."
+msgstr ""
+
+#: cube/classes/class-cubewp-woocommerce-coupons.php:197
+msgid ""
+"This field allows you to set the minimum spend (subtotal) allowed to use the "
+"coupon."
+msgstr ""
+
+#: cube/classes/class-cubewp-woocommerce-coupons.php:198
+msgid "No minimum"
+msgstr ""
+
+#: cube/classes/class-cubewp-woocommerce-coupons.php:201
+msgid ""
+"This field allows you to set the maximum spend (subtotal) allowed when using "
+"the coupon."
+msgstr ""
+
+#: cube/classes/class-cubewp-woocommerce-coupons.php:202
+msgid "No maximum"
+msgstr ""
+
+#: cube/classes/class-cubewp-woocommerce-coupons.php:205
+msgid ""
+"Check this box if the coupon cannot be used in conjunction with other coupons."
+msgstr ""
+
+#: cube/classes/class-cubewp-woocommerce-coupons.php:208
+msgid ""
+"Check this box if the coupon should not apply to items on sale. Per-item "
+"coupons will only work if the item is not on sale. Per-cart coupons will only "
+"work if there are items in the cart that are not on sale."
+msgstr ""
+
+#: cube/classes/class-cubewp-woocommerce-coupons.php:218
+msgid ""
+"Products that the coupon will be applied to, or that need to be in the cart in "
+"order for the \"Fixed cart discount\" to be applied."
+msgstr ""
+
+#: cube/classes/class-cubewp-woocommerce-coupons.php:228
+msgid ""
+"Products that the coupon will not be applied to, or that cannot be in the cart "
+"in order for the \"Fixed cart discount\" to be applied."
+msgstr ""
+
+#: cube/classes/class-cubewp-woocommerce-coupons.php:236
+msgid ""
+"Product categories that the coupon will be applied to, or that need to be in "
+"the cart in order for the \"Fixed cart discount\" to be applied."
+msgstr ""
+
+#: cube/classes/class-cubewp-woocommerce-coupons.php:244
+msgid ""
+"Product categories that the coupon will not be applied to, or that cannot be in "
+"the cart in order for the \"Fixed cart discount\" to be applied."
+msgstr ""
+
+#: cube/classes/class-cubewp-woocommerce-coupons.php:247
+msgid ""
+"List of allowed billing emails to check against when an order is placed. "
+"Separate email addresses with commas. You can also use an asterisk (*) to match "
+"parts of an email. For example \"*@gmail.com\" would match all gmail addresses."
+msgstr ""
+
+#: cube/classes/class-cubewp-woocommerce-coupons.php:248
+msgid "No restrictions"
+msgstr ""
+
+#: cube/classes/class-cubewp-woocommerce-coupons.php:251
+msgid "How many times this coupon can be used before it is void."
+msgstr ""
+
+#: cube/classes/class-cubewp-woocommerce-coupons.php:252
+#: cube/classes/class-cubewp-woocommerce-coupons.php:264
+msgid "Unlimited Usage"
+msgstr ""
+
+#: cube/classes/class-cubewp-woocommerce-coupons.php:259
+msgid ""
+"The maximum number of individual items this coupon can apply to when using "
+"product discounts. Leave blank to apply to all qualifying items in cart."
+msgstr ""
+
+#: cube/classes/class-cubewp-woocommerce-coupons.php:260
+msgid "Apply to all qualifying items in cart"
+msgstr ""
+
+#: cube/classes/class-cubewp-woocommerce-coupons.php:263
+msgid ""
+"How many times this coupon can be used by an individual user. Uses billing "
+"email for guests, and user ID for logged in users."
+msgstr ""
+
+#: cube/classes/class-cubewp-woocommerce-coupons.php:274
+msgid "Coupons"
+msgstr ""
+
+#: cube/classes/class-cubewp-woocommerce-coupons.php:283
+msgid "Woo Coupon Fields"
+msgstr ""
+
+#: cube/classes/class-cubewp-woocommerce-coupons.php:300
+msgid "Description"
+msgstr ""
+
+#: cube/classes/class-cubewp-woocommerce-coupons.php:305
+msgid "Discount Type"
+msgstr ""
+
+#: cube/classes/class-cubewp-woocommerce-coupons.php:310
+msgid "Coupon Amount"
+msgstr ""
+
+#: cube/classes/class-cubewp-woocommerce-coupons.php:315
+msgid "Allow Free Shipping"
+msgstr ""
+
+#: cube/classes/class-cubewp-woocommerce-coupons.php:320
+msgid "Coupon Expiry Date"
+msgstr ""
+
+#: cube/classes/class-cubewp-woocommerce-coupons.php:325
+msgid "Minimum Spend"
+msgstr ""
+
+#: cube/classes/class-cubewp-woocommerce-coupons.php:330
+msgid "Maximum Spend"
+msgstr ""
+
+#: cube/classes/class-cubewp-woocommerce-coupons.php:335
+msgid "Individual Use Only"
+msgstr ""
+
+#: cube/classes/class-cubewp-woocommerce-coupons.php:340
+msgid "Exclude Sale Items"
+msgstr ""
+
+#: cube/classes/class-cubewp-woocommerce-coupons.php:345
+msgid "Products"
+msgstr ""
+
+#: cube/classes/class-cubewp-woocommerce-coupons.php:350
+msgid "Exclude Products"
+msgstr ""
+
+#: cube/classes/class-cubewp-woocommerce-coupons.php:355
+msgid "Product Categories"
+msgstr ""
+
+#: cube/classes/class-cubewp-woocommerce-coupons.php:360
+msgid "Exclude Categories"
+msgstr ""
+
+#: cube/classes/class-cubewp-woocommerce-coupons.php:365
+msgid "Allowed Emails"
+msgstr ""
+
+#: cube/classes/class-cubewp-woocommerce-coupons.php:370
+msgid "Usage Limit Per Coupon"
+msgstr ""
+
+#: cube/classes/class-cubewp-woocommerce-coupons.php:375
+msgid "Limit usage to X items"
+msgstr ""
+
+#: cube/classes/class-cubewp-woocommerce-coupons.php:380
+msgid "Usage Limit Per User"
+msgstr ""
+
+#: cube/classes/class-cubewp-woocommerce-load.php:55
+#, php-format
+msgid ""
+"CubeWP WooCommerce requires WooCommerce to be installed and active. You can "
+"download <a href=\"%s\" target=\"_blank\">WooCommerce</a> here."
+msgstr ""
+
+#: cube/classes/class-cubewp-woocommerce-products.php:104
+msgid "Woo Product Fields"
+msgstr ""
+
+#: cube/classes/class-cubewp-woocommerce-products.php:132
+msgid "Gallery"
+msgstr ""
+
+#: cube/classes/class-cubewp-woocommerce-products.php:140
+msgid "Virtual?"
+msgstr ""
+
+#: cube/classes/class-cubewp-woocommerce-products.php:146
+msgid "Downloadable?"
+msgstr ""
+
+#: cube/classes/class-cubewp-woocommerce-products.php:154
+msgid "Downloadable Files"
+msgstr ""
+
+#: cube/classes/class-cubewp-woocommerce-products.php:161
+msgid "Download Limit"
+msgstr ""
+
+#: cube/classes/class-cubewp-woocommerce-products.php:168
+msgid "Download Expiry"
+msgstr ""
+
+#: cube/classes/class-cubewp-woocommerce-products.php:176
+#: cube/include/helper.php:430
+msgid "Price"
+msgstr ""
+
+#: cube/classes/class-cubewp-woocommerce-products.php:183
+msgid "Regular Price"
+msgstr ""
+
+#: cube/classes/class-cubewp-woocommerce-products.php:190
+msgid "Sale Price"
+msgstr ""
+
+#: cube/classes/class-cubewp-woocommerce-products.php:198
+msgid "Schedule?"
+msgstr ""
+
+#: cube/classes/class-cubewp-woocommerce-products.php:205
+msgid "From"
+msgstr ""
+
+#: cube/classes/class-cubewp-woocommerce-products.php:212
+msgid "To"
+msgstr ""
+
+#: cube/classes/class-cubewp-woocommerce-products.php:220
+msgid "SKU"
+msgstr ""
+
+#: cube/classes/class-cubewp-woocommerce-products.php:228
+msgid "Product URL"
+msgstr ""
+
+#: cube/classes/class-cubewp-woocommerce-products.php:235
+msgid "Button Text"
+msgstr ""
+
+#: cube/classes/class-cubewp-woocommerce-products.php:243
+msgid "Stock Management"
+msgstr ""
+
+#: cube/classes/class-cubewp-woocommerce-products.php:250
+msgid "Stock Quantity"
+msgstr ""
+
+#: cube/classes/class-cubewp-woocommerce-products.php:257
+msgid "Allow Backorders?"
+msgstr ""
+
+#: cube/classes/class-cubewp-woocommerce-products.php:264
+msgid "Low Stock Threshold"
+msgstr ""
+
+#: cube/classes/class-cubewp-woocommerce-products.php:272
+msgid "Stock Status"
+msgstr ""
+
+#: cube/classes/class-cubewp-woocommerce-products.php:280
+msgid "Sold Individually"
+msgstr ""
+
+#: cube/classes/class-cubewp-woocommerce-products.php:288
+msgid "Weight (KG)"
+msgstr ""
+
+#: cube/classes/class-cubewp-woocommerce-products.php:296
+msgid "Length (CM)"
+msgstr ""
+
+#: cube/classes/class-cubewp-woocommerce-products.php:303
+msgid "Width (CM)"
+msgstr ""
+
+#: cube/classes/class-cubewp-woocommerce-products.php:310
+msgid "Height (CM)"
+msgstr ""
+
+#: cube/classes/class-cubewp-woocommerce-products.php:317
+msgid "Upsells"
+msgstr ""
+
+#: cube/classes/class-cubewp-woocommerce-products.php:324
+msgid "Cross Sells"
+msgstr ""
+
+#: cube/classes/class-cubewp-woocommerce-products.php:331
+msgid "Grouped Products"
+msgstr ""
+
+#: cube/classes/class-cubewp-woocommerce-products.php:339
+msgid "Attributes"
+msgstr ""
+
+#: cube/classes/class-cubewp-woocommerce-products.php:555
+msgid ""
+"Congratulations! Your product submission was successful. Please wait a moment "
+"while we redirect you."
+msgstr ""
+
+#: cube/classes/class-cubewp-woocommerce-products.php:849
+msgid "Price field is mandatory"
+msgstr ""
+
+#: cube/classes/class-cubewp-woocommerce-products.php:860
+msgid ""
+"The sale will start at 00:00:00 of \"From\" date and end at 23:59:59 of \"To\" "
+"date."
+msgstr ""
+
+#: cube/classes/class-cubewp-woocommerce-products.php:874
+msgid ""
+"SKU refers to a Stock-keeping unit, a unique identifier for each distinct "
+"product and service that can be purchased."
+msgstr ""
+
+#: cube/classes/class-cubewp-woocommerce-products.php:882
+msgid "Enter the external URL to the product."
+msgstr ""
+
+#: cube/classes/class-cubewp-woocommerce-products.php:884
+msgid "This text will be shown on the button linking to the external product."
+msgstr ""
+
+#: cube/classes/class-cubewp-woocommerce-products.php:891
+msgid "Track stock quantity for this product."
+msgstr ""
+
+#: cube/classes/class-cubewp-woocommerce-products.php:905
+msgid ""
+"Stock quantity. If this is a variable product this value will be used to "
+"control stock for all variations, unless you define stock at variation level."
+msgstr ""
+
+#: cube/classes/class-cubewp-woocommerce-products.php:909
+msgid "Do not allow"
+msgstr ""
+
+#: cube/classes/class-cubewp-woocommerce-products.php:910
+msgid "Allow, but notify customer"
+msgstr ""
+
+#: cube/classes/class-cubewp-woocommerce-products.php:911
+msgid "Allow"
+msgstr ""
+
+#: cube/classes/class-cubewp-woocommerce-products.php:916
+msgid ""
+"If managing stock, this controls whether or not backorders are allowed. If "
+"enabled, stock quantity can go below 0."
+msgstr ""
+
+#: cube/classes/class-cubewp-woocommerce-products.php:918
+msgid "When product stock reaches this amount you will be notified by email."
+msgstr ""
+
+#: cube/classes/class-cubewp-woocommerce-products.php:927
+msgid "In stock"
+msgstr ""
+
+#: cube/classes/class-cubewp-woocommerce-products.php:928
+msgid "Out of stock"
+msgstr ""
+
+#: cube/classes/class-cubewp-woocommerce-products.php:929
+msgid "On backorder"
+msgstr ""
+
+#: cube/classes/class-cubewp-woocommerce-products.php:934
+msgid ""
+"Controls whether or not the product is listed as \"in stock\" or \"out of "
+"stock\" on the frontend."
+msgstr ""
+
+#: cube/classes/class-cubewp-woocommerce-products.php:940
+msgid ""
+"Check to let customers to purchase only 1 item in a single order. This is "
+"particularly useful for items that have limited quantity, for example art or "
+"handmade goods."
+msgstr ""
+
+#: cube/classes/class-cubewp-woocommerce-products.php:954
+msgid "Weight in decimal form."
+msgstr ""
+
+#: cube/classes/class-cubewp-woocommerce-products.php:956
+msgid "Length in decimal form."
+msgstr ""
+
+#: cube/classes/class-cubewp-woocommerce-products.php:958
+msgid "Width in decimal form."
+msgstr ""
+
+#: cube/classes/class-cubewp-woocommerce-products.php:960
+msgid "Height in decimal form."
+msgstr ""
+
+#: cube/classes/class-cubewp-woocommerce-products.php:967
+msgid "Virtual products are intangible and are not shipped."
+msgstr ""
+
+#: cube/classes/class-cubewp-woocommerce-products.php:973
+msgid "Downloadable products give access to a file upon purchase."
+msgstr ""
+
+#: cube/classes/class-cubewp-woocommerce-products.php:989
+msgid "File Hashes"
+msgstr ""
+
+#: cube/classes/class-cubewp-woocommerce-products.php:997
+msgid "File"
+msgstr ""
+
+#: cube/classes/class-cubewp-woocommerce-products.php:1002
+msgid "The file which customers will get access to."
+msgstr ""
+
+#: cube/classes/class-cubewp-woocommerce-products.php:1005
+msgid "File Name"
+msgstr ""
+
+#: cube/classes/class-cubewp-woocommerce-products.php:1009
+msgid "This is the name of the download shown to the customer."
+msgstr ""
+
+#: cube/classes/class-cubewp-woocommerce-products.php:1014
+msgid "Leave blank for unlimited re-downloads."
+msgstr ""
+
+#: cube/classes/class-cubewp-woocommerce-products.php:1016
+msgid "Enter the number of days before a download link expires, or leave blank."
+msgstr ""
+
+#: cube/classes/class-cubewp-woocommerce-products.php:1030
+msgid "This lets you choose which products are part of this group."
+msgstr ""
+
+#: cube/classes/class-cubewp-woocommerce-products.php:1034
+msgid ""
+"Upsells are products which you recommend instead of the currently viewed "
+"product, for example, products that are more profitable or better quality or "
+"more expensive."
+msgstr ""
+
+#: cube/classes/class-cubewp-woocommerce-products.php:1036
+msgid ""
+"Cross-sells are products which you promote in the cart, based on the current "
+"product."
+msgstr ""
+
+#: cube/classes/class-cubewp-woocommerce-products.php:1045
+msgid "Attribute Name"
+msgstr ""
+
+#: cube/classes/class-cubewp-woocommerce-products.php:1049
+msgid "f.e. size or color"
+msgstr ""
+
+#: cube/classes/class-cubewp-woocommerce-products.php:1052
+msgid "Attribute Value(s)"
+msgstr ""
+
+#: cube/classes/class-cubewp-woocommerce-products.php:1056
+msgid ""
+"Enter options for customers to choose from, f.e. \"Blue\" or \"Large\". Use \"|"
+"\" to separate different options."
+msgstr ""
+
+#: cube/classes/class-cubewp-woocommerce-products.php:1070
+msgid "Product"
+msgstr ""
+
+#: cube/classes/class-cubewp-woocommerce-products.php:1503
+msgid "Opening Hours"
+msgstr ""
+
+#: cube/classes/class-cubewp-woocommerce-products.php:1512
+msgid "Closed"
+msgstr ""
+
+#: cube/include/helper.php:42
+msgid "WooCommerce"
+msgstr ""
+
+#: cube/include/helper.php:49
+msgid "Add Product Price Into Author Wallet"
+msgstr ""
+
+#: cube/include/helper.php:50
+msgid ""
+"If enabled, upon product sale, the system will add the product price to the "
+"author's wallet."
+msgstr ""
+
+#: cube/include/helper.php:73
+msgid "Before Single Product"
+msgstr ""
+
+#: cube/include/helper.php:74
+msgid "Before Single Product Summary"
+msgstr ""
+
+#: cube/include/helper.php:75
+msgid "Single Product Summary"
+msgstr ""
+
+#: cube/include/helper.php:76
+msgid "After Single Product Summary"
+msgstr ""
+
+#: cube/include/helper.php:77
+msgid "After Single Product"
+msgstr ""
+
+#: cube/include/helper.php:78
+msgid "Product Meta Start"
+msgstr ""
+
+#: cube/include/helper.php:79
+msgid "Product Meta End"
+msgstr ""
+
+#: cube/include/helper.php:80
+msgid "Share"
+msgstr ""
+
+#: cube/include/helper.php:81
+msgid "Product Additional Information"
+msgstr ""
+
+#: cube/include/helper.php:82
+msgid "Product Tabs"
+msgstr ""
+
+#: cube/include/helper.php:83
+msgid "Product Tab Panels"
+msgstr ""
+
+#: cube/include/helper.php:84
+msgid "Review Before"
+msgstr ""
+
+#: cube/include/helper.php:85
+msgid "Review After"
+msgstr ""
+
+#: cube/include/helper.php:86
+msgid "Review Before Comment Meta"
+msgstr ""
+
+#: cube/include/helper.php:87
+msgid "Review After Comment Meta"
+msgstr ""
+
+#: cube/include/helper.php:88
+msgid "Review Before Comment Text"
+msgstr ""
+
+#: cube/include/helper.php:89
+msgid "After Comment Text"
+msgstr ""
+
+#: cube/include/helper.php:148
+msgid "Product Attributes"
+msgstr ""
+
+#: cube/include/helper.php:205
+msgid "Product Video"
+msgstr ""
+
+#: cube/include/helper.php:222
+msgid "YouTube"
+msgstr ""
+
+#: cube/include/helper.php:223
+msgid "MP4"
+msgstr ""
+
+#: cube/include/helper.php:231
+msgid "YouTube Video URL"
+msgstr ""
+
+#: cube/include/helper.php:232
+msgid "Paste the full YouTube video URL"
+msgstr ""
+
+#: cube/include/helper.php:241
+msgid "MP4 Video Upload"
+msgstr ""
+
+#: cube/include/helper.php:242
+msgid "Upload or paste the direct link to an MP4 video file."
+msgstr ""
+
+#: cube/include/helper.php:246
+msgid "Upload Video"
+msgstr ""
+
+#: cube/include/helper.php:316
+msgid "Your browser does not support the video tag."
+msgstr ""
+
+#: cubewp-woocommerce.php:85
+#, php-format
+msgid ""
+"CubeWP WooCommerce requires CubeWP Framework to be installed and active. You "
+"can download <a href=\"%s\" target=\"_blank\">CubeWP Framework</a> here."
+msgstr ""

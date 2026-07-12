@@ -1,0 +1,25 @@
+{
+	"folders": [
+		{
+			"path": "../drupal10"
+		},
+		{
+			"path": "../drupalonline"
+		},
+		{
+			"path": "../artnm"
+		},
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"geminicodeassist.outlines.automaticOutlineGeneration": true,
+		"chat.editor.copilotCli.hideExtensionHost": false,
+		"terminal.integrated.initialHintCopilotCli": true,
+		"chat.agents.copilotCli.hideExtensionHost": true,
+		"terminal.integrated.copyOnSelection": true,
+		"chat.editor.claude.preferAgentHost": true,
+		"jsts-chat-features.skills.enabled": true
+	}
+}

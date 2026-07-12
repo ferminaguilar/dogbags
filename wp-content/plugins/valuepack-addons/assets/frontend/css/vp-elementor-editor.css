@@ -1,0 +1,128 @@
+.vpack-icon::after {
+    content: 'VP';
+    position: absolute;
+    color: #a7a7a7;
+    font-size: 8px;
+    padding: 1px 3px;
+    line-height: 10px;
+    font-family: "Open Sans", Roboto, Helvetica, Arial, sans-serif;
+    font-weight: 400;
+    display: inline-block;
+    top: 3px;
+    right: 3px;
+    border: 1px solid #dedede;
+    border-radius: 3px;
+    -webkit-transition: color .2s ease-in-out, border-color .2s ease-in-out;
+    transition: color .2s ease-in-out, border-color .2s ease-in-out;
+    background: #ffffff;
+}
+
+.elementor-element:hover .vpack-icon:after{
+    color: #eb8efb;
+    border-color: #eb8efb;
+}
+
+
+.vp-product-search-wrapper {
+    position: absolute;
+    z-index: 9999;
+    background-color: #fff;
+    padding: 5px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-top: -28px;
+    max-width: calc(100% - 20px);
+    overflow: hidden;
+    width: 100%;
+    left: 10px;
+}
+.vp-product-search-wrapper .vp-product-results {
+     z-index: 9999;
+    background-color: #fff;
+    padding: 3px 0px;
+    border-radius: 5px;
+    margin-top: 9px;
+    max-width: 100%;
+    overflow: auto;
+    max-height: 200px;
+} 
+.vp-product-search-wrapper .vp-product-results .vp-product-result-item {
+  font-size: 12px;
+  border-bottom: 1px solid #ddd;
+  white-space: nowrap;
+  overflow: hidden;
+  cursor: pointer;
+  text-overflow: ellipsis;
+  padding: 8px 0 7px 0;
+  transition: 0.3s;
+}
+.vp-product-result-item.active {
+    background-color: #ddd;
+    padding: 8px 10px !important;
+    border-radius: 4px;
+}
+.vp-selected-products {
+    margin-top: 8px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+.vp-selected-product {
+    background: #f0f0f0;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+}
+.vp-selected-product .remove {
+    margin-left: 6px;
+    cursor: pointer;
+    color: #d33;
+    font-weight: bold;
+}
+.vp-multi-product-results li {
+    cursor: pointer;
+    padding: 5px 8px;
+}
+.vp-multi-product-results li:hover {
+    background-color: #f5f5f5;
+}
+
+.vp-multi-product-search-wrapper {
+    position: absolute;
+    z-index: 9999;
+    background-color: #fff;
+    padding: 5px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-top: -28px;
+    max-width: calc(100% - 20px);
+    overflow: hidden;
+    width: 100%;
+    left: 10px;
+}
+
+.vp-multi-product-search-wrapper .vp-multi-product-results {
+    z-index: 9999;
+    background-color: #fff;
+    padding: 3px 0px;
+    border-radius: 5px;
+    margin-top: 9px;
+    max-width: 100%;
+    overflow: auto;
+    max-height: 200px;
+}
+
+.vp-multi-product-search-wrapper .vp-selected-products {
+    display: none;
+}
+
+.vp-multi-product-search-wrapper .vp-multi-product-results li.vp-multi-product-result-item {
+    font-size: 12px;
+    border-bottom: 1px solid #ddd;
+    white-space: nowrap;
+    overflow: hidden;
+    cursor: pointer;
+    text-overflow: ellipsis;
+    padding: 8px 0 7px 0;
+    transition: 0.3s;
+}

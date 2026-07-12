@@ -1,0 +1,60 @@
+[02-Feb-2026 21:02:08 UTC] PHP Fatal error:  Uncaught Error: Class "WP_Customize_Image_Control" not found in /home/fermpgjg/dogbags.dog/wp-includes/customize/class-wp-customize-cropped-image-control.php:17
+Stack trace:
+#0 {main}
+  thrown in /home/fermpgjg/dogbags.dog/wp-includes/customize/class-wp-customize-cropped-image-control.php on line 17
+[05-Mar-2026 06:30:36 UTC] PHP Fatal error:  Uncaught Error: Class "WP_Customize_Image_Control" not found in /home/fermpgjg/dogbags.dog/wp-includes/customize/class-wp-customize-cropped-image-control.php:17
+Stack trace:
+#0 {main}
+  thrown in /home/fermpgjg/dogbags.dog/wp-includes/customize/class-wp-customize-cropped-image-control.php on line 17
+[06-Mar-2026 08:05:35 UTC] PHP Fatal error:  Uncaught Error: Class "WP_Customize_Image_Control" not found in /home/fermpgjg/dogbags.dog/wp-includes/customize/class-wp-customize-cropped-image-control.php:17
+Stack trace:
+#0 {main}
+  thrown in /home/fermpgjg/dogbags.dog/wp-includes/customize/class-wp-customize-cropped-image-control.php on line 17
+[09-Mar-2026 22:58:10 UTC] PHP Fatal error:  Uncaught Error: Class "WP_Customize_Image_Control" not found in /home/fermpgjg/dogbags.dog/wp-includes/customize/class-wp-customize-cropped-image-control.php:17
+Stack trace:
+#0 {main}
+  thrown in /home/fermpgjg/dogbags.dog/wp-includes/customize/class-wp-customize-cropped-image-control.php on line 17
+[10-Mar-2026 22:19:54 UTC] PHP Fatal error:  Uncaught Error: Class "WP_Customize_Image_Control" not found in /home/fermpgjg/dogbags.dog/wp-includes/customize/class-wp-customize-cropped-image-control.php:17
+Stack trace:
+#0 {main}
+  thrown in /home/fermpgjg/dogbags.dog/wp-includes/customize/class-wp-customize-cropped-image-control.php on line 17
+[12-Mar-2026 22:40:35 UTC] PHP Fatal error:  Uncaught Error: Class "WP_Customize_Image_Control" not found in /home/fermpgjg/dogbags.dog/wp-includes/customize/class-wp-customize-cropped-image-control.php:17
+Stack trace:
+#0 {main}
+  thrown in /home/fermpgjg/dogbags.dog/wp-includes/customize/class-wp-customize-cropped-image-control.php on line 17
+[13-Mar-2026 06:41:39 UTC] PHP Fatal error:  Uncaught Error: Class "WP_Customize_Image_Control" not found in /home/fermpgjg/dogbags.dog/wp-includes/customize/class-wp-customize-cropped-image-control.php:17
+Stack trace:
+#0 {main}
+  thrown in /home/fermpgjg/dogbags.dog/wp-includes/customize/class-wp-customize-cropped-image-control.php on line 17
+[13-Mar-2026 20:15:51 UTC] PHP Fatal error:  Uncaught Error: Class "WP_Customize_Image_Control" not found in /home/fermpgjg/dogbags.dog/wp-includes/customize/class-wp-customize-cropped-image-control.php:17
+Stack trace:
+#0 {main}
+  thrown in /home/fermpgjg/dogbags.dog/wp-includes/customize/class-wp-customize-cropped-image-control.php on line 17
+[14-Mar-2026 20:05:27 UTC] PHP Fatal error:  Uncaught Error: Class "WP_Customize_Image_Control" not found in /home/fermpgjg/dogbags.dog/wp-includes/customize/class-wp-customize-cropped-image-control.php:17
+Stack trace:
+#0 {main}
+  thrown in /home/fermpgjg/dogbags.dog/wp-includes/customize/class-wp-customize-cropped-image-control.php on line 17
+[14-Mar-2026 21:36:59 UTC] PHP Fatal error:  Uncaught Error: Class "WP_Customize_Image_Control" not found in /home/fermpgjg/dogbags.dog/wp-includes/customize/class-wp-customize-cropped-image-control.php:17
+Stack trace:
+#0 {main}
+  thrown in /home/fermpgjg/dogbags.dog/wp-includes/customize/class-wp-customize-cropped-image-control.php on line 17
+[15-Mar-2026 20:34:13 UTC] PHP Fatal error:  Uncaught Error: Class "WP_Customize_Image_Control" not found in /home/fermpgjg/dogbags.dog/wp-includes/customize/class-wp-customize-cropped-image-control.php:17
+Stack trace:
+#0 {main}
+  thrown in /home/fermpgjg/dogbags.dog/wp-includes/customize/class-wp-customize-cropped-image-control.php on line 17
+[17-Mar-2026 19:53:25 UTC] PHP Fatal error:  Uncaught Error: Class "WP_Customize_Image_Control" not found in /home/fermpgjg/dogbags.dog/wp-includes/customize/class-wp-customize-cropped-image-control.php:17
+Stack trace:
+#0 {main}
+  thrown in /home/fermpgjg/dogbags.dog/wp-includes/customize/class-wp-customize-cropped-image-control.php on line 17
+[18-Mar-2026 20:44:21 UTC] PHP Fatal error:  Uncaught Error: Class "WP_Customize_Image_Control" not found in /home/fermpgjg/dogbags.dog/wp-includes/customize/class-wp-customize-cropped-image-control.php:17
+Stack trace:
+#0 {main}
+  thrown in /home/fermpgjg/dogbags.dog/wp-includes/customize/class-wp-customize-cropped-image-control.php on line 17
+[09-Apr-2026 12:27:21 UTC] PHP Fatal error:  Uncaught Error: Class "WP_Customize_Image_Control" not found in /home/fermpgjg/dogbags.dog/wp-includes/customize/class-wp-customize-cropped-image-control.php:17
+Stack trace:
+#0 {main}
+  thrown in /home/fermpgjg/dogbags.dog/wp-includes/customize/class-wp-customize-cropped-image-control.php on line 17
+[22-Apr-2026 10:47:15 UTC] PHP Fatal error:  Uncaught Error: Class "WP_Customize_Image_Control" not found in /home/fermpgjg/dogbags.dog/wp-includes/customize/class-wp-customize-cropped-image-control.php:17
+Stack trace:
+#0 {main}
+  thrown in /home/fermpgjg/dogbags.dog/wp-includes/customize/class-wp-customize-cropped-image-control.php on line 17

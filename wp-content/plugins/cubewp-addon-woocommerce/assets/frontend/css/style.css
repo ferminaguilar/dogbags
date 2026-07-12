@@ -1,0 +1,12 @@
+.vp_custom_video_box, .vp_iframe_wrapper {
+    position: relative;
+}
+
+.vp_iframe_wrapper .iframe-layers,
+.vp_custom_video_box .iframe-layers {
+    width: 100%;
+    position: absolute;
+    height: 100%;
+    z-index: 999;
+    bottom: 0;
+}
