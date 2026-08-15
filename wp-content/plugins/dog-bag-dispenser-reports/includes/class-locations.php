@@ -148,13 +148,13 @@ class DBDR_Locations {
                                 <iframe width="200" height="150" frameborder="0" style="border:0"
                                         src="https://www.google.com/maps?q=<?php echo esc_attr($loc->latitude); ?>,<?php echo esc_attr($loc->longitude); ?>&z=15&output=embed"
                                         allowfullscreen></iframe>
-                            <?php else: ?>—<?php endif; ?>
+                            <?php else: ?>â€”<?php endif; ?>
                         </td>
                         <td><?php echo esc_html(ucfirst($loc->status)); ?></td>
                         <td>
                             <?php if (!empty($loc->qr_code_url)): ?>
                                 <img src="<?php echo esc_url($loc->qr_code_url); ?>" width="100">
-                            <?php else: ?>—<?php endif; ?>
+                            <?php else: ?>â€”<?php endif; ?>
                         </td>
                         <td>
                             <a href="<?php echo admin_url('admin.php?page=dbdr-locations-edit&id=' . intval($loc->id)); ?>" class="button">Edit</a>

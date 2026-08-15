@@ -1,15 +1,6 @@
 {
 	"folders": [
 		{
-			"path": "../drupal10"
-		},
-		{
-			"path": "../drupalonline"
-		},
-		{
-			"path": "../artnm"
-		},
-		{
 			"path": "."
 		}
 	],
